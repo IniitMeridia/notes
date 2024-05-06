@@ -28,4 +28,33 @@ set autoindent
 "list you are appending to".append(what you want to add to the end of the list)
 
 
+list is mutable
+tuple is immutable
+.format ---- brace expansion
 
+' "string" '.split(where in the string you want to split)  - splits strings defaults on space - makes a list out of the split items
+
+'what you want to join the list with (: ! etc...)'.join (list being joined) 
+
+  1 #!/usr/bin/env python3
+  2 
+  3 email = 'last@domain.com'
+  4 
+  5 answer1 = email.split('@')
+  6 answer2 = '.'.join(answer1)
+  7 answer = answer2.split('.')
+  8 print(answer)
+
+email = 'last@domain.com'
+blank = []
+a = email.split('@')[0]
+b = (email.split('@')[1]).split('.')
+blank.append(a)
+blank.append(b[0])
+blank.append(b[1])
+
+print(blank)
+
+'''['last','domain','com']'''
+
+print (('.'.join(email.split('@'))).split('.'))
