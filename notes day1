@@ -1,1 +1,20 @@
+python editer cmd - python3
+to exit python, use exit function - exit()
+>>> is the repl and can be used to run new code before you insert it into a script to check for syntax or errors
+
+"vim .vimrc" from home directory
+input below info to setup vim for coding ease of use:+
+syntax enable
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set number
+filetype indent on
+set autoindent
+
+
+
+
+
+
 
