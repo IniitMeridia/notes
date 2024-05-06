@@ -25,7 +25,7 @@ set autoindent
   8 print(type(3))
   9 
 
-
+"list you are appending to".append(what you want to add to the end of the list)
 
 
 
