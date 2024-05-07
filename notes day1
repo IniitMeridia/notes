@@ -58,3 +58,59 @@ print(blank)
 '''['last','domain','com']'''
 
 print (('.'.join(email.split('@'))).split('.'))
+
+day 1 review - 
+basic data types
+basic math
+list
+tuples - like lists but cant be edited - immutable
+list[0]  last is always -1
+typecast
+functions -print() , type() , 
+brace expansion - 
+.split
+.join
+.append
+.format - 'one = {}'.format(1) - the 1 in the () will be inserted into the {} - 
+
+DAY 2 
+
+branching
+
+  1 #!/usr/bin/env python3
+  2 
+  3 user = int(input('Type a Number:'))
+  4 
+  5 if  (user % 5 == 0) and (user % 3 == 0):
+  6     print('fizzbuzz')
+  7 elif user%3==0:
+  8     print('fizz')
+  9 elif user%5==0:
+ 10     print('buzz')
+ 11 else:
+ 12     print(user)
+ 13 
+
+example
+num = 7
+if 0 <= num <= 10
+  print(num) 
+
+while example
+  1 #!/usr/bin/env python3
+  2 
+  3 while True:
+  4         usr = input('Type pass, continue, or break:\n').lower()
+  5         if usr == 'pass':
+  6             pass
+  7             print('This is pass')
+  8         elif usr == 'continue':
+  9             continue
+ 10             print('This is continue')
+ 11         elif usr == 'break':
+ 12             break
+ 13             print('This is break')
+ 14         else:
+ 15             print('Invalid option')
+
+
