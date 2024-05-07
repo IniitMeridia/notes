@@ -113,4 +113,23 @@ while example
  14         else:
  15             print('Invalid option')
 
-
+  1 #!/usr/bin/env python3
+  2 
+  3 def guess_number(n):
+  4     
+  5     while True:
+  6         guess = int(input('Please guess a number between 1 and 100:\n'))
+  7         if guess == n:
+  8             print('Win')
+  9             break
+ 10         elif guess > n:
+ 11             print('Too High')
+ 12         elif guess < n:
+ 13             print('Too Low')
+ 14         else:
+ 15             print('Invalid Choice')
+ 16     
+ 17 
+ 18 
+ 19 guess_number(23)
+~                     
