@@ -93,6 +93,9 @@ branching
 
 example
 num = 7
+
+
+
 if 0 <= num <= 10
   print(num) 
 
@@ -132,4 +135,12 @@ while example
  17 
  18 
  19 guess_number(23)
-~                     
+~         
+
+DAY3
+
+len() - length of list
+index - 
+range() - provides a range from 2 inputs 1,10 = 0-9
+ten[] - 0 first - -1 = last
+ten[0:10:1] 
