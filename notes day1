@@ -23,7 +23,7 @@ set autoindent
   6 print(a)
   7 print(1 + 2)
   8 print(type(3))
-  9 
+
 
 "list you are appending to".append(what you want to add to the end of the list)
 
@@ -187,3 +187,173 @@ def unique_in_order(s):
             else:
                 second.append(i)
             return second
+
+
+print(*thing*)
+print(type(*thing*))
+
+
+Practice Exam
+  1 #!/usr/bin/env python3
+  2 
+  3 def q1(floatstr):
+  4     '''
+  5     TLO: 112-SCRPY002, LSA 3,4
+  6     Given the floatstr, which is a comma separated string of
+  7     floats, return a list with each of the floats in the 
+  8     argument as elements in the list.
+  9     '''
+ 10     lsst=[]
+ 11     lst = floatstr.split(',')      '''splits the variable string at the commas '''
+ 12     for i in lst:
+ 13         lsst.append(float(i))      
+ 14     return lsst
+ 15     '''pass
+ 16     '''
+ 17 def q2(*args):
+ 18     '''
+ 19     TLO: 112-SCRPY006, LSA 3
+ 20     TLO: 112-SCRPY007, LSA 4
+ 21     Given the variable length argument list, return the average
+ 22     of all the arguments as a float
+ 23     '''
+ 24     return float((sum(args))/(len(args)))
+ 25 
+ 26 def q3(lst,n):
+ 27     '''
+ 28     TLO: 112-SCRPY004, LSA 3
+ 29     Given a list (lst) and a number of items (n), return a new 
+ 30     list containing the last n entries in lst.
+ 31     '''
+ 32     return lst[-n:]      '''this doesnt make sense in my brain, go over slicing'''
+ 33     pass                 '''32     print(lst)
+ 34                          '''33     print(n)
+ 35 def q4(strng):           '''34     print(lst[-n:])
+ 36     '''
+ 37     TLO: 112-SCRPY004, LSA 1,2
+ 38     TLO: 112-SCRPY006, LSA 3
+ 39     Given an input string, return a list containing the ordinal numbers of 
+ 40     each character in the string in the order found in the input string.
+ 41     '''
+ 42     lst=[]
+ 43     for i in strng:
+ 44         lst.append(ord(i))
+ 45     return lst
+ 46     pass
+ 47 
+ 48 def q5(strng):
+ 49     '''
+ 50     TLO: 112-SCRPY002, LSA 1,3
+ 51     TLO: 112-SCRPY004, LSA 2
+ 52     Given an input string, return a tuple with each element in the tuple
+ 53     containing a single word from the input string in order.
+ 54     '''
+ 55     lst=strng.split()
+ 56     return tuple(lst)
+ 57 
+ 58     pass
+ 59 
+ 60 def q6(catalog, order):
+ 61     '''
+ 62     TLO: 112-SCRPY007, LSA 2
+ 63     Given a dictionary (catalog) whose keys are product names and values are product
+ 64     prices per unit and a list of tuples (order) of product names and quantities,
+ 65     compute and return the total value of the order.
+ 66 
+ 67     Example catalog:
+ 68     {
+ 69         'AMD Ryzen 5 5600X': 289.99,
+ 70         'Intel Core i9-9900K': 363.50,
+ 71         'AMD Ryzen 9 5900X': 569.99
+ 72     }
+ 73 
+ 74     Example order:
+ 75     [
+ 76         ('AMD Ryzen 5 5600X', 5), 
+ 77         ('Intel Core i9-9900K', 3)
+ 78     ]
+ 79 
+ 80     Example result:
+ 81     2540.45 
+ 82 
+ 83     How the above result was computed:
+ 84     (289.99 * 5) + (363.50 * 3)
+ 85     '''
+ 86     '''for i in catalog:'''
+ 87     lst=[]
+ 88     counter=0
+ 89     for i in order:
+ 90         lst.append((catalog[order[counter][0]])*(order[counter][1]))
+ 91         counter += 1
+ 92     return sum(lst)
+ 93 
+ 94     pass
+ 95 
+ 96 def q7(filename):
+ 97     '''
+ 98     TLO: 112-SCRPY005, LSA 1
+ 99     Given a filename, open the file and return the length of the first line 
+100     in the file excluding the line terminator.
+101     '''
+102     with open(filename) as fp:
+103         return (len(fp.readline())-1)
+104     pass
+105 
+106 def q8(filename,lst):
+107     '''
+108     TLO: 112-SCRPY003, LSA 1
+109     TLO: 112-SCRPY004, LSA 1,2
+110     TLO: 112-SCRPY005, LSA 1
+111     Given a filename and a list, write each entry from the list to the file
+112     on separate lines until a case-insensitive entry of "stop" is found in 
+113     the list. If "stop" is not found in the list, write the entire list to 
+114     the file on separate lines.
+115     '''
+116     with open(filename, 'w') as fp:
+117         for i in lst:
+118             if i.lower() == 'stop':
+119                 break
+120             else:
+121                 fp.write(i + '\n')
+122     pass
+123 
+124 def q9(miltime):
+125     '''
+126     TLO: 112-SCRPY003, LSA 1
+127     Given the military time in the argument miltime, return a string 
+128     containing the greeting of the day.
+129     0300-1159 "Good Morning"
+130     1200-1559 "Good Afternoon"
+131     1600-2059 "Good Evening"
+132     2100-0259 "Good Night"
+133     '''
+134     time = int(miltime)
+135     if 300 <= time <= 1159:
+136         return 'Good Morning'
+137     elif 1200 <= time <= 1559:
+138         return 'Good Afternoon'
+139     elif 1600 <= time <= 2059:
+140         return 'Good Evening'
+141     elif 2100 <= time <= 2359:
+142         return 'Good Night'
+143     elif 0 <= time <= 259:
+144         return 'Good Night'
+145     pass
+146 
+147 def q10(numlist):
+148     '''
+149     TLO: 112-SCRPY003, LSA 1
+150     TLO: 112-SCRPY004, LSA 1
+151     Given the argument numlist as a list of numbers, return True if all 
+152     numbers in the list are NOT negative. If any numbers in the list are
+153     negative, return False.
+154     '''
+155     for i in numlist:
+156         if i >= 0:
+157             pass
+158         else:
+159             return False
+160             break
+161     return True
+162 
+163     pass                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
