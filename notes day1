@@ -357,3 +357,64 @@ Practice Exam
 161     return True
 162 
 163     pass                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+ 20     lst = addr.split('.')
+ 21     if addr.count('.') == 3:
+ 22         for i in lst:
+ 23             if i == []:
+ 24                 return False
+ 25             else:
+ 26                 if len(i) < 1:
+ 27                     return False
+ 28                 else:
+ 29                     if i[0] == '0' and len(i) > 1:
+ 30                         return False
+ 31                     else:
+ 32                         if i.isdigit() == True:
+ 33                                 f = int(i)
+ 34                                 if 0 <= f <= 255:
+ 35                                     pass
+ 36                                 else:
+ 37                                     return False
+ 38                                     break
+ 39                         else:
+ 40                             return False
+ 41                             break
+ 42         return True
+ 43     else:
+ 44         return False
+
+
+
+
+
+
+
+TAKING NOTES IN CYBER
+finding commands, write out a short blerb about the command and what it does
+
+
+
+
+
+chmod +x- 777 all the time in training
+rm
+rm -r
+rm -rf
+rmdir
+ls -lisa
+.../etc
+pwd
+
+
+
+
+
+
+
+
+
+
+
+
+
