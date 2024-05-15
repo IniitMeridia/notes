@@ -1,1 +1,21 @@
 
+
+Activity:
+
+    Using only the ls -l and cut Commands, write a BASH script that shows all filenames with extensions ie: 1.txt, etc., but no directories, in $HOME/CUT.
+    Write those to a text file called names in $HOME/CUT directory.
+    Omit the names filename from your output.
+
+NOTE: The output should only be the file names with no additional information. Additionally, your code will be executed twice. This is to ensure you have taken into account how file redirection and command execution works.
+
+To read more on Redirecting Output, go to the following resource:
+
+    https://www.gnu.org/software/bash/manual/bash.html#Redirecting-Output
+
+To read more on Simple Command Expansion, go to the following resource:
+
+    https://www.gnu.org/software/bash/manual/bash.html#Simple-Command-Expansion
+
+ls -l $HOME/CUT | cut -d. -f1- -s | cut -d: -f2 | cut -d' ' -f2 > $HOME/CUT/names
+
+=ls -l $HOME/CUT | cut -d. -f1- -s | cut -d: -f2 | cut -d' ' -f2 > $HOME/CUT/names
