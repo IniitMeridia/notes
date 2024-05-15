@@ -1,1 +1,34 @@
 
+
+Activity:
+
+    Write a script which will copy the last entry/line in the passwd-like file specified by the $1 positional parameter
+    Modify the copied line to change:
+        User name to the value specified by $2 positional parameter
+        Used id and group id to the value specified by $3 positional parameter
+        Home directory to a directory matching the user name specified by $2 positional parameter under the /home directory
+        The default shell to `/bin/bash'
+    Append the modified line to the end of the file
+
+Tip: awk provides the simplest method for completing this activity. Refer back to your notes on "09 - BASH Activity" if you are in need of starting point on this activity.
+
+Note: The contents of the passwd-like file will be randomly generated on each submission. It is intended to read the last line once and store it in a variable.
+
+To read more on Positional Parameters, go to the following resource:
+
+    https://www.gnu.org/software/bash/manual/bash.html#Positional-Parameters
+
+To read more on the Passwd file format, go to the following resource:
+
+    man passwd.5
+
+====
+#!/bin/bash
+file=$1
+username=$2
+Uid=$3
+shell=/bin/bash
+home=/home/$username
+base=$(tail -1 $file)
+
+echo $base | awk -F: -v "awk_var=$username" -v "awk_var2=$Uid" -v "awk_var3=$shell" -v "awk_var4=$home" '{OFS=":"} {$1=awk_var} {$3=awk_var2} {$4=awk_var2} {$6=awk_var4} {$7=awk_var3} {print $0}' >> $file
