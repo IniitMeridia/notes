@@ -47,3 +47,12 @@ Using the find command, list all files in $HOME/1123 that end in .txt.
 
 Be aware that if you use Pattern Matching to locate the files you may have unintended results based on if you use quotes around the pattern or not. If you do not quote the pattern, the Bash shell interprets the pattern. If you quote the pattern, it is passed to the command for it to interpret. You can have a properly functioning command, yet unintended output, based on which of these two gets to interpret the pattern.
 =find ./1123 -type f -name *.txt
+
+
+
+Challenge Activity:
+
+List all files in $HOME/1123 that end in .txt. Omit the files containing a tilde (~) character.
+
+While this activity can be accomplished with only find, it can also be combined with grep as well.
+=find ./1123 -type f -name *.txt | grep -v ~.txt
