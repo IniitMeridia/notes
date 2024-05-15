@@ -508,3 +508,82 @@ Using ONLY the find command, find all files on the system with inode 4026532575 
 
 Tip: The above inode is specific to this CTFd question and might not be in use on your Linux Opstation. Instead, you can test your command on your Linux OpStation against inode 999.
 ----find -iname 4026532575 -printf "%f"
+
+
+
+    Using only the ls -l and cut Commands, write a BASH script that shows all filenames with extensions ie: 1.txt, etc., but no directories, in $HOME/CUT.
+    Write those to a text file called names in $HOME/CUT directory.
+    Omit the names filename from your output.
+
+NOTE: The output should only be the file names with no additional information. Additionally, your code will be executed twice. This is to ensure you have taken into account how file redirection and command execution works.
+ls -l $HOME/CUT | cut -d. -f1- -s | cut -d: -f2 | cut -d' ' -f2 > $HOME/CUT/names
+
+
+DAY 2
+
+tail /etc/passwd > fakepasswd
+tail fakepasswd | awk -F: '{print $1}'
+                      ^"feed" awk a delimiter, what something is seperated by/ print $1, print the 1st field
+                      
+awk -F: '{OFS="#"} {print $1,$3}' fakepasswd
+                           ^can print more than 1 field in any order
+              ^ adds a delimiter between the printed fields instead of 'space' (example example / example#example)
+                        
+-nF for last field
+
+awk -F: '($3 >= 150){print $1,$6,$3}' fakepasswd
+???????
+
+
+
+
+sort = sorts things...
+-n = numeric
+-u = uniquely
+-nr = inverse numeric
+-t = field seperator like OFS
+-k = columns
+
+sort | uniq = unique??? sometimes have to use instead of -u
+
+sed 
+-e = expression for multiple sed patterns
+-i = case insensitive
+S is substitution start pattern
+g (lowercase) is for global 
+d (lowercase) deletes
+$ means end of line
+
+finds this word / replaces with this word
+sed -e 's/chicken/hamburger/g' -e 's/pepperoni/sausage/g' pizza.txt
+sed 's/chicken/hamburger/g' pizza.txt
+sed '/chicken/d' pizza.txt
+sed 's/chicken/hamburger/g' pizza.txt
+
+command substitution
+---aliases
+
+A=$(find /usr/bin -name passwd)
+echo $A
+echo
+md5sum $A
+echo 
+file $A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
