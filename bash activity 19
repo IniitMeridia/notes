@@ -1,0 +1,20 @@
+
+
+Activity:
+
+    Design a basic FOR Loop that iteratively alters the file system and user entries in a passwd-like file for new users: LARRY, CURLY, and MOE.
+    Each user should have an entry in the $HOME/passwd file
+    The userid and groupid will be the same and can be found as the sole contents of a file with the user's name in the $HOME directory (i.e. $HOME/LARRY.txt might contain 123)
+    The home directory will be a directory with the user's name located under the $HOME directory (i.e. $HOME/LARRY)
+        NOTE: Do NOT use shell expansion when specifying this in the $HOME/passwd file.
+    The default shell will be /bin/bash
+    The other fields in the new entries should match root's entry
+    Users should be created in the order specified
+
+=====
+rootline=$(head -1 $HOME/passwd)
+for x in {LARRY,CURLY,MOE} ; do
+    myuid=$(cat $HOME/$x.txt)
+    mkdir $HOME/$x
+    echo $rootline | awk -F: -v uu=$x -v ii=$myuid '{OFS=":"}{$1=uu;$3=ii;$4=ii;$6="$HOME/"uu}{print $0}' >> $HOME/passwd
+done
