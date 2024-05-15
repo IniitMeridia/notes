@@ -1,0 +1,21 @@
+
+
+Activity:
+
+Using any BASH command complete the following:
+
+    Sort the /etc/passwd file numerically by the GID field.
+    For the 10th entry in the sorted passwd file, get an md5 hash of that entry’s home directory.
+    Output ONLY the MD5 hash of the directory's name to standard output.
+
+Note: Since we are dealing with a directory, which is both a string and an absolute path, it matters how we get the md5sum of our intended output.
+
+[chris@localhost ~]$ md5sum /home/chris
+md5sum: /home/chris: Is a directory
+
+In the above example, an error is returned because we are applying the directory /home/chris as the first argument of the above command. Since /home/chris is a directory, likely with additional files within it, we cannot assign this as an argument. However, we have the string /home/chris as STDIN for a command, as seen in the below example.
+
+[chris@localhost ~]$ echo "/home/chris" | md5sum
+fd1a05901ce7150f82abd7f7d76f2827  -
+
+=sort -t: -k4 -n /etc/passwd | head | tail -1 | cut -d: -f6 | md5sum | cut -d' ' -f1
