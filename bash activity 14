@@ -19,3 +19,4 @@ In the above example, an error is returned because we are applying the directory
 fd1a05901ce7150f82abd7f7d76f2827  -
 
 =sort -t: -k4 -n /etc/passwd | head | tail -1 | cut -d: -f6 | md5sum | cut -d' ' -f1
+can use awk to solve this as well
