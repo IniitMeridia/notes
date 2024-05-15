@@ -1,1 +1,14 @@
 
+
+Activity:
+
+    Using ONLY the awk command, write a BASH one-liner script that extracts ONLY the names of all the system and user accounts that are not UIDs 0-3.
+    Only display those that use /bin/bash as their default shell.
+    The input file is named $HOME/passwd and is located in the current directory.
+    Output the results to a file called $HOME/SED/names.txt
+
+Tip: awk can use conditional statements, e.g. print only the line in /etc/passwd that has "root" as its first field.
+
+awk -F: '($1 == "root") {print $0}' /etc/passwd
+
+=awk -F: '($7 == "/bin/bash" && $3 > 3) {print $1}' passwd > SED/names.txt
