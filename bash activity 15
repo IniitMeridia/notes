@@ -1,1 +1,39 @@
 
+
+Activity:
+
+    Write a script which will find and hash the contents 3 levels deep from each of these directories: /bin /etc /var
+    Your script should:
+        Exclude named pipes. These can break your script.
+        Redirect STDOUT and STDERR to separate files.
+        Determine the count of files hashed in the file with hashes.
+        Determine the count of unsuccessfully hashed directories.
+        Have both counts output to the screen with an appropriate title for each count.
+
+Example Output:
+
+Successfully Hashed Files: 105
+Unsuccessfully Hashed Directories: 23
+
+====
+#!/bin/bash
+mkdir $HOME/HASHES
+find /bin /etc /var -maxdepth 3 ! -type p -exec md5sum {} > $HOME/HASHES/succes 2>$HOME/HASHES/fail \;
+A=$(wc -l $HOME/HASHES/success | awk '{print $1}')
+B=$(grep -c "Is a directory" $HOME/HASHES/fail)
+if [[ "$A" ]];
+    then
+        echo "Successflly Hashed Files: $A";
+        echo "Unsuccessfully Hashed Drectories: $B";
+    else
+        echo "oops";-maxdepth 3
+fi
+=====
+#!/bin/bash
+DIRS='/bin /etc /var'
+find $DIRS -maxdepth 3 ! -type p -exec md5sum {} \; >STDOUT.del 2>STDERR.del
+GoodCount=$(cat STDOUT.del | wc -l)
+BadCount=$(egrep "Is a" STDERR.del | wc -l)
+echo "Successfully Hashed Files: $GoodCount"
+echo "Unsuccessfully Hashed Directories: $BadCount"
+rm *.del
