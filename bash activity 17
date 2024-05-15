@@ -1,0 +1,33 @@
+
+
+Activity:
+
+    Write a script that determines your default gateway ip address. Assign that address to a variable using command substitution.
+
+    NOTE: Networking on the CTFd is limited for security reasons. ip route and route are emulated. Use either of those with no switches.
+
+    Have your script determine the absolute path of the ping application. Assign the absolute path to a variable using command substitution.
+    Have your script send six ping packets to your default gateway, utilizing the path discovered in the previous step, and assign the response to a variable using command substitution.
+    Evaluate the response as being either successful or failure, and print an appropriate message to the screen.
+
+Pseudo Example:
+
+A=$(command_1)
+B=$(command_2)
+C=$($A command_3 $B)
+if [[ "$" <condition> "$" ]]; then
+   echo "successful";
+else
+   echo "failure";
+fi 
+
+=====
+A=$(route | grep 'default.*[[:digit:]]' | awk '{print $2}')
+B=$(which ping)
+C=" 0% packet loss"
+D=$($B -c 6 $A | grep -Eo "$C")
+if [[ "$C" == "$D" ]]; then
+    echo "successful"
+else
+    echo "failure"
+fi
