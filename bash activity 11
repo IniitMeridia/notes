@@ -1,1 +1,17 @@
+Activity:
 
+    Using find, find all files under the $HOME directory with a .bin extension ONLY.
+    Once the file(s) and their path(s) have been found, remove the file name from the absolute path output.
+    Ensure there is no trailing / at the end of the directory path when outputting to standard output.
+    You may need to sort the output depending on the command(s) you use.
+
+Tip: For stripping the filename out of the output, there are different ways that this can be accomplished based on what you have learned so far.
+
+    Utilizing -printf options on find.
+    Utilizing awk to manipulate the fields. This may leave the trailing / if you don't take that into account.
+    Utilizing the rev and cut commands creatively.
+
+
+=find $HOME -iname '*.bin' 2>/dev/null | rev | cut -d/ -f2- | rev | sort -u
+
+=find $HOME -iname "*.bin" -printf '%h/n' 2>/dev/null | sort -u
