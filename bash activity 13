@@ -1,0 +1,19 @@
+
+
+Activity:
+
+    Find all executable files under the following four directories:
+        /bin
+        /sbin
+        /usr/bin
+        /usr/sbin
+    Sort the filenames with absolute path, and get the md5sum of the 10th file from the top of the list.
+
+Tip: In the below example, you can see the different uses of md5sum. While not wrong, the first command is hashing the string output of the the find command. In the second, md5sum is hashing the file contents of the given file, which is what is intended for this activity. You can also tell the second method hashed the file as the file name is listed in the hash output; the first only lists a hyphen indicating a string was hashed. For this activity, to provide md5sum with the 10th file of the sorted output, it is recommended to use Command Subtitution.
+
+[chris@localhost ~]$ find /etc -maxdepth 1 -name passwd | md5sum
+9231fb35b4431d59eae53a8c0d673231  -
+[chris@localhost ~]$ md5sum /etc/passwd
+62f5fa5100adcee3305cf979b5734a3e  /etc/passwd
+
+=md5sum $(find /sbin /bin /usr/bin /usr/sbin -executable -type f |sort -u | head | tail -1) | cut -d' ' -f1
