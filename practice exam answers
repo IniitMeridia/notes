@@ -10,3 +10,5 @@ killall $procname
 
 find $dirpath -type f -mtime -1 | sort
 mtime -1 past 24 hrs
+
+time mm cm?
