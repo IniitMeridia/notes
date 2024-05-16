@@ -18,4 +18,4 @@ echo "12345" | md5sum | cut -d" " -f1 > $HOME/ZIP/fiile1
 echo "6789" | md5sum | cut -d" " -f1 > $HOME/ZIP/file2
 echo "abcdef" | md5sum | cut -d" " -f1 > $HOME/ZIP/file3
 zip -j $HOME/ZIP/file.zip $HOME/ZIP/file{1,2,3}
-tar -czf $HOME/ZIP/file.tar.gz -C $HOME/ZIP/file.zip
+tar -czf $HOME/ZIP/file.tar.gz -C $HOME/ZIP/ file.zip
