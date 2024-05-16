@@ -1,0 +1,12 @@
+sed -e "s/cat/dog/g" -e "s/Navy/Army/g" $infile > $outfile
+
+sort -n -t: -k3 fakepasswd.txt | cut -d':' -f1
+
+ls -1 $dirname | wc -l
+
+make sure you look up bash conditional statments for scripting
+
+killall $procname
+
+find $dirpath -type f -mtime -1 | sort
+mtime -1 past 24 hrs
