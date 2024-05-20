@@ -1,0 +1,1 @@
+winops: xfreerdp /u:student /v:10.50.38.143 -dynamic-resolution +glyph-cache +clipboard      pw:password
