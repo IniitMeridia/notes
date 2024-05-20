@@ -26,3 +26,8 @@ $input
 [float]
 [array]
 ([string]$false + 'helll world').gettype().Name | get-member
+
+
+
+get-help *process
+get-command -noun process
