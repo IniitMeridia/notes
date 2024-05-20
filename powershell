@@ -31,3 +31,24 @@ $input
 
 get-help *process
 get-command -noun process
+
+
+
+
+$var1 = 10
+'$var1'
+"$var1"
+
+$var = "Hello world!"
+[array]$var[0..5]
+
+$myblock = { Get-service | format-table Name, Status}
+{ Get-service | format-table Name, Status}
+&$myblcok
+Invoke-Command $myblock
+
+$a = 1 
+$b = {1+1}
+$a += &$b
+
+
