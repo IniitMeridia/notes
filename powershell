@@ -1,0 +1,28 @@
+powershell ise - run as admin
+ctrl - n
+
+
+
+
+
+get-help Get-Process -Examples
+$var1 = 1
+$var2 = 2
+$var3 = 3
+$var6 = $var1 + $var2 + $var3
+
+
+$false
+$true
+$_ pipeline
+$Matches
+$input
+
+
+
+
+[string]$false
+[int]
+[float]
+[array]
+([string]$false + 'helll world').gettype().Name | get-member
