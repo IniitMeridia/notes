@@ -51,4 +51,118 @@ $a = 1
 $b = {1+1}
 $a += &$b
 
+get-childitem | sort-object
+get-childitem "C:\Users\student\Desktop" | sort-object `
+-Propery Lengt -Descending
+`-backtick so code can word wrap around the powershell terminal
 
+
+$_
+------
+get-process | group-object {$_.name.Substring(0,1).ToUpper()} `
+| ForEach-Object{($_.name + " ")* 7; "====="}}
+
+get-service | group-object status
+
+
+update-help
+Get-Process #get-help *process / get-command -Noun process / get-command -Verb start
+#get-help *write*
+$reading = Read-Host
+
+alias ls 
+
+-------
+Get-Process s*
+$array = "gal", "dir", "echo", " ?", "%", "ft"
+$array | ForEach-Object{Get-Alias $_}  #???????
+
+Get-NetFirewallRule
+Show-NetFirewallRule
+
+Set-Alias gh get-help
+
+--------
+needs work done!!!!!!!!!!!!!!!!!!
+$var1 = ${Get-Random -Minimum 25 -Maximum 51}
+$var2 = ${Get-Random -Minimum 1 -Maximum 11}
+$sum = $var1 + $var2
+#$sub = $var1 - $var2
+#$prod = $var1 * $var2
+#$quo = $var1 / $var2
+write-host "$var1 + $var2 = $sum"
+"{0} + {1} = {2}" -f $var1, $var2, $sum
+
+------
+$start = Get-Random -Maximum 1 -Minimum (-10)
+$stop = Get-Random -Minimum 1 -Maximum 21
+Write-Host "$start $stop" 
+
+$array = (Get-Random -Minimum -10 -Maximum 1)..` (Get-Random -Minimum 1 -Maximum 21)
+$array
+[array]::Reverse($array)
+$array
+
+$array.Length
+$reversed=$array[($array.length-1)..0]
+
+
+-------
+Get-Process | ` Measure-Object -Property Starttime -Minimum -Maximum |` #measure-object use
+Select-Object -Property MINIMUM, MAXIMUM
+
+(get-date).DayOfWeek #Get-Date | Select-Object DayOfWeek
+
+Get-HotFix | Sort-Object -Property InstallDate | Select-Object -Property InstallDate, HotFixID
+
+Get-HotFix | Sort-Object -Property description | Select-Object -Property description, InstallDate, HotFixID #InstalledOn?
+
+
+------
+$line1 = "Do you have model number: MT5437 for john.doe@sharklasers.com?"
+$line2 = "What model number for john.doe@sharklasers.com?"
+$pattern = '[A-Z]{2}[0-9]{4}'
+
+$line1,$line2 | ForEach-Object {
+    if ($_ -match $pattern){
+    Write-Host $Matches[0]": $_"
+    }
+    else{
+    Write-Host "No Matches found on: $_"
+    }
+}
+
+
+
+
+#1,2,3 -like 1
+#1,2,3 -not like 1
+#cant use REGEX
+
+#-match
+#-notmatch
+#can use REGEX
+#$Matches - table of last matches
+
+--------
+$x = 2
+if ($x -eq 5 -or $True) {
+    Write-Host "Bob"
+}
+esleif ($x -eq 4) {
+    Write-Host "Sue"
+}
+elseif ($x -eq 2) {
+    "Tom"
+}
+elseif ($x -gt 1) {
+    "Mary"
+}
+else {
+    "Who am I?"
+}
+
+
+
+
+-eq -ne -gt -lt -and -or
