@@ -1,7 +1,7 @@
 powershell ise - run as admin
 ctrl - n
 read-host to get user iput
-
+MAKE SURE TO HIGHLIGHT ALL VARIABLES IF USING [F8] TO RUN A SMALL SECTION OF CODE!!!!!!!!
 
 
 
