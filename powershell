@@ -5,6 +5,7 @@ MAKE SURE TO HIGHLIGHT ALL VARIABLES IF USING [F8] TO RUN A SMALL SECTION OF COD
 
 add-content
 
+measure-object
 where-object
 select-object
 sort-object
@@ -17,9 +18,12 @@ get-process | where-object {$_.name -like "*ms*"}  = finds process with name lik
 
 function
 "elements provided on the pipeline"
+1,2,3,4,5 | (function)
 where-object
 select-object
 sort-object
+
+
 $input
 
 
