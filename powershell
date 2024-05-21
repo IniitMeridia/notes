@@ -3,6 +3,10 @@ ctrl - n
 read-host to get user iput
 MAKE SURE TO HIGHLIGHT ALL VARIABLES IF USING [F8] TO RUN A SMALL SECTION OF CODE!!!!!!!!
 
+for exam
+return
+return ___.GetType()
+
 add-content
 
 measure-object
