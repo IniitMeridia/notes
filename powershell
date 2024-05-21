@@ -4,6 +4,22 @@ read-host to get user iput
 MAKE SURE TO HIGHLIGHT ALL VARIABLES IF USING [F8] TO RUN A SMALL SECTION OF CODE!!!!!!!!
 
 
+function
+"elements provided on the pipeline"
+function cool-printer {
+    Begin {
+    }
+    Process{ 
+    }
+    End{
+    }
+}
+
+array 1,2,3,4,5 | Cool-printer
+function
+
+
+
 
 get-help Get-Process -Examples
 $var1 = 1
