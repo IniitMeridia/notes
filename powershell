@@ -3,22 +3,45 @@ ctrl - n
 read-host to get user iput
 MAKE SURE TO HIGHLIGHT ALL VARIABLES IF USING [F8] TO RUN A SMALL SECTION OF CODE!!!!!!!!
 
+add-content
+
+where-object
+select-object
+sort-object
+$input
+
+get-process | select-object -property processname, id, ws  = displays the propreties asked for
+get-process | where-object {$_.name -like "*ms*"}  = finds process with name like ms
+1..5 | echo $input
+
 
 function
 "elements provided on the pipeline"
+where-object
+select-object
+sort-object
+$input
+
+
 function cool-printer {
-    Begin {
+-    Begin {
     }
     Process{ 
     }
-    End{
+-    End{
     }
 }
 
 array 1,2,3,4,5 | Cool-printer
-function
+-
+function Cool-Printer {
+process{$_}
+}
+1,2,3,4,5 | Cool-Printer
 
-
+function Get-Sum{
+begin{$sum = 0}
+process{$_}
 
 
 get-help Get-Process -Examples
