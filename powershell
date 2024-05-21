@@ -1,6 +1,6 @@
 powershell ise - run as admin
 ctrl - n
-
+read-host to get user iput
 
 
 
