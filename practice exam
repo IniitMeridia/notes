@@ -66,8 +66,7 @@ function q6 {
 }
 function q7 {
 	<# Return only those commands whose noun is process #>
-    #foreach($i in $input)
-    $input 
+    Get-Command -noun process
 }
 function q8($adjective) {
     <# Return the string 'PowerShell is ' followed by the adjective given
