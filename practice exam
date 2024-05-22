@@ -8,7 +8,13 @@ function q2($arr,$rows,$cols,$key) {
        and return the value at column index 9 of the same row.
        Return -1 if the key is not found.
     #>
-
+	foreach($i in $arr){
+        if($i[0] -eq $key){
+            return $i[9]
+        }
+    }
+    return '-1'
+}
 }
 function q3 {
     <# In a loop, prompt the user to enter positive integers one at time.
@@ -27,6 +33,13 @@ function q3 {
     }
     $array | Sort-Object -Descending | Select-Object -Index 0
 }
+###
+$val = 0
+do {
+	$val2 = Read-Host
+	if($val2 -gt $val){$val = $val2}
+}until($val2 -eq -1)
+return $val
 function q4($filename,$whichline) {
     <# Return the line of text from the file given by the `$filename
 	   argument that corresponds to the line number given by `$whichline.
