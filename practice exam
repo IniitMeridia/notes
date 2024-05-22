@@ -1,5 +1,5 @@
 .length look it up for exam
-
+psitem or $_ for elements provided on a pipeline
 
 
 <# 1 #>
@@ -61,6 +61,7 @@ function q5($path) {
 	#>
     return Get-ChildItem $path | Sort-Object -Property Name
 }
+#### - get-childitem sorts in pwd by defualt
 function q6 {
     <# Return the sum of all elements provided on the pipeline
 	#> 
