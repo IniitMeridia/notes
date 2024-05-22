@@ -37,19 +37,23 @@ function q3 {
     }
     $array | Sort-Object -Descending | Select-Object -Index 0
 }
-###
+####
 $val = 0
 do {
 	$val2 = Read-Host
 	if($val2 -gt $val){$val = $val2}
 }until($val2 -eq -1)
 return $val
+####
 function q4($filename,$whichline) {
     <# Return the line of text from the file given by the `$filename
 	   argument that corresponds to the line number given by `$whichline.
 	   The first line in the file corresponds to line number 0."
 	#>
     Get-Content $filename | Select-Object -Index $whichline
+####
+	return (Get-Content $filename)[$whichline]
+####
 }
 function q5($path) {
     <# Return the child items from the given path sorted
@@ -86,6 +90,11 @@ function q9($addr) {
         }
     else{$true}
     }
+}
+####
+function IsValidIPv4Address ($ip) {
+    return ($ip -match "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$" -and [bool]($ip -as [ipaddress]))
+####
 }
 function q10 ($filepath,$lasthash) {
     <# Return `$true if the contents of the file given in the
