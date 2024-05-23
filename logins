@@ -1,5 +1,8 @@
-winops: xfreerdp /u:student /v:10.50.38.143 -dynamic-resolution +glyph-cache +clipboard      pw:password
+winops/linops instances: https://vta.cybbh.space/auth/login/?next=/project/instances/
+github:
 
+winops: xfreerdp /u:student /v:10.50.38.143 -dynamic-resolution +glyph-cache +clipboard      pw:password
+linops:
 
 Invoke-WebRequest -uri 10.50.29.106:42068/exam.ps1 -OutFile C:\Users\student\Downloads\exam.ps1
 Invoke-WebRequest -uri 10.50.29.106:42068/psexam.exe -OutFile C:\Users\student\Downloads\psexam.exe
