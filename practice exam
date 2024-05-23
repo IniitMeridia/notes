@@ -108,3 +108,136 @@ function q10 ($filepath,$lasthash) {
        #...run hash of the filepath
        #...$filepath == $lasthash
 }
+<# 4 #>
+function q1($var2,$var3,$var4,$var5) {
+    <# The parameters listed are the values of all angles
+       in a polygon except one. Find and return the value
+       of the remaining angle. If an impossible angle 
+       is found, return -1. 
+       The formula to find the sum of all angles of a 
+       polygon is `(n-2) * 180`, where `n` is the total 
+       number of angles. An impossible angle is one that 
+       is zero degrees (or less) or 360 degree (or more). 
+       #>
+       #####if $val -lt 0 -or $val -gt 360
+       $4angle = $var2 + $var3 + $var4 + $var5
+       if((540 - $4angle) -lt 0 -or (540 - $4angle) -gt 360){
+            return -1
+        }
+        else{
+            return (540 - $4angle)
+        }
+}
+function q2($arr,$key) {
+    <# Search the 2 dimensional array for the first occurance 
+      of key at column index 0 and return the value at column
+      index 2 of the same row. Return -1 if the key is not found.
+    #>
+    foreach($i in $arr){
+        if($i[0] -eq $key){
+            return $i[2]
+        }
+    }
+    return '-1'
+}
+function q3 {
+    <# In a loop, prompt the user to enter a string until
+       the user enters an empty string (length of 0) to 
+       stop. Return the string with the maximum 
+       length that the user entered."
+	#>
+$maxLength = 0
+    $longestString = ""
+
+    do {
+        $inputString = Read-Host "Enter a string (press Enter to stop)"
+        if ($inputString.Length -gt $maxLength) {
+            $maxLength = $inputString.Length
+            $longestString = $inputString
+        }
+    } while ($inputString.Length -ne 0)
+
+    return $longestString
+}
+
+function q4($filename,$start) {
+    <# Return the line of text from the file given by the `$filename
+	   argument that begins with the text specified by `$start.
+	   If no line in the file begins with the `$start text, return 
+	   $null."
+	#>
+    Get-Content $filename | Select-String -Pattern $start 
+} 
+function q5($path) {
+    <# Return the services in Stopped status sorted
+       descending by their Name
+	#>
+    (Get-Service) | Where-Object -Property Status -eq stopped | Sort-Object -Descending
+}
+function q6($filename) {
+    <# Write each of the elements provided on the pipeline to the
+       file specified by the $filename argument on separate lines
+	#>
+    #Add-content -path $filename -value "$_"
+    begin{}
+    process{Add-Content -path $filename -value $_}
+    end{return $sum}
+}
+function q7 {
+	<# Return the list of all startup apps that have an 
+       AppId 'not ending in }'.
+    #>
+    #return ((Get-StartApps).AppID -notmatch "^.*}$")
+    Get-StartApps | Where-Object -Property appid -notmatch "^.*}$"
+}
+function q8($arr) {
+    <# Combine the provided `$arr argument into a string separated 
+       by a '-' between each element and return 
+       this string #>
+       return ($arr -join "-")
+}
+function q9($addr) {
+	<# Return `$true when the given argument is an IPv4 address
+	   within the class 'E' otherwise return `$false. 
+       For an IPv4 address to be within class 'E', it
+       must fall within the range '240.0.0.0' to
+       '254.255.255.255'. 
+	#> 
+
+    $oct = ($addr -split '\.') 
+    if([int]$oct[0] -lt 240 -or [int]$oct[0] -gt 254){
+        $false
+        }
+    elseif([int]$oct[1] -lt 0 -or [int]$oct[1] -gt 255){
+        $false
+        }
+    elseif([int]$oct[2] -lt 0 -or [int]$oct[2] -gt 255){
+        $false
+        }
+    elseif([int]$oct[3] -lt 0 -or [int]$oct[3] -gt 255){
+        $false
+        }
+    else{
+    $true
+    }
+ }  
+
+function q10 () {
+    <# Return the current date/time as a string formatted in 
+       the following way:
+       YearMonthDay@Hour:Minute:Second
+       For example, If the current date/time is 5 minutes and 
+       2 seconds after 3 PM on February 8th, 2018, the return 
+       value should be:  20180208@15:05:02
+    #>
+    #Get-Date | Select-Object -Property year,month,day,hour,minute,second
+    $year = (Get-Date).year
+    $month =(Get-Date).month
+    $day =(Get-Date).day
+    $hour =(Get-Date).hour
+    $minute =(Get-Date).minute
+    $second =(Get-Date).second
+    $date = [string]$year + "0" + [string]$month + [string]$day + "@" + [string]$hour + ":" + [string]$minute + ":" + [string]$second
+#$date = ((Get-Date).year, "0", (Get-Date).month, (Get-Date).day, "@", (Get-Date).hour,":", (Get-Date).minute, ":", (Get-Date).second)
+return $date
+}
