@@ -12,3 +12,8 @@ Invoke-WebRequest -uri 10.50.29.106:42070/psexam.exe -OutFile C:\Users\student\D
 https://git.cybbh.space/programming/powershell/public
 https://git.cybbh.space/programming/python/public
 https://cctc.cybbh.io/students/students/latest/index.html#
+
+
+
+
+
