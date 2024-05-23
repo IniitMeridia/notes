@@ -6,3 +6,9 @@ linops:
 
 Invoke-WebRequest -uri 10.50.29.106:42070/exam.ps1 -OutFile C:\Users\student\Downloads\exam.ps1
 Invoke-WebRequest -uri 10.50.29.106:42070/psexam.exe -OutFile C:\Users\student\Downloads\psexam.exe
+
+
+
+https://git.cybbh.space/programming/powershell/public
+https://git.cybbh.space/programming/python/public
+https://cctc.cybbh.io/students/students/latest/index.html#
