@@ -1,0 +1,128 @@
+update-help
+Get-Process #get-help *process / get-command -Noun process / get-command -Verb start
+#get-help *write*
+$reading = Read-Host
+
+alias ls 
+
+
+
+
+Get-Process s*
+$array = "gal", "dir", "echo", " ?", "%", "ft"
+$array | ForEach-Object{Get-Alias $_}  #???????
+
+Get-NetFirewallRule
+Show-NetFirewallRule
+
+Set-Alias gh get-help
+
+
+
+
+$var1 = ${Get-Random -Minimum 25 -Maximum 51}
+$var2 = ${Get-Random -Minimum 1 -Maximum 11}
+$sum = $var1 + $var2
+#$sub = $var1 - $var2
+#$prod = $var1 * $var2
+#$quo = $var1 / $var2
+write-host "$var1 + $var2 = $sum"
+"{0} + {1} = {2}" -f $var1, $var2, $sum
+
+
+
+
+$start = Get-Random -Maximum 1 -Minimum (-10)
+$stop = Get-Random -Minimum 1 -Maximum 21
+Write-Host "$start $stop" 
+
+$array = (Get-Random -Minimum -10 -Maximum 1)..` (Get-Random -Minimum 1 -Maximum 21)
+$array
+[array]::Reverse($array)
+$array
+
+$array.Length
+$reversed=$array[($array.length-1)..0]
+
+
+
+
+Get-Process | ` Measure-Object -Property Starttime -Minimum -Maximum |` #measure-object use
+Select-Object -Property MINIMUM, MAXIMUM
+
+(get-date).DayOfWeek #Get-Date | Select-Object DayOfWeek
+
+Get-HotFix | Sort-Object -Property InstallDate | Select-Object -Property InstalledOn, HotFixID
+
+Get-HotFix | Sort-Object -Property description | Select-Object -Property description, InstalledOn, HotFixID 
+
+
+
+
+foreach($oct ('8.8.8.555' -split '\.')){
+    if([int]$oct -lt 0 -or [int]$oct -gt 255){
+        "$oct is not valid octet"
+        }
+    else{"$oct is a valid octet"}
+}
+
+
+('8.8.8.555' -split '\.') | ForEach-Object{
+    if([int]$_ -lt 0 -or [int]$_ -gt 255){
+        "$oct is not valid octet"
+        }
+    else{"$oct is a valid octet"}
+}
+
+'cat'.'dog' -join " "
+#.startswith
+#.endswith
+'cat'.StartsWith('c')
+'dog'.EndsWith('t')
+
+#'8.8.8.8' -split '\.'
+
+
+
+
+$sum = 0
+$sum += 1
+
+$empty = @(1,2,3,(4,5,6,(7,8,9)))
+$empty += 1
+$empty += $sum
+$empty += 'cat'
+
+$empty += [array]$empty
+
+$empty[3][0]
+
+
+
+
+$sum = 0
+$sum += 1
+
+$empty = @(1,2,3,(4,5,6,(7,8,9)))
+$empty += 1
+$empty += $sum
+$empty += 'cat'
+
+$empty += [array]$empty
+
+$empty[3][0]
+
+
+
+
+$sum = 0
+$sum += 1
+
+$empty = @(1,2,3,(4,5,6,(7,8,9)))
+$empty += 1
+$empty += $sum
+$empty += 'cat'
+
+$empty += [array]$empty
+
+$empty[3][0]
