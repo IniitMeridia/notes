@@ -9,6 +9,12 @@ rdp: xfreerdp /u:student /v:10.50.31.104 -dynamic-resolution +glyph-cache +clipb
 
 
 
+ssh -j = initiate as jump box-----
+
+
+
+
+
 
 
 
