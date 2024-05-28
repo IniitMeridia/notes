@@ -11,6 +11,8 @@ rdp: xfreerdp /u:student /v:10.50.31.104 -dynamic-resolution +glyph-cache +clipb
 
 ssh -j = initiate as jump box-----
 
+ssh -j student@10.50.31.104 ___@10.x.0.x  --- internal network
+
 get-member or | format-list *
 ... -ErrorAction SilentlyContinue same as 2>/dev/null
 go over automatic variables again
