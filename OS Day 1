@@ -11,10 +11,18 @@ rdp: xfreerdp /u:student /v:10.50.31.104 -dynamic-resolution +glyph-cache +clipb
 
 ssh -j = initiate as jump box-----
 
+get-member or | format-list *
+... -ErrorAction SilentlyContinue same as 2>/dev/null
+go over automatic variables again
 
+powershell profiles - could hide persistance on a victim device------
+$profile
+All Users, All Hosts         $PsHome\Profile.ps1
+All Users, Current Host      $PsHome\Microsoft.PowerShell_profile.ps1
+Current User, All Hosts      $Home\[My]Documents\Profile.ps1
+Current User, Current Host   $Home\[My ]Documents\WindowsPowerShell\Profile.ps1
 
-
-
+start-transcript = keep track of commands in powershell
 
 
 
