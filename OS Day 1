@@ -3,6 +3,22 @@ http://10.50.22.197:8000 - os instances login
 user ANSO-M-24-503
 pass SouthernSouthern12345!@#$%
 
+ssh or rdp
+ssh: user student@10.50.31.104     pass password
+rdp: xfreerdp /u:student /v:10.50.31.104 -dynamic-resolution +glyph-cache +clipboard         pass:password
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
