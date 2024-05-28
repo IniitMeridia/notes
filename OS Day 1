@@ -11,7 +11,8 @@ rdp: xfreerdp /u:student /v:10.50.31.104 -dynamic-resolution +glyph-cache +clipb
 
 ssh -j = initiate as jump box-----
 
-ssh -j student@10.50.31.104 ___@10.x.0.x  --- internal network
+ssh -j student@10.50.31.104 andy.dwyer@10.x.0.x  pass:BurtMacklinFBI--- internal network
+type= powershell
 
 get-member or | format-list *
 ... -ErrorAction SilentlyContinue same as 2>/dev/null
@@ -28,7 +29,7 @@ Current User, Current Host   $Home\[My ]Documents\WindowsPowerShell\Profile.ps1
 
 start-transcript = keep track of commands in powershell
 
-
+get-wmiobject???
 
 
 
