@@ -22,6 +22,8 @@ All Users, Current Host      $PsHome\Microsoft.PowerShell_profile.ps1
 Current User, All Hosts      $Home\[My]Documents\Profile.ps1
 Current User, Current Host   $Home\[My ]Documents\WindowsPowerShell\Profile.ps1
 
+
+
 start-transcript = keep track of commands in powershell
 
 
