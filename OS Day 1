@@ -1,4 +1,5 @@
 https://os.cybbh.io/public/os/latest/index.html#
+
 stack number 6 = 10.50.31.104 this is for class when sshing to admin page
 http://10.50.22.197:8000 - os instances login
 user ANSO-M-24-503
@@ -38,13 +39,23 @@ get-wmiobject???
 
 windows registery ------- can be used to establish persistance on a victim device
   HKLM
+    USB - peripherals
+    USBSTOR - storage device
+    services
+    shell folders
+    user shell folders
+
   HKCU
+--    important
+      run
+      run_once
   HKU
   HKCC
   HKCR
 
 
-SID
+SIDs
+
 
 registry editing--
 regedit.exe
@@ -54,9 +65,13 @@ cli
 regapp
 
 
+sethc.exe -can be used as persistance ---details in windows registry cybhh
+
+psdrive -- allows you to use tools on the internet without downloading them
 
 
-
+ADS - alternate data streams (alternate subfiles inside of a file)
+NTFS able to add hidden extension to files or services
 
 
 
