@@ -73,7 +73,7 @@ psdrive -- allows you to use tools on the internet without downloading them
 ADS - alternate data streams (alternate subfiles inside of a file)
 NTFS able to add hidden extension to files or services
 
-
+Get-WmiObject win32_useraccount | fl -Property name, sid
 
 
 
