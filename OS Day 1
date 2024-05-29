@@ -36,7 +36,7 @@ get-wmiobject???
 
 -----------DAY 2---------------------------
 
-windows registery
+windows registery ------- can be used to establish persistance on a victim device
   HKLM
   HKCU
   HKU
@@ -45,6 +45,13 @@ windows registery
 
 
 SID
+
+registry editing--
+regedit.exe
+cli
+  regquery
+  regadd
+regapp
 
 
 
