@@ -36,6 +36,12 @@ get-wmiobject???
 
 -----------DAY 2---------------------------
 
+windows registery
+  HKLM
+  HKCU
+  HKU
+  HKCC
+  HKCR
 
 
 SID
