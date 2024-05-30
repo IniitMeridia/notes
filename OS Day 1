@@ -76,13 +76,34 @@ NTFS able to add hidden extension to files or services
 Get-WmiObject win32_useraccount | fl -Property name, sid
 
 
+------------DAY 3 ---------------
+
+linux system
+
+---commands
+main folders for linux
+etc - configuration
+  passwd file
+  shadow
+  group
+var-logs
+bin - binary
+sbin - commands
+usr - universal system resources 
 
 
+whoami
+id
 
+permissions for directory
+if read and write only, you can 'ls' the directory without changing INTO the directory
+execute enables you to change INTO a directory
 
-
-
-
+sticky bit (t) = only owner can delete 
+suid/guid = running file as owner level permission
+-rwsr-xr-x
+user,group,other
+if s in user, run as owning user
 
 
 
