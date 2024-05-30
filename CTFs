@@ -98,13 +98,49 @@ Linux Basics Permissions2
 10
 
 Identify the number of users with valid login shells, who can list the contents of the Bibliotheca directory.
+ls -l /media
+(output)=  drwxr-xr-x 6 mephiston chapter 12288 Feb 28 2022 Blibliotheca ----- any user with a valid login shell can list the contents of the directory
+grep -v "nologin\|flase" /etc/passwd ----- sync is not a user
 
+Linux Basics Permissions3
+10
 
+The permissions that user sejanus has on /media/Bibliotheca, in octal format.
 
+Flag format: #
 
+HINT: Think about groups...
+r-x = read=4 write=2 execute=1
+4 not2 1 =
+5
 
+Linux Basics Permissions 4
+10
 
+Locate the file within /media/Bibliotheca that is modifiable by the only user that is part of the chapter group, but not part of the lodge group.
 
+Hint: Not the hidden file...
+grep "chapter\|lodge" /etc/group -to find members of the groups and find whos in chpater and not lodge
+ls -lisa {directories inside of Bibliotheca}
+Codex_Astartes
+
+Linux Basics Permissions 5
+10
+
+Identify the file within /media/Bibliotheca where the owning group has more rights than the owning user.
+ls -lisa {directories inside of Bibliotheca}
+cd /media/Bibliotheca/Bibliotheca_quattuor
+Codex_Hereticus
+
+Linux Basics Permissions 6
+10
+
+Execute the file owned by the guardsmen group in /media/Bibliotheca, as the owning user.
+
+The flag is the code name provided after a successful access attempt.
+
+Hint: Remember your sudo options.
+sudo -u gaunt /media/Bibliotheca/Bibliotheca_quattuor/./Tactica_Imperium
 
 
 
