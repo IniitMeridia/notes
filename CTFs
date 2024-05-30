@@ -1,0 +1,83 @@
+LINUX BASICS--------------------
+Linux Basics LFS Hierarchy4
+5
+
+What is the absolute path to the directory which contains non-essential binaries that are accessible by standard users as well as root?
+/usr/bin
+
+Linux Basics LFS Hierarchy5
+5
+
+An absolute path to a directory which contains binaries only accessible by the root user, or users in the root group.
+/sbin
+
+Linux Basics LFS Hierarchy6
+5
+
+What is the absolute path for the binary cat man-page?
+/usr/share/man/man1/cat.1.gz
+
+Linux Basics 5
+10
+
+Search the man pages for the keyword digest. Then, use one of the binaries listed to hash the string OneWayBestWay using the largest sha hash available.
+
+The resulting hash is the flag.
+echo -n "OneWayBestWay" | sha512sum
+b818ef82dfdaec2e94ae8274482e253a32e454073e949308bf90580bf15675360d42fc03c314f3d50971b8fc829fa2b81293493e331e4d6771b7af46d1309fcf
+
+Linux Basics 6
+10
+
+Use File: /home/garviel/Encrypted
+
+This file contains encrypted contents. Identify its file type, then decode its contents.
+
+Hint: Use OpenSSL
+
+Reminder: All challenges are done using the Terra box.
+file Encrypted
+unzip Encrypted
+    extracting: cipher
+    extracting: symmetric
+openssl enc -d -aes-128-cbc -salt -in cipher -out decrypted -k AES128Key
+cat decrypted
+DeCrypt
+
+Linux Basics LFS Hierarchy7
+10
+
+Search the user home directories to find the file with the second-most lines in it. The flag is the number of lines in the file.
+
+Hint: Exclude the VDI file!
+find /home/*/ -type f ! -name '*vdi*' -exec wc -l {} + | sort -rn
+
+Linux Basics Users and Groups1
+10
+
+Read the file that contains the user database for the machine. Identify a strange comment.
+cut -d: -f 5 /etc/passwd
+
+Linux Basics Users and Groups2
+10
+
+Identify all members of the lodge group. List their names in alphabetical order with a comma in between each name.
+
+Flag Format: name,name,name
+grep 'lodge' /etc/group
+
+Linux Basics Users and Groups3
+10
+
+Find the user with a unique login shell.
+cut -d: -f 7 /etc/passwd | sort | uniq -u
+grep '/bin/sh' /etc/passwd
+
+Linux Basics Users and Groups4
+10
+
+Identify the algorithm, the amount of salted characters added, and the length of the hashed password in the file that stores passwords.
+
+Hint: Research 'padding'...
+
+Flag format: algorithm,#characters,#length
