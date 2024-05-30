@@ -1,3 +1,6 @@
+profile 8 
+I am definitely not the malware
+
 LINUX BASICS--------------------
 Linux Basics LFS Hierarchy4
 5
@@ -81,3 +84,38 @@ Identify the algorithm, the amount of salted characters added, and the length of
 Hint: Research 'padding'...
 
 Flag format: algorithm,#characters,#length
+sudo cat /etc/shadow | grep garviel
+--$6$ is SHA512 , $(random characters)$ is salt, everything after is hashed password
+sha512,8,84
+
+Linux Basics Permissions1
+10
+
+Find the directory named Bibliotheca. Enter the absolute path to the directory.
+find /* -type d -name 'Bibliotecha' 2>/dev/null
+
+Linux Basics Permissions2
+10
+
+Identify the number of users with valid login shells, who can list the contents of the Bibliotheca directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
