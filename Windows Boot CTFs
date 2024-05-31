@@ -1,0 +1,8 @@
+Windows_Boot_Remediate_1
+10
+
+The system is booting into safe mode. Identify the flag from the command-line output of the command used to diagnose boot issues.
+
+Follow these instructions to boot the virtual image -- Click Here ---> Windows Bootkit Instructions
+bcdedit is the command
+FLAG: 1RF5Zgf9P
