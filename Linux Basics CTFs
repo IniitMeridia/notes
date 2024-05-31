@@ -176,6 +176,123 @@ Find the warp and read its secrets for the flag.
 find ./.warp* -type f
 ./.warp2/.warp5/warp5/.warp3/warp2/.secrets
 
+Linux Basics Regular Expressions1
+10
+
+Using the commands ls and grep, identify the number of directories in /etc/ that end in .d
+find /etc -maxdepth 1 - type d -name "*.d" | wc -l
+
+Linux Basics Regular Expressions2
+10
+
+File: home/garviel/numbers
+
+Use regular expressions to match patterns similar to valid and invalid IP addresses.
+
+The answer is the count/number of lines that match in the file.
+
+Linux Basics Regular Expressions3
+10
+
+File: home/garviel/numbers
+
+Use regular expressions to match valid IP addresses. The flag is the number of addresses.
+
+HINT: What are the valid numerical values of each octet in an IP address?
+
+Linux Basics Regular Expressions4
+10
+
+File: home/garviel/numbers
+
+Use regular expressions to match patterns that look similar to a MAC Address. Flag is a count of the number of matches.
+
+HINT: This is a loose match! Some of these results won't be true MAC addresses.
+
+Flag format: ####
+
+Linux Basics Reformat1
+10
+
+File: home/garviel/numbers
+
+Use awk to print lines:
+
+>= 420 AND <=1337
+
+The flag is a SHA512 hash of the output.
+
+Linux Basics Reformat2
+10
+
+File: home/garviel/connections
+
+Use awk to create a separate CSV (comma separated value) file that contains columns 1-6.
+
+The flag is an MD5 hash of the new file
+
+Hint: Look at #fields on line 6 in the file to understand column layout.
+
+Hint: This is a Zeek (formally known as Bro) connection log file in TSV format. Click This Link to learn about its formatting.
+
+Sample Output
+
+
+
+#separator \x09,,,,,
+#set_separator,,,,,,
+#empty_field,(empty),,,,
+#unset_field,-,,,,
+#path,conn,,,,
+#open,2021-03-09-14-26-54,,,,
+#fields,ts,uid,id.orig_h,id.orig_p,id.resp_h
+#types,time,string,addr,port,addr
+1615299704.748741,Cynd96jpqm760uz0k,192.168.242.216,60508,192.168.65.20,22
+1615299962.756967,CFWnz12Wd2cXj3iSIe,fe80::c95c:6e92:5618:9df7,546,ff02::1:2,547
+1615300118.087124,CuVCPTMljpoBDEuR1,192.168.65.10,62117,10.50.255.254,53
+--- Trimmed ---
+
+Linux Basics Bash Logic1
+10
+
+Directory: home/garviel/Battlefield/
+
+The garviel user has a minefield map and controls to a Titan War Machine located in their home directory. Interpret the Titan Controls to navigate the minefield and annihilate the target.
+
+Enter the correct movement codes to make the Titan obliterate the target.
+
+Format: XXX3X2X......
+
+Linux Basics Bash Logic2
+10
+
+The flag resides in $HOME/paths... you just need to determine which flag it is. The flag sits next to a string matching the name of a $PATH/binary on your system.
+
+Hint: The correct binary is not echo
+Hint: Compare the contents
+
+Linux Basics Regular Expressions5
+15
+
+File: home/garviel/numbers
+
+Use regular expressions to find valid Locally Administered or Universally Administered Unicast MAC addresses.
+
+Give the count of Locally and Universally Administered MAC addresses as the answer.
+
+HINT: What characters specifically define a Locally or Universally Administered Unicast MAC Address?
+
+Linux Basics Bash Logic3
+15
+
+FILE: /home/garviel/Inquisition_Targets
+
+Identify heresy by comparing the Inquisition_Targets file to members of the Guardsmen group.
+
+HINT: Reformat and clean up the data before it is compared. awk and sort are your best friends!
+
+The flag is the number of heretics on the system.
+
 
 
 
