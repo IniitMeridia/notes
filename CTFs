@@ -173,6 +173,8 @@ Linux Basics Permissions10
 10
 
 Find the warp and read its secrets for the flag.
+find ./.warp* -type f
+./.warp2/.warp5/warp5/.warp3/warp2/.secrets
 
 
 
