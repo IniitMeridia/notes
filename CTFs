@@ -120,7 +120,7 @@ Linux Basics Permissions 4
 Locate the file within /media/Bibliotheca that is modifiable by the only user that is part of the chapter group, but not part of the lodge group.
 
 Hint: Not the hidden file...
-grep "chapter\|lodge" /etc/group -to find members of the groups and find whos in chpater and not lodge
+grep "chapter\|lodge" /etc/group -to find members of the groups and find whos in chapter and not lodge
 ls -lisa {directories inside of Bibliotheca}
 Codex_Astartes
 
@@ -130,7 +130,7 @@ Linux Basics Permissions 5
 Identify the file within /media/Bibliotheca where the owning group has more rights than the owning user.
 ls -lisa {directories inside of Bibliotheca}
 cd /media/Bibliotheca/Bibliotheca_quattuor
-Codex_Hereticus
+/media/Bibliotheca/Bibliotheca_quattuor/Codex_Hereticus
 
 Linux Basics Permissions 6
 10
@@ -142,10 +142,37 @@ The flag is the code name provided after a successful access attempt.
 Hint: Remember your sudo options.
 sudo -u gaunt /media/Bibliotheca/Bibliotheca_quattuor/./Tactica_Imperium
 
+Linux Basics Permissions 7
+10
 
+The user tyborc is unable to access the directory:
 
+/media/Bibliotheca/Bibliotheca_unus
 
+Why? Identify the permission missing in standard verb form.
+execute
 
+Linux Basics Permissions 8
+10
+
+You only have a single submission attempt for this challenge.
+
+Locate the file in /media/Bibliotheca that Quixos has sole modification rights on.
+
+The flag is the absolute path for the file, include the file name.
+/media/Bibliotheca/Bibliotheca_duo/Codex_Hereticus --- -rw-------
+
+Linux Basics Permissions9
+10
+
+Read a concealed file within /media/Bibliotheca
+---conceaeled files have a . infront of them
+./Secrets_of_the_Immaterium
+
+Linux Basics Permissions10
+10
+
+Find the warp and read its secrets for the flag.
 
 
 
