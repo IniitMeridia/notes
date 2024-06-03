@@ -7,7 +7,13 @@ Hash the first partition of the file using md5sum. The flag is the hash.
 dd if=/home/bombadil/mbroken of=/tmp/partition bs=1 count=16 skip=446
 md5sum /tmp/partition
 
+Linux Boot SysV 2
+10
 
+Identify the default run level on the SysV Init Linux machine.
+
+Flag format: #
+cat /etc/inittab
 
 
 
