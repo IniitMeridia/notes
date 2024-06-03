@@ -1,0 +1,38 @@
+Linux Boot MBR3
+10
+
+The file /home/bombadil/mbroken is a copy of an MBR from another machine.
+
+Hash the first partition of the file using md5sum. The flag is the hash.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
