@@ -136,14 +136,100 @@ look in services for persistance
 get-process
 get-ciminstance win32_process | select name, processid, pathnamee | ft -wrap | more 
 | format-table -wrap
+list dlls linked to an executable
 tasklist | more
 Filtering for specific string/process
         tasklist /fi "IMAGENAME eq lsass.exe"
 service names can be spelled differently and look the same lsass.exe vs. 1sass.exe
 sysinternals
+get-service
+sc query
+servicesmsc
+what is a csv??
 
 
-list dlls linked to an executable
+scheduled tasks are a way to establish persistance
+get-scheduledtask
+  
+schtasks
+  /query /tn "____"
+powershell.exe -win hidden -encode ------likely a bad program, not normal
+use cyberchef on powershell.exe -win hidden -encode >____________________< stuff within this section
+
+
+
+Q: What are some Registry keys that can be used for autoruns?
+        Registry Keys Locations, Locations connected with Services.
+            HKLM\Software\Microsoft\Windows\CurrentVersion\Run - Local Machine
+            HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
+            HKLM\System\CurrentControlSet\Services
+        Remember that the Users have individual Hives with autoruns as well as the Current User.
+            HKCU\Software\Microsoft\Windows\CurrentVersion\Run - Current Use
+            HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
+            HKU\<sid>\Software\Microsoft\Windows\CurrentVersion\Run - Specific User
+            HKU\<sid>\Software\Microsoft\Windows\CurrentVersion\RunOnce
+        The order in which services are loaded can be adjusted.
+            HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\ServiceGroupOrder
+            HKEY_LOCAL_MACHINE\CurrentControlSet\Control\GroupOrderList
+
+look for repeating numbers or patterns or sequential or protocol not on proper ports for suspicous services/protocol
+look for rdp-3389 not from your own IP
+
+
+netstat -anob | more
+TCP    0.0.0.0:22             0.0.0.0:0              LISTENING       2944
+ [sshd.exe]
+
+protocol ip:port              foreign                                pid
+  service associated
+
+misspelling of expected service
+sometimes services/protocols use alternate ports/ if port looks funky look up standard alternate ports on google see if it has alt ports
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Get-Process chrome | foreach {$_.modules} | more
 
 dlls should be running in system32
