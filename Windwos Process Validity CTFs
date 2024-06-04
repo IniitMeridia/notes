@@ -1,0 +1,114 @@
+Windows_Processes_Basics_1
+5
+
+What Sysinternals tool shows malware persistence locations in tabs within its GUI?
+autoruns
+
+Windows_Processes_Basics_2
+5
+
+What Sysinternals tool is used to investigate processes?
+process explorer
+
+Windows_Processes_Basics_3
+5
+
+What Sysinternals tool can be used to investigate network connection attempts?
+TCPview
+
+Windows_Processes_Basics_4
+5
+
+What Sysinternals tool can view permissions?
+AccessChk
+
+Windows_Processes_Basics_5
+5
+
+What Sysinternals tool allows us to view and modify handles?
+Handle
+
+Windows_Processes_Basics_6
+5
+
+What is the default Windows user directory for files downloaded from the internet? The flag is the folder name only.
+downloads
+
+Windows_Processes_Basics_7
+5
+
+What is the default Windows download directory that everyone has access to? The flag is the absolute path to the directory.
+C:\Users\Public\Downloads
+
+Windows_Processes_Basics_8
+5
+
+What Sysinternals tool shows service load order?
+LoadOrder
+
+Windows_Processes_Basics_9
+5
+
+What is the service name of Windows Defender Firewall?
+MpsSvc
+
+Windows_Processes_Basics_10
+5
+
+What SysInternals tool reports .dlls loaded into processes?
+ListDLLs
+
+Windows_Hidden_Processes_1
+10
+
+There is malware on the system that is named similarly to a legitimate Windows executable. There is a .dll in the folder that the malware runs from. The flag is the name of the .dll.
+
+Reminder: All challenges are done using Workstation1.
+look for where services are
+look at the run keys
+
+Windows_Hidden_Processes_2
+10
+
+You notice that there is an annoying pop up happening regularly. Investigate the process causing it. The flag is the name of the executable.
+use process monitor with filter operation is process create
+
+Windows_Hidden_Processes_3
+10
+
+Determine what is sending out a SYN_SENT message. The flag is the name of the executable.
+
+HINT: Use a Sysinternals tool.
+found through process monitor looking for a connection made not to the admin station(10.6.0.2)
+
+Windows_Hidden_Processes_4
+10
+
+Malware uses names of legit processes to obfuscate itself. Give the flag located in Kerberos’ registry subkey.
+
+HINT: Use Sysinternals tools.
+
+    Machine: Workstation1 (RDP from Admin-Station)
+        login: student
+        password: password
+use autoruns to find the registry path for kerberos
+look inside the HKLM/system/currentcontrolset/services/kerberos for the flag
+
+Windows_Hidden_Processes_6
+10
+
+Find the McAfeeFireTray.exe. There is a file in that directory. The flag is inside.
+
+HINT: Use Sysinternals tools.
+
+    Machine: Workstation1 (RDP from Admin-Station)
+        login: student
+        password: password
+{{{{{looks through all subdirectories}}}}}
+dir /S /B mcafeefiretray.exe
+
+
+
+
+
+
