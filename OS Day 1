@@ -105,17 +105,45 @@ suid/guid = running file as owner level permission
 user,group,other
 if s in user, run as owning user
 
+Linux Boot system
+
+looking for persistance in here
+
+reading the MBR - command = xxd
+
+monolithic kernels
+
+ltrace -S cat /etc/passwd
 
 
+run levels are a good place to look for persistance
+/etc/inittab
+/etc/rc*.d
+--ls -l /etc/rc3.d/ 
+
+systemd or systemv depends on bios or uefi
+
+systmctl _______
 
 
+establish persistance or upgrade permissions with the PATH statement -- changing a current command or new command
+/etc/environment
+
+/etc/profile.d good place to look for peristance
+
+-----------------
+look in services for persistance
+get-process
+get-ciminstance win32_process | select name, processid, pathnamee | ft -wrap | more 
+| format-table -wrap
+tasklist | more
+Filtering for specific string/process
+        tasklist /fi "IMAGENAME eq lsass.exe"
+service names can be spelled differently and look the same lsass.exe vs. 1sass.exe
+sysinternals
 
 
+list dlls linked to an executable
+Get-Process chrome | foreach {$_.modules} | more
 
-
-
-
-
-
-
-
+dlls should be running in system32
