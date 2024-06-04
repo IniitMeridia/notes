@@ -1,0 +1,4 @@
+Windows_UAC_Basics5
+10
+
+The flag is the RequestedExecutionLevel of the schtasks.exe file.
