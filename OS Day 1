@@ -137,6 +137,11 @@ get-process
 get-ciminstance win32_process | select name, processid, pathnamee | ft -wrap | more 
 | format-table -wrap
 list dlls linked to an executable
+
+Get-Process chrome | foreach {$_.modules} | more
+
+dlls should be running in system32
+
 tasklist | more
 Filtering for specific string/process
         tasklist /fi "IMAGENAME eq lsass.exe"
@@ -187,6 +192,9 @@ misspelling of expected service
 sometimes services/protocols use alternate ports/ if port looks funky look up standard alternate ports on google see if it has alt ports
 
 
+sigcheck
+View the autoelevate setting of slui
+PS Z:\> ./sigcheck -m C:\Windows\System32\slui.exe
 
 
 
@@ -230,6 +238,4 @@ sometimes services/protocols use alternate ports/ if port looks funky look up st
 
 
 
-Get-Process chrome | foreach {$_.modules} | more
 
-dlls should be running in system32
