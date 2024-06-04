@@ -15,9 +15,67 @@ Identify the default run level on the SysV Init Linux machine.
 Flag format: #
 cat /etc/inittab
 
+Linux Boot SysV 3
+10
 
+What is the last script to run when the command init 6 is executed?
 
+Flag format: /absolute/path
 
+NOTE: “Use the Minas_Tirith machine for this question.”
+
+Linux Boot Systemd 1
+10
+
+Identify the file that init is symbolically-linked to, on the SystemD init machine.
+
+Flag format: /absolute/path
+
+Reminder: Use your Terra machine for these SystemD challenges!
+ls -l /sbin/init
+
+Linux Boot Systemd 2
+10
+
+What is the default target on the SystemD machine and where is it actually located?
+
+Flag format: name.target,/absolute/path
+
+NOTE: Use the SystemD Machine for this question.
+ls -l /lib/systemd/system
+
+Linux Boot Systemd 3
+10
+
+What unit does the graphical.target want to start, based solely on its configuration file?
+
+HINT: Targets deal with which init system? Which machine should you be looking for this flag, on?
+
+NOTE: Use the SystemD Machine for this question.
+cat /lib/systemd/system/graphical.target
+
+Linux Boot Systemd 5
+10
+
+How many wants dependencies does SystemD actually recognize for the default.target
+
+HINT: Use the systemctl command with some arguments to make life easier.
+
+Flag format: #
+
+NOTE: Use the SystemD Machine for this question.
+systemctl list-dependencies graphical.target
+
+Linux Boot Systemd 6
+10
+
+What is the full path to the binary used for standard message logging?
+
+HINT: Standard message logging is standardized across UNIX systems.
+
+NOTE: As the challenge name suggests, use the SystemD machine for this question.
+
+Flag format: /absolute/path
 
 
 
