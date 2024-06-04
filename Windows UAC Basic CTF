@@ -2,3 +2,34 @@ Windows_UAC_Basics5
 10
 
 The flag is the RequestedExecutionLevel of the schtasks.exe file.
+sigcheck -m C:\windows\system32\schtasks.exe
+
+Windows_UAC_Basics_6
+10
+
+Determine which UAC subkey property shows whether UAC is enabled or not. The flag is the data value in that property.
+
+Hint: Make sure you're on the file-server.
+reg query HKLM\software\microsoft\windows\curentversion\policies\system for cli
+get-item HKLM:\software\microsoft\windows\curentversion\policies\system for PS
+EnableLUA is the subkey  
+
+Windows_UAC_Basics_7
+10
+
+Provide the name of the UAC [Registry subkey] property that determines what level UAC is set to for admin privileges (Example UAC levels: Default, Always, Notify).
+ConsentPromptBehaviorAdmin
+
+Windows_UAC_Basics_8
+10
+
+Query the registry subkey where UAC settings are stored, and provide the flag.
+
+same as basics 6 10
+
+
+
+
+
+
+
