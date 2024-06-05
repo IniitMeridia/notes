@@ -1,0 +1,48 @@
+Linux Processes 2
+10
+
+How many child processes did SysV Init daemon spawn?
+find PID of SysV Init then:
+ps --ppid 1 -lf
+
+Linux Processes 3
+10
+
+Identify all of the arguments given to the ntpd daemon (service) using ps.
+
+Format: List all options with parameters (include numbers).
+ps -p 1468 -o cmd
+
+Linux Processes 4
+10
+
+What is the parent process to Bombadil’s Bash process? (name of the binary, not the absolute path)
+the -bash(PID28461,PPID28458) is the shell which was made bythe sshd login bambadil(PID28458,PPID2008) which was made by the sshd daemon PID2008
+
+Linux Processes 5
+10
+
+Identify the file mapped to the fourth file descriptor (handle) of the cron process.
+
+HINT: There might be multiple cron processes, but only one with the answer.
+
+Flag format: /absolute/path
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
