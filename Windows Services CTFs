@@ -5,7 +5,27 @@ What command-line (cmd) command will show all services, running or not running?
 
 The flag is the full command, for all services.
 sc query state=all
+Windows_Services_Basics_4
+5
 
+What registry location holds all service data?
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+
+Windows_Services_Basics_5
+5
+
+What registry subkey holds a service's .dll location?
+
+The flag is the subkey name (full path not needed).
+Paramaters
+
+Windows_Services_Basics_6
+10
+
+Services have a name and display name, which could be different. What is the service name of the only Totally-Legit service?
+
+Reminder: All challenges are done using the file-server.
+sc query type=service state=all ---- scroll through to find the displayname and match with service 
 
 
 
