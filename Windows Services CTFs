@@ -5,6 +5,7 @@ What command-line (cmd) command will show all services, running or not running?
 
 The flag is the full command, for all services.
 sc query state=all
+
 Windows_Services_Basics_4
 5
 
