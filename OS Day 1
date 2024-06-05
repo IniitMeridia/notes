@@ -191,37 +191,84 @@ protocol ip:port              foreign                                pid
 misspelling of expected service
 sometimes services/protocols use alternate ports/ if port looks funky look up standard alternate ports on google see if it has alt ports
 
+UAC
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System
+registry location for UACs
 
-sigcheck
+to use sigcheck
+>net use * http://live.sysinternals.com
+>z:
+./sigcheck -m
+
 View the autoelevate setting of slui
 PS Z:\> ./sigcheck -m C:\Windows\System32\slui.exe
 
+./strings *.exe -accepteula
 
 
 
+------------------------------------------------
+ps -- snapshot of running processes
+  ps --ppid 2 -lf displays only kthreadd processes (kernel)
+  ps --ppid 2 -Nlf anything except kthreadd
+  ps -elf --forest ascii tree
+
+top -- dynamic image of running processes
+htop -- human friendly "top"
+
+EUID - access rights of process
+
+RUID - who can kill and send signals to a process
+
+fork() and exec() system calls
+-
+-
+-
+-
 
 
+signals -- "kill -l" for all signals available
 
+process enumeration --------?
 
+orphan process
+  disown -a && exit ---close shell/terminal and force children to be adopted
 
+daemon = services = start at boot
+daemons can be used to establish persistance
+  service 
+  systemctl
 
+cron jobs = scheduled tasks
+cron jobs are used to establish persistance
+  /var/spool/cron
+  /var/spool/cron/crontabs/ - user cron jobs
+  /etc/cron.d
+  /etc/crontab - kernel cron jobs
 
+-----Mnemonic: Minnie Has Daily Money Worries 
+  ┌───────────── minute (0 - 59)
+  │ ┌───────────── hour (0 - 23)
+  │ │ ┌───────────── day of the month (1 - 31)
+  │ │ │ ┌───────────── month (1 - 12)
+  │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+  │ │ │ │ │                           7 is also Sunday on some systems)
+  │ │ │ │ │
+  │ │ │ │ │
+  * * * * * <Time/Day to execute    "Command to Execute"
+-----
 
+/proc/
 
+List all open files for a specific process.
+    sudo lsof -c sshd
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+List all the proc directories.
+    >ls -l /proc/
+Grab the PID of a process.
+    >ps -elf | grep sshd
+List contents for that PID directory.
+    >sudo ls -l /proc/14139
 
 
 
