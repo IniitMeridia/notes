@@ -10,7 +10,7 @@ ssh: user student@10.50.31.104     pass password
 rdp: xfreerdp /u:student /v:10.50.31.104 -dynamic-resolution +glyph-cache +clipboard         pass:password
 
 >>(Get-WmiObject -Class Win32_Service -Filter "Name='ServiceName'").StartName
-
+>>sc qc "servicename"
 
 ssh -j = initiate as jump box-----
 
@@ -270,7 +270,8 @@ Grab the PID of a process.
     >ps -elf | grep sshd
 List contents for that PID directory.
     >sudo ls -l /proc/14139
- 
+something with commands
+   ps -p (pid of ntpd) -o cmd
 
 
 
