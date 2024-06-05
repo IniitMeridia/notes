@@ -269,7 +269,7 @@ Grab the PID of a process.
     >ps -elf | grep sshd
 List contents for that PID directory.
     >sudo ls -l /proc/14139
-
+ 
 
 
 
