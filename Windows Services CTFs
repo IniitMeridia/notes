@@ -28,6 +28,16 @@ Services have a name and display name, which could be different. What is the ser
 Reminder: All challenges are done using the file-server.
 sc query type=service state=all ---- scroll through to find the displayname and match with service 
 
+Windows_Services_Basics_7
+10
+
+Figure out the SID of the only Totally-Legit service.
+
+Example: S-1-5-80-159957745-2084983471-2137709666-960844832-[4182961472]
+
+Submit only the [bracketed] portion of the SID.
+
+HINT: Run the command on the service name, not the display name.
 
 
 
