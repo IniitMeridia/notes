@@ -27,9 +27,144 @@ Identify the file mapped to the fourth file descriptor (handle) of the cron proc
 HINT: There might be multiple cron processes, but only one with the answer.
 
 Flag format: /absolute/path
+sudo lsof -c cron
+look for the 4th handle (handles have numbers and a letter under the FD column)
+
+Linux Processes 6
+10
+
+Identify the permissions that cron has on the file identified in Processes 5.
+
+HINT: Read the man page for lsof to understand permissions.
+
+Flag format: If more than one, list the permissions comma separated, no spaces
+sudo lsof -c cron to see that cron was ran as root when accessing the file
+ls -lisa /run/crond.pid to see file permissions, root made the file and has r,w perms, so cron has r,w perms on the file
+
+Linux Processes 7
+10
+
+Identify the names of the orphan processes on the SysV system.
+
+NOTE: Remember, orphan processes spawn and die periodically. Try monitoring the processes list with top or htop to find them.
+
+Flag format: in alphabetical order with all non-alphabetic characters removed: Name,Name,Name,Name
+
+HINT: Only character names!
+htop press f2 go to columns add ppid press f10 watch for processes where ppids turn to 1
+
+Linux Processes 8
+10
+Flag format: filepath,configuration_option
+Locate zombie processes on the SysV system.
+
+Identify the zombie processes' parent process.
+
+NOTE: Remember, zombie processes only live until the parent process kills and removes them from the system’s process table. Try monitoring the processes list with top or htop to find them.
+
+Flag format: /absolute/path
+watch for processes to go from s to z and look at the ppid and match it with its parnet process
+
+Linux Processes 9
+10
+
+Locate the strange open port on the SysV system.
+
+Identify the command line executable and its arguments.
+
+Flag format: /executable/path -arguments
+netstat -atulpn
+port 9999 is open
+sudo lsof -i :9999
+theres a netcat cmd being run (process)
+htop
+look for the cmd and port in htop
+
+Linux Process Proc Dir 1
+10
+
+Examine the process list to find the ssh process. Then, identify the symbolic link to the absolute path for its executable in the /proc directory.
+
+The flag is the absolute path to the symbolic link, and the file it is linked to.
+
+Flag format: /absolute/path,/absolute/path
+sudo lsof -c ssh ->> to find pid of ssh and file path
+sudo ls -lisa /proc/28458 ->> to find exe and its link
+
+Linux Process Proc Dir 2
+10
+
+Identify the file that contains udp connection information. Identify the process using port 123.
+
+For the flag, enter:
+
+    Process name
+    File descriptor number for the udp socket
+    Its permissions as shown in lsof
+
+Flag format: name,#,permission
+sudo lsof -i :123
+look for the entry most likely usable by other computers (10.6.0.7:ntp) look under FD (19u) 19 = number u = permissions
+ps -pid 1468 -lf (optional)
+
+Linux Processes 10
+15
+
+Locate the strange open port on the SysV system.
+
+Identify how the process persists between reboots.
+
+The flag is the absolute path for the file that contains the persistence mechanism, and the configuration option.
+
+HINT: Persistence is defined here
+
+Flag format: filepath,configuration_option
 
 
 
+
+Linux Process Proc Dir 3
+15
+
+Identify one of the human-readable file handles by the other program that creates a zombie process.
+
+NOTE: Remember, zombie processes only live until the parent process kills them. Try monitoring the processes list with top or htop to find them.
+
+The flag is the text from one of the files it reads.
+htop ->> find the zombie process and the process that creates it
+ls /usr/local/sbin/thenine
+sudo -lsof -c thenine ->> identify the handle that is human readable
+cat /opt/mysoul
+
+
+---------FIND EVIL (HARD)------------
+Linux Process Find Evil 1
+15
+
+    Scenario: The Villains group has been chanting offerings to their new leader at regular intervals over a TCP connection.
+
+    Task: Identify their method of communication and how it is occurring. Locate the following artifacts: ** The chant/text used by each villain (include spaces) ** The new Lord receiving the offering ** The IP address and port that the offering is received over
+
+    Flag format: chant text,new Lord,IP:port
+
+    Machine: Minas_Tirith
+Mausan ukoul for avhe mubullat goth,witch_king,127.0.0.1:witch_king
+---looking at htop i see Gothmog/offering and witch_king popup
+cat into gothmog/chant to see the chant and into gothmog/offering to see that it opens port on 1234 to send traffic
+netstat -ano to see what ip and port are established with that port
+
+Linux Process Find Evil 2
+15
+
+    Scenario: Someone or something is stealing files with a .txt extension from user directories. Determine how these thefts are occurring.
+
+    Task: Identify the command being ran and how it occurs.
+
+    Flag format: command,how it occurs
+
+    Machine: Terra
+
+    Hint: Explore persistence mechanisms and services.
 
 
 
