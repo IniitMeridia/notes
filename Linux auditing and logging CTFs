@@ -1,0 +1,113 @@
+Linux Auditing and Logging XML 4
+10
+
+File: /home/garviel/output.xml
+
+    Select all of the IP addresses and ports using a single XPATH Union Statement
+
+    Pipe the result to md5sum for the flag
+
+HINT:
+
+    https://carpentries-incubator.github.io/lc-webscraping/
+    http://www.tizag.com/xmlTutorial/xpathbar.php
+
+Sample Output (without piping to MD5SUM)
+
+
+
+ addr="xx.xxx.xx.xx"
+ addr="xx.xxx.xx.xx"
+ addr="xx.xxx.xx.xx"
+ addr="xx.xxx.xx.xx"
+ portid="xx"
+ addr="10.50.29.6"
+ addr="xx.xxx.xx.xx"
+ portid="22"
+
+--TRIMMED--
+
+xpath -q -e '//address/@addr | //@portid'  /home/garviel/output.xml
+
+Linux Auditing and Logging JSON 1
+10
+
+File: /home/garviel/conn.log
+
+    Use jq to pretty print the JSON file conn.log.
+
+    Hash the pretty-printed file with md5sum for the flag.
+
+Sample JSON "Pretty Print" Output (without piping to MD5SUM)
+cat /home/garviel/conn.log | jq '.'| md5sum
+or
+jq '.' /home/garviel/conn.log | md5sum
+
+File : /home/garviel/conn.log
+
+This file is a conn.log made in Zeek (Bro) with data about TCP/IP connections.
+
+Use jq to locate and count the unique originating endpoint IP addresses in the file. Enter the number of unique originating IP addresses as the flag.
+
+Flag format: #
+
+HINT: Use this link to understand the JSON object’s attributes
+cat /home/garviel/conn.log | jq '."id.orig_h"' | sort | uniq | wc -l
+or
+jq '."id.orig_h"' /home/garvielconn.log | sort | uniq | wc -l
+
+Linux Auditing and Logging JSON 3
+10
+
+File: /home/garviel/conn.log
+
+This file is a conn.log made in Zeek (Bro) with data about TCP/IP connections.
+
+Use jq to locate and count connections where the destination IP sent more than 40 bytes to the source IP.
+
+Flag format: #
+jq -c '. | select(.resp_bytes > 40)' /home/garviel/conn.log | wc -l
+
+Linux Auditing and Logging Syslog 9
+10
+
+Challenge only allows ONE attempt
+
+Which cron log severity code is saved only to the local machine?
+
+Flag format: #
+
+(Continue to reference your 50-cctc.conf file from Syslog1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
