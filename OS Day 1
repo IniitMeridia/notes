@@ -435,7 +435,16 @@ Get-CimInstance Win32_UserAccount | Select-Object name, sid
 hashing file via commandline
   certutil -hashfile <FILENAME> md5
 
+Get-ADUser -filter "passwordneverexpires -eq 'True'" -properties * | Select passwordneverexpires, nam
+e
+Get-ADUser -filter * -properties description | Select-Object -ExpandProperty description, name
+Get-ADUser -filter "Name -like 'Nina.webster'" -properties description | Select description, name
+Get-ADGroup -Filter "name -like 'system admins'" -Properties * | select name, members | ft -wrap
+Get-ADGroupMember 'Domain admins' -Recursive
+ROT13:
+rkcrpg zl arkg pbzzhavpngvba ng 06:30 uef gbzbeebj zbeavat. Ybpngvba sbe qrgnvyf vaibyivat n uvtuyl pynffvsvrq bcrengvba hcybnqrq gb Gvssnal
+dont forget about CYBERCHEF
+dir /s search recursive through directories to find file
 
-
-
-
+Get-NetFirewallProfile -Profile Public
+sc.exe showsid Legit
