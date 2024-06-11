@@ -263,6 +263,15 @@ cron jobs are used to establish persistance
 
 List all open files for a specific process.
     sudo lsof -c sshd
+This information and more available in the lsof man page.
+
+# - The number in front of flag(s) is the file descriptor number used by the process associated with the file
+u - File open with Read and Write permission
+r - File open with Read permission
+w - File open with Write permission
+W - File open with Write permission and with Write Lock on entire file
+mem - Memory mapped file, usually for share library
+
 
 List all the proc directories.
     >ls -l /proc/
@@ -274,15 +283,157 @@ something with commands
    ps -p (pid of ntpd) -o cmd
 
 
+---------------------------------------------------------------
+
+artifacts
+want to preserve them and good source of info
+give good info as to whats happened on a machine
+
+Get-LocalUser | select Name,SID 
+Get-WmiObject win32_useraccount | select name,sid
+
+decode from ROT13----?
+
+
+
+The GUID represents a particular file extension.
+    CEBFF5CD-ACE2-4F4F-9178-9926F41749EA A list of applications, files, links, and other objects that have been accessed
+    F4E57C4B-2036-45F0-A9AB-443BCFE33D9F Lists the Shortcut Links used to start programs
+Google->windows GUID list
+
+
+BAM--
+Show in Reg Edit:
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings #On 1809 and Newer
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\bam\UserSettings #On 1803 and below
+systeminfo
+
+Get-Computerinfo
+
+C:\$Recycle.bin
+Content in the recycle bin is identified by:
+    SID - determines which user deleted it
+    Timestamp - When it was deleted
+    $RXXXXXX - content of deleted files
+    $IXXXXXX - original PATH and name
+Get-Childitem 'C:\$RECYCLE.BIN' -Recurse -Verbose -Force | select FullName
+match SID to user
+  wmic useraccount get name, sid
+  wmic useraccount where 'sid="S-1-5-21-1584283910-3275287195-1754958050-1005"' get name
+for a specific user, match the SID, then append it to the previous command
+  Get-Content 'C:\$Recycle.Bin\S-1-5-21-1584283910-3275287195-1754958050-1005\$R8QZ1U8.txt'
+
+
+prefetch file - apps run have entry in here for quicker loading
+C:\Windows\Prefetch
+get recently used apps
+  Get-Childitem -Recurse C:\Users\*\AppData\Roaming\Microsoft\Windows\Recent -ErrorAction Continue | select FullName, LastAccessTime
+
+Get-Item 'Registry::\HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.*' where
+[System.Text.Encoding]::Unicode.GetString((gp "REGISTRY::HKEY_USERS\*\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt")."0")  ------replace 0 with property value
+Get-Item "REGISTRY::HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt" | select -Expand property | ForEach-Object {
+    [System.Text.Encoding]::Default.GetString((Get-ItemProperty -Path "REGISTRY::HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt" -Name $_).$_)
+}
+query the hex value once you get the registry key for recent docs-----
+[System.Text.Encoding]::Unicode.GetString((gp "REGISTRY::HKEY_USERS\*\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt")."0")
+
+browser artifacts
+  cookies,usernames,etc.
+  use strings instead of get-content
+  location of these might change or not be in default location
+
+event logs
+  application,security,system logs
+    *.evtx files accessed by:
+      Windows Event View Application
+      Get-Eventlog or Get-WinEvent in Powershell
+      wevtutil in Command Prompt
+
+********Start-Transcript*********
+logs all powershell commands entered
+
+
+---------------------------------------------------------
+
+linux logging
+
+/var/log
+app specific
+/tmp/messages
+
+syslog
+journald
+
+facility -where (0-7)
+severity - how bad (0-7)
+
+/etc/rsyslogd.d/50-default.conf conf file for logs
+
+loosely matches ip addresses
+  cat /var/log/syslog | grep -R "\w*\.\w*\.\w*"
+
+auth
+  /var/log/auth.log
+  /var/run/utmp
+  /var/log/wtmp
+app
+  /var/log/mysql
+system
+  /var/log/messages
+  /var/log/syslog{rsyslog}
+dmesg
+
+xml reading
+  xpath
+    xpath -q -e '//element/@attribute' file.xml
+
+json
+
+
+----------------------------------------------
+
+
+get image of machine
+.\volatility_2.6_win64_standalone.exe -f ".\cridex.vmem" imageinfo
+load profile
+.\volatility_2.6_win64_standalone.exe -f ".\cridex.vmem" --profile=WinXPSP2x86 -h
+pslist - ps 
+psscan - can show terminated processes
+pstree - hierarchy veiw of ps
+procdump -dump executable of process
+ look up hash of executable and check it via virustotal
+memdump - memory dump of specific process, make sure to strings the file it creates
+connections - connections of IP addresses
+connscan - recently terminated
+
+
+3389 - rdp connection
+rogue processes
+  -process validity
+dll and handles
+  -dlllist, dlldump
+network artifacts
+  -connections
+hunt for code injection
+  -malfind
+check for rootkit
+  -
 
 
 
 
+-----------------------------
+-gpupdate -force
 
 
+Get-CimInstance Win32_UserAccount | Select-Object name, sid
 
 
-
+.\volatility_2.6_win64_standalone.exe -f "0zapftis.vmem" imageinfo
+.\volatility_2.6_win64_standalone.exe -f "0zapftis.vmem" --profile=WinXPSP2x86 procdump -p 544 -D .
+hashing file via commandline
+  certutil -hashfile <FILENAME> md5
 
 
 
