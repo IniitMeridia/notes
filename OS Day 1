@@ -448,3 +448,44 @@ dir /s search recursive through directories to find file
 
 Get-NetFirewallProfile -Profile Public
 sc.exe showsid Legit
+
+xpath -q -e '(//port/state[@state="open"]/ancestor::host/address/@addr) |
+(//port/state[@state="open"]/ancestor::port/@portid)' /home/garviel/output.xml | md5sum
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
