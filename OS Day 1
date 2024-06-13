@@ -209,7 +209,7 @@ PS Z:\> ./sigcheck -m C:\Windows\System32\slui.exe
 
 
 ------------------------------------------------
-ps -- snapshot of running processes
+ps -- snapshot of running procecommand,how it occurssses
   ps --ppid 2 -lf displays only kthreadd processes (kernel)
   ps --ppid 2 -Nlf anything except kthreadd
   ps -elf --forest ascii tree
