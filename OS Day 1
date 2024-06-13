@@ -461,13 +461,21 @@ grep -E '^([0-9A-Za-z]{2}[:-]){5}([0-9A-Za-z]{2})$' /home/garviel/numbers | wc -
 
 grep -f Inquisition
 
+ lsof -i :6010
 
+directoy permsissions for looking into directory
 
+windows:
+registry 
+services -
+scheduled tasks
+powershell
 
-
-
-
-
+linux:
+services -systemctl /// systemctl cat /// systemctl show ||| ls -lisa /lib/systemd/system conatins .service
+registry
+commands
+crontab
 
 
 
