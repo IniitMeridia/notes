@@ -1,0 +1,72 @@
+persistance that can survive reboot - doeesnt necessarily mean it starts at boot / tasks
+something that starts upon reboot - starts AT boot / run keys
+
+linux
+  boot
+  -kernel services, services
+  -sbin/init
+  -run coniditons, run levels /etc/inittab
+  -run scripts /etc/rc
+  -/lib/systemv , /lib/systemd
+  -bashrc
+
+  not at boot
+  -profile
+  -/etc/profile
+  -bashrc
+  -cron / tasks
+
+  x permission directory, move INTO the directory if not enabled can still look into the directory
+  suid(run as owner of file), guid(run as owning group), sticky bit (shared directories-only owner can delete)
+  daemons -processes running in background - PERSISTANCE
+    -systemctl
+    -ps
+
+  logs
+  /var/log, syslog, rsyslog.conf, 
+
+  strings command to look into files in bin or sbin
+
+
+windows
+net use * http://live.sysinternals.com
+  autoruns -stuff automatically runs at start
+  procexp
+  TCP
+  strings
+
+alternate data streams
+
+schtasks
+
+powershell profiles check all profiles 
+  $PSHOME - 
+  $POFILE - 
+registy 
+
+HKLM - 
+HKCU symbolic link to HKU
+HKU - all users
+Run vs RunOnce
+HKU-
+HKLM\...\services
+USB
+USBSTOR
+
+
+look for 
+sus ports - 
+misspelling
+things running not in system32(windows) /sbin/init(linux)
+check path statement
+duplicate processes
+alternate data streams
+high PIDs for processes the should have low PIDs
+
+
+find what happens
+logs
+persistance
+W
+
+running tools -accepteula for sysinternals
