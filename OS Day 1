@@ -7,7 +7,7 @@ pass SouthernSouthern12345!@#$%
 
 ssh or rdp
 ssh: user student@10.50.31.104     pass password
-rdp: xfreerdp /u:student /v:10.50.31.104 -dynamic-resolution +glyph-cache +clipboard         pass:password
+rdp: xfreerdp /u:student /v:10.50.31.105 -dynamic-resolution +glyph-cache +clipboard         pass:password
 
 >>(Get-WmiObject -Class Win32_Service -Filter "Name='ServiceName'").StartName
 >>sc qc "servicename"
