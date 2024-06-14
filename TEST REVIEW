@@ -42,7 +42,7 @@ schtasks
 powershell profiles check all profiles 
   $PSHOME - 
   $POFILE - 
-registy 
+registry 
 
 HKLM - 
 HKCU symbolic link to HKU
