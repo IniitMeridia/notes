@@ -1,0 +1,159 @@
+Layer 1- Physical - (PDU)Bit
+cables, devices, radio waves
+  binary, decimal, hexadecimal, base64
+  32 bits = 
+  base64 - very common encryption method, = sign is spaces
+Layer 2 - Data Link - (PDU)Frame
+
+Layer 3 - Network - (PDU)Packet
+routing
+Layer 4 - Transport - (PDU)Segment/Datagram
+TCP / UDP
+Layer 5 - Session - (PDU)Data
+
+Layer 6 - Presentation - (PDU)Data
+
+Layer 7 - Application - (PDU)Data
+
+
+  Internet Standards Organizations
+IETF - RFC's - why we created a protocol
+IANA - Internet Numbers - manage ips and ports / responsible for MACOUI's
+IEE - LAN/WAN electrical standards - responisble for setting and maintaining stuff like wifi,
+
+base64 - very common encryption method, = sign is spaces, indicator of base64 encryption
+
+Topologies
+
+
+Devices
+  Hubs - everyone get everything / dumb switch
+  Repeaters - like a hub but amplifies the signal
+  Switches - forward via frames 
+  Routers - forward via IPs 
+
+Ethernet Timing (Bit-Time)
+10 Mbps - 100 ns
+100 Mbps - 10 ns
+1 Gbps - 1 ns
+10 Gbps - .1 ns
+100 Gbps - .01 ns
+
+Layer 2 - 
+data-link sublayers
+  Mac(medium access control) - controls from layer 2 to layer 3 (top)
+  LLC(logical link control) - controls from layer 3 to layer 2 (bottom)
+
+Switch Operation
+Building MAC-address (CAM) table
+  learns by reading source mac addresses
+Forwarding Frames
+  decision based on Dest. Mac
+Switching modes
+  Cut-Through
+  only checks destination MAC
+  Fragment-Free
+  looks at Ethernet Frame header to ensure it is >=64 bytes, if not it is a runt frame
+  Store-and-Forward
+  accept and analyze entire packet
+
+!!CAM Table Overflow Attack
+  Send frames with bogus source MAC address to switch
+  cause switch to fill table with bogus adresses
+  switch will not be able to learn new (valid) MAC addresses
+  valid mac's send broadcast to try and reconnect and bad guy gets valid mac's
+
+MAC oui - first 24 bits by IANA
+    vendor assigned - last 24 bits by vendor
+Windows:
+Unix/Linux: 
+Cisco: 1234.5678.1234
+
+Unicast: one to one
+
+Multicast:
+
+Broadcast:
+
+MACs can now be altered with software
+
+Ethernet Header
+frame 
+
+VLAN
+logically seperate hardware 
+  -
+trunk link - sends all info from 1 switch to another switch
+
+VLAN Types
+Default - VLAN 1
+Data - User traffic
+Voice - VOIP traffic
+Management - switch and router management
+Native - Untagged switch and router traffic
+802.1Q  - VLAN Tag - 8100
+802.1AD - double tagging - 88A8 ... 8100
+
+!!VLAN Hopping Attack
+switch spoofing(DTP)
+single tagging
+double tagging(using native VLAN)
+
+ARP
+IP to MAC/MAC to IP
+Types
+  ARP(OP 1 AND OP 2)
+  RARP(OP 3 AND OP 4)
+  Proxy ARP(OP 2)
+  -
+  Gratuitous ARP(OP 2) - Says hey this is my MAC
+  -!!broadcasts to everyone can be used maliciously
+arp cache
+all resolved mac to ip
+
+--
+reachable
+stale
+
+Man-In-The-Middle (MITM) with ARP
+Poison Arp cache with:
+  Gratuitous ARP
+  Proxy Arp
+
+
+VLAN Trunking protocol (VTP)
+dynamically add/remove/modify VLANs
+advertises on trunk links
+Modes:
+  server
+  client
+  Transparent
+Vulnerability:
+cause switch to dump all VLAN info
+
+Dynamic Trunking Protocol (DTP)
+used to dynamically create trunk links
+autonegotiate 
+Cisco proprieatary
+
+Vulnerability
+On by Default
+can send crafted messages to form a VLAN trunk link
+  recommended:
+  disable
+
+CDP, FDP, LLDP
+discovery protocols
+
+Vulnerability
+clear text
+enabled by default
+
+STP
+root bridge 
+setup to prevent looping when sending to root bridge (Broadcast Storm)
+
+
+
+
+
