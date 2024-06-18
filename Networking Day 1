@@ -1,3 +1,4 @@
+-----Network Access----------
 Layer 1- Physical - (PDU)Bit
 cables, devices, radio waves
   binary, decimal, hexadecimal, base64
@@ -71,7 +72,7 @@ Cisco: 1234.5678.1234
 
 Unicast: one to one
 
-Multicast:
+Multicast:one to many
 
 Broadcast:
 
@@ -152,6 +153,149 @@ enabled by default
 STP
 root bridge 
 setup to prevent looping when sending to root bridge (Broadcast Storm)
+
+!!Spanning-Tree Attack
+carfted BPDUs
+used to perform a DoS or MitM
+
+
+port security  
+  shutdown(default)
+  protect
+  restrict - logs
+Vulnerability
+mac spoofing
+
+Layer 2 Attack Mitigation
+shutdown unused ports
+enable port security
+ip source guard
+manually assign stp root
+bpdu guard
+dhcp snooping
+802.1x
+dynaimc arp inspection(DAI)
+static CAM entries
+static ARP entries
+diable DTP negotiations
+Manually assign Acces/Trunk ports
+
+------Network Layer------
+addressing schemes for network(logical addressing)
+routing
+encapsulation
+
+
+IPv4 
+  classful
+  classless
+  NAT
+IPv6
+
+Subnetting
+-
+
+IPv4 Packet Header
+
+
+IPv4 Scopes
+public
+privte(RFC 1918)
+loopback
+link-local(APIPA) self assigned if not able to be assigned
+multicast
+
+IPv4 fragmetation
+breaking up packets from higher MTU to lower MTU netowrk
+performed by routers
+MF flag is on from 1st unti 2nd to last
+offset is on from 2nd until the last
+offset = (MTU - (IHL x4)) / 8
+
+IPv6 fragmentation
+does not support fragmentation within its header
+
+Vulnerability
+use fragmentation overlaps to avoid firewall detection
+Example: Teardrop attack
+
+DHCP - DORA process
+
+IPv4 Auto Configuration Vulnerability
+rogue DHCP
+Evil Twin
+DHCP Starvation
+
+ICMPv4 Protocol and Header
+ping and traceroute...
+
+types and codes in FG look for pictures
+
+OS fingerprinting
+Linux
+unreadable
+Windows
+alhpabet
+
+ICMP traceroute
+windows - icmp
+linux - udp
+
+ICMP attacks
+Firewalking (traceroute)
+oversized icmp messages
+icmp redirects
+smurf attack
+map network w/ Ip unreachables
+icmp covert channels
+
+IPv6
+orgs assigned a 48 bit prefix by IANA
+last 16 bits for subnetting
+
+IPv6 heaeder
+version
+traffic
+flow label
+payload
+next header
+hop
+source
+dest
+
+
+IPv6 address types
+Unicast
+Multicast
+Anycast
+
+scopes
+Gloabl Unicast
+Unique local
+loopback
+link-local
+
+Zero-Config(GLOBAL)
+SLAAC ipv6 version of dhcp
+dchpv6
+EUI-64
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
