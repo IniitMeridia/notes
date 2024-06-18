@@ -1,0 +1,38 @@
+https://net.cybbh.io/public/networking/latest/index.html
+
+CTFD-1 - http://networking-ctfd-1.server.vta:8000/        http://10.50.20.180:8000/
+Practice server -  	http://networking-practice-ctfd.server.vta:8000/          http://10.50.23.19:8000/
+user:ANSO-M-503
+pass: <same as always>
+
+miro whiteboard - top right of whiteboard is your best friend
+https://miro.com/app/board/o9J_klSqCSY=/
+
+Jump Box
+    Student#: student17
+    Command: ssh student@10.50.21.59 -X
+    Password: password
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
