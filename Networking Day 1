@@ -281,12 +281,286 @@ dchpv6
 EUI-64
 
 
+classfull
+no subnet mask info
+rip and eigrp
 
 
+classless
+send subnet mask info
+ospf and is-is
+
+routing protocol
+  used between layer 3 devices to learn and advertise routes and maintain routing tables
+  routing protocols routes routed protocols
+  rip,eigrp,ospf,bgp
+
+routed protocol
+  routed by routing protocols
+  ipv4 ipv6 appletalk
 
 
+BGP external
+ospf,eigrp,is-is,ripv2 internal
+
+autonomous system (AS) collection of ip networks and routers
+
+distance vector routing
+"rumor mill" learning
+ripv1, ripv2, igrp, eigrp
+
+link state protocols
+ospf, is-is
+
+routing protocol vuln
+DDOS
+packet mistreating attacks (PMA)
+RTP
+HAR
+PA
+
+BGP
+road-map o the internet
+routes traffic between autonomous systems
+
+BGP hijacking
+illegitamte advertising of addresses
+
+BGP defense
+IP prefix filtering
+BGPSec
+
+static routing
+advantage
+no badnwidth used
+path predetermined
+disadvantage
+doesn not scale to large growing network
+admin intervention if network outage
+
+dynamic routing
+advantage 
+easy
+no intervention
+
+disadvantage
+LSAs can be intercepted
+uses bandwidth
+
+First hop redundancy protocol
+HSRP
+VRRP
+GLBP
+
+---------------OSI LAYER 4 PORTS------------------------------
+TCP -connection - unicast
+UDP - connectionless - multicast, broadcast
+
+TCP Header
+source port
+dest port
+sequence number
+acknowldgement number
+offset
+reserved
+tcp flags
+window
+checksum 
+urgent pointer
+tcp options (optional)
+
+tcp flags
+128  64   32   16   8    4    2    1  
+cwr  ece  urg  ack  psh  rst  syn  fin
+
+TCP options
+0
+1
+2
+3
+4
+5
 
 
+UDP header
+source port
+dest port
+length
+checksum
+
+------LAYER 5--------------
+VPN
+vpn mimics a privte LAN over public address space
+
+types
+  remote access
+  site-to-site
+  client-to-site
+
+L2TP
+tunnel only. No encryption
+
+PPTP
+microsoft
+provides encryption - but obsolete
+
+L2F
+cisco 
+tunnel only. no encryption
+
+IPSEC
+modes
+  Transport -
+  Tunnel -
+Headers
+  esp
+  ah
+  ike 
+
+OpenVPN
+open source
+uses OpenSSL for encryption
+
+Socks 4/5 (TCP 1080)
+does not use UDP!!
+forward tcp traffic through tunnel
+use proxychains
+
+Socks4
+no authentication
+does not support udp or ipv6
+
+Socks5
+supports udp and ipv6
+
+NETBIOS
+name resolution
+
+SMB/CIFS
+SMB rides over NETBIOS
+SAMBA and CIFS just flavors of SMB
+
+RPC (any port)
+allows a program to execute a request on a local/remote computer
+hide network complexities
+
+API 
+way for you to utilize a service embedded within something else
+framework of rules and protocols for software components to interact
+REST and SOAP
+
+-----LAYER 6--------------------
+translation
+formatting
+encoding(ANSCII,...
+encryption
+compression
+
+-----LAYER 7-----
+Telnet
+remote login
+
+SSH
+secure remote login
+asymmetric or PKI for key exchange
+symmetric for session
+
+SSH architecture
+Client/Server/Session
+keys
+  user key - asymmetric public key identify client
+  host-key - asymmetric public key identify server
+  session-key symmetric private key
+
+file that stores known host for ssh
+---keep track of ports for tunneling---
+
+ssh configuration files
+!!!!dont fuck with these files!!!!
+
+view current configured ssh port
+cat /etc/ssh/sshd_config | grep Port
+
+HTTP(S)
+user request methods
+  GET/HEAD/POST/PUT
+server respone codes
+  100,200,300,400,500
+
+Vuln
+flooding
+amplification
+low and slow
+brive-by downloads
+BeEF Framework
+
+DNS
+tcp - zone transer
+udp - queries
+dns response larger than 512 bytes use TCP
+
+DNS Records
+-
+
+DNS Architecture
+-
+
+FTP
+file transer
+21 control/commmand
+20 data
+clear text
+modes
+  active
+  passive
+
+TFTP
+clear text
+used by routers and switches
+
+SMTP
+send mail no encryption
+
+POP
+recieve mail no ecryption
+
+IMAP
+recieve email no encryption
+
+DHCP
+assigns you an IP dynamically using the DORA process
+
+NTP
+time update
+operates on stratums
+higher the stratum, least in sync
+if not in sync, kerebreros wont allow you to authenticate
+
+TACACS
+cisco
+control
+
+RADIUS
+authentication stuff
+
+DIAMETER
+upgrade to RADIUS
+
+SNMP
+collecting info to manage devices on networks
+
+RTP
+speed is priority
+
+RDP
+microsoft
+remote desktop protocol
+
+KEREBEROS
+authentication for Active Directory
+
+LDAP
+active directory on windows
 
 
 
