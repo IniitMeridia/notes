@@ -1,0 +1,210 @@
+Network sniffing
+
+need the following libraries
+  libpcap
+  winpcap  
+  npcap
+
+
+
+
+disadvantage
+requires elevate permissions
+cannot capture local traffic
+can consume massive amounts of system resources
+lost packets on busy networks
+
+2 types of network sniffers
+hardware
+software
+
+socket types
+stream - TCP
+datagram - UDP
+RAW sockets
+
+types of sniffing
+active
+ interact with machine to get a reponse (NMAP scan..)
+passive
+  just listening to ALL traffic
+
+interface naming
+traditional
+  eth0, eth1
+consistent
+  ens1,ens3
+
+TCPDUMP------------
+        tcpdump primitives
+required:
+direction: src or dst
+type: host or net
+protocol: tcp or udp, etc.
+
+tcp dump options
+-A = print in ASCII
+-D = list interfaces
+-i = specify capture interface
+-e = print data-link headers
+-X or -XX = print payload in HEX and ASCII
+  -XX lists data-link layer info
+-r = reads from .pcap files
+-vv = verbose
+-vn = does not resolve protocol names to port numbers
+:: -XX -vv typically gives all info
+
+can use operands in tcpdump command
+tcpdump port 80 or 22 -XX -vv
+
+
+BERKLEY PACKET FILTER------------------
+similar to primitives
+reduces redundant computation
+more complex expressions
+
+control Flow Graph
+uses simple buffer model
+
+so_attach_filter
+allows us to attach a BFP to socket
+
+tcpdump {A} [B:C] {D} {E} {F} {G}
+A = protocol
+B = header byte offset
+C = optional: byte length
+D = optional: bitwise map
+E = operator
+F = result of expression
+G = optional: logical operator to bridge expressions 
+
+Bitwise Masking------
+BPFs can read 1 (byte), 2(half-word) or 4(word)
+bitwise allows filtering to the bit level
+  binary (0) to ignore bit
+  binary (1) to match bit
+& - to enable bitwise masking
+f - exact match
+0 - not evaluating, doesnt matter
+
+======most exclusive
+         8 4 2 1 |8 4 2 1
+Solution 0 0 0 1  0 0 0 1
+mask     - - - -  - - - - 
+all bits must match
+Solution 0 0 0 1  0 0 0 1
+mask     1 1 1 1  1 1 1 1
+tcp [13] = 0x11
+tcp [13] & 0xFF = 0x11
+           mask   solution
+         
+         8 4 2 1 |8 4 2 1
+Solution 0 0 0 1  0 0 0 1
+mask     - - - -  - - - - 
+
+=======less exclusive filter
+Solution 0 0 0 1  0 0 0 1
+mask     0 0 0 1  0 0 0 1
+tcp [13] & 0x11 = 0x11
+           mask   solution
+
+=======least exclusive filter
+Solution 0 0 0 1  0 0 0 1
+mask     0 0 0 1  0 0 0 1
+tcp [13] & 0x11 > 0
+tcp [13] & 0x11 != 0
+           mask   solution
+
+mask can be in hex or decimal
+the value you are looking for is the value of its binary value
+if field is not exactly a whole byte, offset value 
+DSCP = 32
+|   DSCP       |ECN|
+128 64 32 16 8 4 2 1
+ 1  0  0  0  0 0 0 0 
+DSCP = 32
+32 16 8 4 2 1
+ 1  0 0 0 0 0 
+
+filter will still look through the whole byte, just remember that the values wont match the filter (solution and mask)
+'ip[1] & 0x80 = 32'
+         ^ looks only for last bit 
+
+search for offset field having any value greater than 0
+|Flag|       Offset               |
+ 8 4 2 1 |8 4 2 1 |8 4 2 1 |8 4 2 1
+
+'ip[6:2] & 0x1fff > 0'
+|Flag|       Offset               |
+ 8 4 2 1 |8 4 2 1 |8 4 2 1 |8 4 2 1
+ 0 0 0 1  1 1 1 1  1 1 1 1  1 1 1 1
+
+
+tcpdump 'ether[12:4] & 0xffff0fff = 0x81000abc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
