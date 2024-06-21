@@ -1,1 +1,92 @@
+3 types of sockets
+  stream - TCP
+  data - UDP
+  RAW - anything, will dedicate what type of protocol 
+
+user space sockets
+  stream/data
+kernel space sockets
+  RAW - need sudo permsissions to do
+
+userspace applications/sockets
+  tcpdump/wireshark to read file
+  nmap w/ no switches
+  netcat to connect to listener
+  netcat to create listener above 1024 range
+
+kernel space
+  tcpdump/wireshark on an interface
+  nmap for OS identification or specific flags
+  netcat to create listener in 1024 range
+
+
+python3 imports
+ipmort {module}
+from {module} import *
+
+socket.socket function
+  socket.socket( *family*, *type*, *proto* )
+    family: AF_INET(default), AF_INET6, AF_UNIX
+    type: SOCK_STREAM(default), SOCK_DGRAM, SOCK_RAW
+    proto: 0(default), IPPROTO_TCP, IPPROTO_UDP, IPPROTO_IP, IPPROTO_ICMP, IPPROTO_RAW
+
+python3 libraries and references
+  socket, errors, struct, exceptions, sys
+
+
+!!!!!!!!!!!!!!!!!!!!when computer needs to talk about itself it will use its loopback address 127.0.0.1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+IPV4 RAW SOCKETS
+  testing specfic defense mechanisms
+  obfuscating data during transfer
+
+
+
+encoding
+encode text to hex
+echo "Message" | xxd
+encode file
+xxd file.txt file-encoded.txt
+decode file
+xxd -r file-encoded.txt file-decoded.txt
+base64 - d *  *  *  * 
+
+Python hex encoding
+import binascii
+
+message = b'Message'
+hidden_msg = binascii.hexlify(message)
+
+Python base64 encoding
+import base64
+
+message = b'Message'
+hidden_msg = base64.b64encode(message)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
