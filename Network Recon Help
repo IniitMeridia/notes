@@ -5,6 +5,7 @@ ip a
 --find interface(not loopback) and put on map
 ss -ntlp
 --all listening ports without name resolution
+
 !!!!!!port 6010 is used by X11 Forwarding for Terminator Window!!!!!!
 
 
