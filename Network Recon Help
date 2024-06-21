@@ -24,7 +24,7 @@ Net Recon Methodology
       passive
       ls
       get [filename]
-    if 22 or 23 CONNECT and PASSIVE RECON
+    if 22 or 23 CONNECT and PASSIVE RECON  (telnet is good for looking for passwords)
 
 Scan methodology
   nmap -Pn [IP ADDR] -T4 -p 21-23,80
@@ -32,3 +32,28 @@ Scan methodology
   quick scan ports 21-23,80
   specific ports based on hints/clues found
   well known port range
+  which tcpdump wireshark nmap telnet get curl ping
+
+      0-1023(actually scan 1-1023)
+  chunks of 2000 or first 10000 ports (65535)
+
+Passive Recon Methodology
+
+  hostname
+  --permissions:
+    sudo -l
+  --interfaces and subnets
+    ip a
+  --neighbors
+    ip neigh
+  --files of interest
+    find / -iname flag* 2>/dev/null
+    find / -iname hint* 2>/dev/null
+  --other listening ports
+    ss -ntlp (TCP) / ss -nulp (UDP)
+  --available tools 
+    which tcpdump wireshark nmap telnet get curl ping
+    which sudo <command>
+
+
+
