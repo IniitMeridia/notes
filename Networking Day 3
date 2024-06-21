@@ -34,7 +34,7 @@ python3 libraries and references
   socket, errors, struct, exceptions, sys
 
 
-!!!!!!!!!!!!!!!!!!!!when computer needs to talk about itself it will use its loopback address 127.0.0.1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!when computer needs to talk about/to itself it will use its loopback address 127.0.0.1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 IPV4 RAW SOCKETS
