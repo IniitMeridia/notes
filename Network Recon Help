@@ -19,11 +19,11 @@ Net Recon Methodology
   port validation
     banner grabbing using nc
   follow-on actions based on ports found
+    if 21 or 80 wget -r IP_ADDRESS (or) wget -r ftp://IP_ADDRESS (or) firefox
     if 21 FTP [IP ADDR] connects to ftp server
       passive
       ls
       get [filename]
-    if 21 or 80 wget -r IP_ADDRESS (or) wget -r ftp://IP_ADDRESS (or) firefox
     if 22 or 23 CONNECT and PASSIVE RECON
 
 Scan methodology
