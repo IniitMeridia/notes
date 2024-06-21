@@ -26,6 +26,7 @@ Net Recon Methodology
       ls
       get [filename]
     if 22 or 23 CONNECT and PASSIVE RECON  (telnet is good for looking for passwords)
+  passive recon
 
 Scan methodology
   nmap -Pn [IP ADDR] -T4 -p 21-23,80
