@@ -29,13 +29,12 @@ Net Recon Methodology
 Scan methodology
   nmap -Pn [IP ADDR] -T4 -p 21-23,80
 
-  quick scan ports 21-23,80
+  quick scan ports 21-23,80 (--open \\optional)
   specific ports based on hints/clues found
-  well known port range
-  which tcpdump wireshark nmap telnet get curl ping
-
-      0-1023(actually scan 1-1023)
+  well known port range  
+    0-1023(actually scan 1-1023)
   chunks of 2000 or first 10000 ports (65535)
+  hail mary - scan all the ports
 
 Passive Recon Methodology
 
