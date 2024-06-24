@@ -1,1 +1,249 @@
+active external
+passive internal active internal
+
+network footprinting
+  Collect info relating to target
+    network
+    systems
+    organization
+network scanning
+  port scanning
+  network scanning  
+  vulnerability scanning
+network enumeration
+  network resource and shares
+  users and groups
+  routing tables
+  auditing and services settings
+  machine names
+  apps and banners
+  snmp and dns details
+  common services and ports
+vulnerability assessment
+  injection
+  borken authe.
+  sensitive data exposure
+  XML external entities
+  broken access control
+  security misconfiguration
+  sotware/components w/ known vulnerabilities
+
+
+
+!!!!!shodan.io good website to know, can lose your clearance if used without the go ahead!!!!!!!!
+
+
+dig vs whois
+whois - queries DNS registrar 
+  info on owner
+    whois zonetransfer.me
+dig - queries DNS server over UDP 53
+  name to IP records
+    dig <domain name> <record>
+    dig zonetransfer.me A
+    dig zonetransfer.me AAAA
+    dig zonetransfer.me TXT
+    dig zonetransfer.me SOA
+    dig zonetransfer.me 
+zone transfer
+  dig axfr {@soa.server} {target-site}
+  dig axfr @nsztm1.digi.ninja zonetransfer.me
+
+netcraft
+like whois / web based
+https://sitereport.netcraft.com/
+
+passive os fingerprinting
+p0f
+sudo p0f -r test.pcap
+^ can use berkley packet filter
+
+-------ACTIVE EXTERNAL-----------------------
+
+scanning
+active - sends packets
+passive - "sniffing", "MITM"
+
+strategies
+remote to local - initial entry to box
+local to remote - very illegal , "company to private"
+local to local - private to private
+remote to remote - WW scanning endeavors
+
+approach
+aim
+  wide range target
+  target specific
+method
+  single source
+  1-1 1-many
+distibuted scan
+
+netowrk service discovery 
+NMAP options
+  broadcast ping/ping sweep (-sP, -PE)
+  SYN scan (-sS) stealth scan(cant be logged as full connection)
+  full connect (-sT) - can be logged(fullconnection)
+  null scan (-sN)
+  FIN scan (-sF)
+  XMAS scan (-sX)
+  UDP scan (-sU)
+  idle scan (-sI)
+  OS fingerprinting (-O)
+  version (-sV)
+
+  -PE - ICMP ping
+  -Pn - no ping!!!!!!!!!
+  -T3 less speedy
+  -T4 speedy
+  
+  --scan-delay <time> 
+
+traceroute
+traceroute
+sudo tracroute
+sudo traceroute
+
+nc [Options] [Target IP] [Target Port(s)]
+-z port scanning mode
+-v verbose
+-n do no resolve ip addresses
+-w1 set time out value to 1
+-u use UDP
+
+Netcat - TCP Scan Script
+#!/bin/bash
+echo "Enter network address (e.g. 192.168.0): "
+read net
+echo "Enter starting host range (e.g. 1): "
+read start
+echo "Enter ending host range (e.g. 254): "
+read end
+echo "Enter ports space-delimited (e.g. 21-23 80): "
+read ports
+for ((i=$start; $i<=$end; i++))
+do
+    nc -nvzw1 $net.$i $ports 2>&1 | grep -E 'succ|open'
+done
+
+Netcat - UDP Scan Script
+
+#!/bin/bash
+echo "Enter network address (e.g. 192.168.0): "
+read net
+echo "Enter starting host range (e.g. 1): "
+read start
+echo "Enter ending host range (e.g. 254): "
+read end
+echo "Enter ports space-delimited (e.g. 21-23 80): "
+read ports
+for ((i=$start; $i<=$end; i++))
+do
+    nc -nuvzw1 $net.$i $ports 2>&1 | grep -E 'succ|open'
+done
+
+Netcat - Banner Grabbing
+
+    Find what is running on a particular port
+
+nc [Target IP] [Target Port]
+nc 172.16.82.106 22
+nc -u 172.16.82.106 53
+    -u : To switch to UDP
+
+Curl and WGET
+interact with HTTP,HTTPS,FTP protocols
+curl- displays ASCII
+  curl http://172.16.82.106 (to specify port add :<port#> to end)
+  curl ftp://
+wget - downloads (-r recursive)
+  wget -r http:// * * * *
+  wget -r ftp:// * * * * 
+
+
+packt sniffer
+  wireshark
+  tcpdump
+  p0f
+
+
+copy bios info
+
+TCP/IP
+W     ipconfig /all
+L     ip address
+VyOS  show interface
+
+DNS
+W  ipconfig/displaydns
+L  cat /etc/resolv.conf
+
+arp cache
+W  arp -a
+L  ip neigh
+
+network connections
+W  netstat
+L  ss (nestat depreciateed)
+-antp
+
+Services file
+W  ..\system32\drivers\etc\services
+L  /etc/services
+
+OS
+W  systeminfo
+L  uname -a & /etc/os-release
+
+running process
+W  tasklist
+L  ps / top
+
+command path
+W  which
+L  whereis
+
+routing table
+W    route print
+L    ip route
+VyOS show ip route
+
+file search
+find / -iname hint*
+find / -iname flag*
+
+
+
+---ACTIVE INTERNAL----
+ARP scan
+arp-scan --interface=eth0 --localnet
+name -sP -PR 172.16.82.96/27
+
+ping scan
+ping -c 1 172.16.82.106
+!for i in {1..254}; do (ping -c 1 <first3octectsofIP>.$i | grep "bytes from" &) ; done
+!for i in {1..254}; do (ping -c 1 172.16.82.$i | grep "bytes from" &) ; done
+sudo nmap -sP 172.16.82.96/27
+
+duckduckgo to find network info
+
+hostnames
+interfaces
+ip addresses ciders
+ports
+os types
+creds
+screenshot ip route
+
+
+
+
+
+
+
+
+
+
+
+
 
