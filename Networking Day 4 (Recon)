@@ -1,3 +1,5 @@
+eom <file> open images on remote connection make sure you ssh .... -X
+
 active external
 passive internal active internal
 
