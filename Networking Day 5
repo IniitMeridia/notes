@@ -1,0 +1,103 @@
+TFTP
+udp
+small
+
+ftp
+tcp
+authe in clear text
+active 20
+passive "key to specific port"
+
+ftps
+adds SSL/TLS encrypt
+
+
+sftp
+tcp
+ftp like services on SSH
+
+scp
+tcp ssh
+use through tunnels
+options
+  . - present working directory
+  -v - verbose
+  -P - alt port
+  -r - recursively copies an entire directory
+  -3 - 3-way copy
+
+from remote to local
+ scp student@172.16.82.106:secretstuff.txt /home/student
+
+upload to remote from local
+ scp secretstuff.txt student@172.16.82.106:/home/student
+
+from remote to other remote
+ scp -3 student@172.16.82.106:/home/student/secretstuff.txt student@172.16.82.112:/home/student
+
+recursive upload folder to remote
+ scp -r folder/ student@172.16.82.106:
+
+recursive download folder from remote
+ scp -r student@172.16.82.106:folder/ .
+
+download from remote directory to local directory using alt SSH port
+ scp -P 1111 student@172.16.82.106:secretstuff.txt .
+
+upload to remote directory from local directory using alt SSH port
+ scp -P 1111 secretstuff.txt student@172.16.82.106:
+
+!!!!to interact with tunnels or use tunnels!!!!!
+loopback or localhost
+tunnels port
+
+SCP Syntax through a tunnel
+Create a local port forward to target device
+ ssh student@172.16.82.106 -L 1111:localhost:22 -NT
+
+Download a file from a remote directory to a local directory
+ scp -P 1111 student@localhost:secretstuff.txt /home/student
+
+Upload a file to a remote directory from a local directory
+ scp -P 1111 secretstuff.txt student@localhost:/home/student
+
+SCP Syntax through a Dynamic Port forward
+Create a Dynamic Port Forward to target device
+ ssh student@172.16.82.106 -D 9050 -NT
+
+Download a file from a remote directory to a local directory
+ proxychains scp student@localhost:secretstuff.txt .
+
+Upload a file to a remote directory from a local directory
+ proxychains scp secretstuff.txt student@localhost:
+
+Uncommon file traansfer
+netcat (nc)
+ client to listener 
+  listener (recieve file)
+  nc -lvp 9001 > newfile.txt
+
+  client (sends file)
+  nc 172.16.82.106 9001 < file.txt
+
+ listener to client
+  listener (sends file)
+  nc -lvp 9001 < file.txt
+
+  client (recieve file)
+  nc 172.16.82.106 9001 > newfile.txt
+
+
+NETCAT RELAYS
+
+box 1                .1(box 1 facing int)     box 2            .2(box 3 facing int)          box 3
+_________                                     ____________                                   _____________
+                                              mknod mypipe p                
+                                          (listener to listener)
+nc -lvp 1111               nc <box1IP> 1111 < mypipe | nc <box3IP> 2222 > mypipe             nc -lvp 2222 
+                                            (client to client)
+nc <box2.1IP> 3333               nc -lvp 3333 < mypipe | nc -lvp 4444 > mypipe               nc <box2.2IP> 4444
+                                          (listener to client)
+nc -lvp 5555               nc <box1IP> 5555 < mypipe | nc -lvp 6666 > mypipe                 nc <box2.2IP> 6666
+
+
