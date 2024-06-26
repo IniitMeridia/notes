@@ -192,30 +192,22 @@ Local port forwarding
   ssh -L <local bind port>:<tgt ip>:<tgt port> -p <alt port> <user>@<server ip> -NT
 
 Local Port Forward to localhost of server
-1  Internet_Host:
-  ssh student@172.16.1.15 -L 1122:loopback:22
-  or
-  ssh -L 1122:loopback:22 student@172.16.1.15
 
 1  Internet_Host:
-  ssh student@loopback -p 1122
-  Blue_DMZ_Host-1~$
-
-2  Internet_Host:
   ssh student@172.16.1.15 -L 1123:loopback:23
   or
   ssh -L 1123:loopback:23 student@172.16.1.15
 
-2  Internet_Host:
+1  Internet_Host:
   telnet loopback 1123
   Blue_DMZ_Host-1~$
 
-3  Internet_Host:
+2  Internet_Host:
   ssh student@172.16.1.15 -L 1180:loopback:80
   or
   ssh -L 1180:loopback:80 student@172.16.1.15
 
-3  Internet_Host:
+2  Internet_Host:
   firefox http://loopback:1180
   {Webpage of Blue_DMZ_Host-1}
 
@@ -403,6 +395,7 @@ if a float is used to access a box, float is needed to pass back from the connec
 IH@ ssh student@10.50.33.99 -D 9050 -NT
 find ip, hostname, etc. 
 find what ips are available to who (0.0.0.0 - available to everyone, netid - have to be on local net)
+ss -ntlp
 find network info
 IH@ proxychains nmap 192.168.1.32/27 -Pn -T4 -p 21-23,80
 .39 found
@@ -410,22 +403,28 @@ IH@ [[reuse dynamic make it local]] ssh student@10.50.33.99 -L 12345:192.168.1.3
 IH@ ssh student@127.0.0.1 -p 12345 -D 9050 [[creds will be for the .39]]
 find ip, hostname, etc. 
 find what ips are available to who (0.0.0.0 - available to everyone, netid - have to be on local net)
+ss -ntlp
 find network info
 IH@ proxychains ./scan.sh
 IH@ [[reuse dynamic make it local]] ssh student@127.0.0.1 -p 12345 -L 23456:10.0.0.50:22
 IH@ ssh student@127.0.0.1 -p 23456 [check connection, then add] -D 9050 [[creds will be for the .50]]
 find ip, hostname, etc. 
 find what ips are available to who (0.0.0.0 - available to everyone, netid - have to be on local net)
+ss -ntlp
 find network info
 IH@ [[reuse dynamic make it local]] ssh student@127.0.0.1 -p 23456 -L 34567:172.16.1.8:22
 IH@ ssh student@127.0.0.1 -p 34567 [check connection, then add] -D 9050 [[creds will be for the .8]]
 IH@ proxychains .....
 find ip, hostname, etc. 
 find what ips are available to who (0.0.0.0 - available to everyone, netid - have to be on local net)
+ss -ntlp
 find network info
 
+NMap -if you see all filtered for a network, you dont have access to that box, check to make sure your tunnels are setup correctly
+tunnel terminal naming
+TUNNEL <PORT> -> <NAME OR IP OF TARGET>
 
-
+!!!!!!!LOOK AT DYNAMIC TO MAKE SURE IT WORKED, bind[[127.0.0.1]]:9050: Address already in use MEANS IT FAILED!!!!!!!!!!!!!!!!!!
 
 
 
