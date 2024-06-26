@@ -427,7 +427,7 @@ TUNNEL <PORT> -> <NAME OR IP OF TARGET>
 !!!!!!!LOOK AT DYNAMIC TO MAKE SURE IT WORKED, bind[[127.0.0.1]]:9050: Address already in use MEANS IT FAILED!!!!!!!!!!!!!!!!!!
 
 
-
+ Entry Float IP: 10.50.24.91 
 
 
 
