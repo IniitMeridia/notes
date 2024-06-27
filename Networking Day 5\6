@@ -426,8 +426,30 @@ TUNNEL <PORT> -> <NAME OR IP OF TARGET>
 
 !!!!!!!LOOK AT DYNAMIC TO MAKE SURE IT WORKED, bind[[127.0.0.1]]:9050: Address already in use MEANS IT FAILED!!!!!!!!!!!!!!!!!!
 
+----------------------tunneling practice 2
+IH@ telnet 10.50.29.19 [creds]
+!!!HA@ ssh student@10.50.23.21 -R 11711:127.0.0.1:22 -NT
+IH@ ssh student@127.0.0.1 -p 11711 [check connection, then add] -D 9050 -NT
+find ip, hostname, etc. 
+ss -ntlp
+find / -iname <hint*/flag*> 2>/dev/null
+find netowrk info (10.1.2.18)
+IH@ ssh student@127.0.01 -p 11711 -L 11722:10.1.2.18:2222 -NT
+IH@ ssh student@127.0.0.1 -p 11722 [check connection, then add] -D 9050 -NT
+find ip, hostname, etc. 
+ss -ntlp
+find / -iname <hint*/flag*> 2>/dev/null
+find netowrk info (172.16.10.121)
+IH@ ssh student@127.0.0.1 -p 11722 -L 11733:172.16.10.121:2323 -NT
+IH@ ssh student@127.0.0.1 -p 11733 [check connection, then add] -D 9050 -NT
+find ip, hostname, etc. 
+ss -ntlp
+find / -iname <hint*/flag*> 2>/dev/null
+find netowrk info (192.168.10.69)
+IH@ ssh student@127.0.0.1 -p 11733 -L 11744:192.168.10.69:22 -NT
+IH@ ssh student@127.0.0.1 -p 11744 [check connection, then add] -D 9050 -NT
+find ip, hostname, etc. 
+ss -ntlp
+find / -iname <hint*/flag*> 2>/dev/null
 
- Entry Float IP: 10.50.24.91 
-
-
-
+10.50.27.147
