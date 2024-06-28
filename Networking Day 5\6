@@ -452,4 +452,11 @@ find ip, hostname, etc.
 ss -ntlp
 find / -iname <hint*/flag*> 2>/dev/null
 
-10.50.27.147
+-----------tunneling practice 3
+IH@ssh student@10.50.29.89 -p 1234 -D 9050 -NT
+
+IH@ssh student@10.50.29.89 -p 1234 -L 11711:172.17.17.28:23 -NT
+IH@ telnet 127.0.0.1 11711
+HB@ ssh student@172.17.17.17 -p 1234 -R 11722:127.0.0.1:4321 - NT
+IH@ ssh student@10.50.29.89 -p 1234 -L 11733:127.0.0.1:11722 -NT
+IH@ ssh student@127.0.0.1 -p 11733 -D 9050 -NT
