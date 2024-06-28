@@ -1,0 +1,208 @@
+network analysis
+
+tools
+  sensors
+    in-line
+      test access point (TAP)
+      MITM
+
+    out of band (passive)
+      switched port analyzer (SPAN)
+
+in line
+  IPS
+  firewall
+ impacts network latency
+
+passive sensors
+  monitors net segments
+  can detect but cannot stop
+  copies net traffic
+    IDS
+  no impact net latency
+
+TAP
+  device placed between 2 net devices
+  packet collection with no loss
+  not scalable
+
+MITM
+  attacker can sniff/manipulate traffic that flows through
+  typically must be on same net
+  capture dependent on attacker system and bandwidth
+
+SPAN
+  on switch
+  packet collect from several switch ports at once
+  can have high degree of packet loss 
+  burdens network switch
+
+
+active os fingerprinting
+
+  tools
+    nmap
+
+passive os fingerprinting
+
+  tools
+    p0f
+
+
+known windows/linux ports
+w
+  88-kerberos
+  137,138,139 - netbios
+  445 - smb
+L
+  22 -ssh
+  111 - sun rpc
+
+
+Ephemeral Ports
+    IANA 49152–65535
+    Linux 32768–60999
+    Windows XP 1025–5000
+    Win 7/8/10 use IANA
+    Win Server 2008 1025–60000
+    Sun Solaris 32768–65535
+
+Protocol specific identifiers
+    HTTP: User-agent strings ,firefox,etc.
+    SSH: Initial connection
+    NetBIOS Name Service
+
+ttl, frag, defulat ip header, window size, tcp options
+
+Network Baseline Objective
+    Determines the current state of your network
+    Ascertain the current utilization of network resources
+    Identify normal vs peak network traffic time frames
+    Verify port/protocol usage
+
+Perform Baselining
+    Scope and Objectives:
+        What traffic/protocols to capture?
+        Which network segments?
+        Which days?
+        What times?
+
+Anomaly Detection
+    Indicator of Attack (IOA)
+        Proactive
+        A series of actions that are suspicious together
+        Focus on Intent
+        Looks for what must happen
+            Code execution. persistence, lateral movement, etc.
+
+
+    Indicator of Compromise (IOC)
+        Reactive
+        Forensic Evidence
+        Provides Information that can change
+            Malware, IP addresses, exploits, signatures
+
+    .exe/executable files
+    NOP sled
+    Repeated Letters
+    Well Known Signatures
+    Mismatched Protocols ( ssh to telnet, protocol executing in unusual ways or utilizing other protocol defualts ) 
+    Unusual traffic
+    Large amounts of traffic/ unusual times
+IOA   
+    Destination IP/Ports
+    Public Servers/DMZs
+    Off-Hours
+    Network Scans
+    Alarm Events
+    Malware Reinfection
+    Remote logins
+    High amounts of some protocols
+IOC
+    Unusual traffic outbound
+    Anomalous user login or account use
+    Size of responses for HTML
+    High number of requests for the same files
+    Using non-standard ports/ application-port mismatch
+    Writing changes to the registry/system files
+    Unexpected/unusual patching or tasks
+
+adware/spyware
+
+
+
+virus
+
+
+
+worm
+
+
+trojan
+
+
+rootkit
+
+
+backdoor
+
+
+botnets
+
+
+polymorphic
+
+
+ransomware
+
+
+mobile code
+
+
+bios firmware
+
+
+
+imcp tunneling
+dns tunneling
+http(s) tunneling
+beaconing - call back to C&C server, look out for: beacon timing:regular intervals ; beacon size: orders will have payloads
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
