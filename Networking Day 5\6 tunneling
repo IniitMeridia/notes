@@ -460,3 +460,18 @@ IH@ telnet 127.0.0.1 11711
 HB@ ssh student@172.17.17.17 -p 1234 -R 11722:127.0.0.1:4321 - NT
 IH@ ssh student@10.50.29.89 -p 1234 -L 11733:127.0.0.1:11722 -NT
 IH@ ssh student@127.0.0.1 -p 11733 -D 9050 -NT
+
+
+--------------------tunneling practice 4
+IH@ telnet 10.50.22.42
+HA@ ssh student@10.50.20.51 -R 11711:127.0.0.1:8462 -NT
+IH@ ssh student@127.0.0.1 -p 11711 -D 9050 -NT 
+IH@ ssh student@127.0.0.1 -p 11711 -L 11722:192.168.100.60:22
+IH@ ssh student@127.0.0.1 -p 11722 -D 9050 -NT 
+IH@ ssh student@127.0.0.1 -p 11722 -L 11733:10.90.50.140:6481
+IH@ ssh student@127.0.0.1 -p 11733 -D 9050 -NT
+IH@ ssh student@127.0.0.1 -p -L 11766:172.20.21.5:23
+IH@ telnet 127.0.0.1 11766
+HD@ ssh student@172.20.21.4 -R 11744:127.0.0.1:22
+IH@ ssh student@127.0.0.1 -p 11733 -L 11755:127.0.0.1:11744
+IH@ ssh student@127.0.0.1 -p 11755 -D 9050 -NT
