@@ -1,0 +1,62 @@
+Firewalls
+
+zone-based policy firewall
+host based
+network based
+
+
+
+Construct advanced IDS (snort) rules
+    Installation Directory
+        /etc/snort
+    Configuration File
+        /etc/snort/snort.conf
+    Rules Directory
+        /etc/snort/rules
+    Rule naming
+        [name].rules
+    Default Log Directory
+        /var/log/snort
+
+-D run snort as daemon
+-c specify config file when running snort
+-l specify log directory
+-r have snort read a pcap file
+
+To run snort as a Daemon
+    sudo snort -D -c /etc/snort/snort.conf -l /var/log/snort
+To run snort against a PCAP
+    sudo snort -c /etc/snort/rules/file.rules -r file.pcap
+
+
+
+ sudo snort -D -l /varl/log/snort -c /etc/snort.snort.conf
+header info
+ sudo tcpdump -r snort.log.<NUMBERS> -XX -vv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
