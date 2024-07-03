@@ -1,0 +1,17 @@
+IP: 10.50.x.x address provided by instructor
+creds: netY_studentX:passwordX (netY = Networking Class Identifier & studentX = Student Number & passwordX = Student Number)
+Known Ports: UNKNOWN
+Action: Execute proper movement and redirection techniques
+
+
+Any system, you reach or login to, you should check the "/usr/share/cctc/" directory
+answers will be in base64
+echo "<answer>" | base64
+
+When creating tunnels your authorized port ranges to utilize are NSS00 - NSS99   117(0-99)
+N = NetX (1-8)
+SS = Student Number - (ie 01 - 40)
+00-99 = available port forward ranges
+i.e. Net1_student1 can use 10100 - 10199 and Net4_student14 can use 41400 - 41499
+
+ Floating IP of start pivot is: 10.50.37.126
