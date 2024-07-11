@@ -2,6 +2,9 @@ https://sec.cybbh.io/public/security/latest/index.html
 http://10.50.20.30:8000 ----- CTFD SERVER
 http://vta.cybbh.space
 
+ping sweep:
+ for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
+
 STACK 18
 USER:ANSO-503-M    PASSWORD: 4GLmcjqLpnn5J4h
 JUMP BOX:  10.50.40.132
