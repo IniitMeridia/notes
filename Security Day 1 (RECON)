@@ -1,3 +1,49 @@
+
+
+
+    Host Discovery
+
+        Find hosts that are online
+
+    Port Enumeration
+
+        Find ports for each host that is online
+
+    Port Interrogation
+
+        Find what service is running on each open/available port
+
+Demonstration
+
+Advanced Scanning Techniques
+NMAP Scripting Engine
+
+During the lesson we will review the following topics:
+
+
+    Benefits of Scanning with Scripts
+
+    Script Management and Utilization
+
+    Usage and Examples
+
+
+page = (inside will be http://127.0.0.1....)
+change xpath query ( )
+
+---------------web scrapping script------------
+--vim pyscrape.py
+#!/usr/bin/python
+import lxml.html
+import requests
+
+page = requests.get('http://quotes.toscrape.com')
+tree = lxml.html.fromstring(page.content)
+
+authors = tree.xpath('//small[@class="author"]/text()')
+
+print ('Authors: ',authors)
+
 linops:
 ssh student@10.50.36.222 -X
 terminator
@@ -25,8 +71,8 @@ ssh -S /tmp/t1 dummy -O forward -L 11744:(2ndNETIP)192.168.50.100:22
 
 ssh -MS /tmp/t2 <CREDS>@127.0.0.1 -p 11744
 
-
-
+--proxychains nmap --script=http-enum <IP>
+(/usr/share/nmap/scripts) | grep http
 
 
 winops
