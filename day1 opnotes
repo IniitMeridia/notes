@@ -1,0 +1,16 @@
+Scheme of Maneuver:
+>Jump Box
+->Network scan: 192.168.28.96/27
+-->Network scan:192.168.150.224/27
+
+Target Section:
+
+Network scans:
+Network: 192.168.28.96/27
+Network:192.168.150.224/27
+OSs: unknown
+Creds: student ::
+Known Ports: unknown
+Known URL: consulting.site.donovia
+Known URL: conference.site.donovia
+Action: Reconnaissance to collect intelligence and identify possible avenues of approach in the network.
