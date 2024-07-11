@@ -1,1 +1,32 @@
+linops:
+ssh student@10.50.36.222 -X
+terminator
 
+ssh -MS /tmp/jump student@10.50.40.132
+
+ssh -S /tmp/jump dummy -O forward -D 9050
+
+ping sweep: for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
+
+proxychains nmap <IPS>
+
+--proxychains nc <IP> 80
+
+ssh -S /tmp/jump dummy -O forward -L 11711:192.168.28.100:80 (can specify multiple) -L 11722:<92.168.28.111:80 -L 11733:192.168.28.111:22
+to cancel port = ssh -S /tmp/jump dummy -O cancel -L 11722:<92.168.28.111:80
+
+firefox 127.0.0.1:1111
+
+ssh -S /tmp/jump dummy -O forward -L 11733:192.168.28.111:22
+
+ssh -MS /tmp/t1 <CREDS>@127.0.0.1 -p 11733
+
+ssh -S /tmp/t1 dummy -O forward -L 11744:(2ndNETIP)192.168.50.100:22
+
+ssh -MS /tmp/t2 <CREDS>@127.0.0.1 -p 11744
+
+
+
+
+
+winops
