@@ -27,6 +27,7 @@ Malware: Unknown
 Action: Conduct approved Web Exploitation techniques to collect intellegence.
 
 ssh -MS /tmp/jump student@10.50.40.132
+4GLmcjqLpnn5J4h
 
 ##Dynamic
 ssh -S /tmp/jump dummy -O forward -D 9050
