@@ -1,0 +1,80 @@
+Scheme of Maneuver:
+>Jump Box
+->T1:10.100.28.48
+
+Target Section:
+
+T1
+Hostname: donovian-nla
+IP: 10.100.28.48
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+Last Known HTTP Port: 80
+PSP: Unknown
+Malware: Unknown
+Action: Conduct approved SQLi Exploitation techniques to collect intelligence.
+
+
+sqlinjection	categories	id
+sqlinjection	categories	name
+sqlinjection	categories	description
+sqlinjection	members	id
+sqlinjection	members	username
+sqlinjection	members	password
+sqlinjection	members	first_name
+sqlinjection	members	last_name
+sqlinjection	members	email
+sqlinjection	members	permission
+sqlinjection	orderlines	id
+sqlinjection	orderlines	quantity
+sqlinjection	orderlines	product
+sqlinjection	orderlines	order
+sqlinjection	orders	id
+sqlinjection	orders	date
+sqlinjection	orders	member
+sqlinjection	payments	id
+sqlinjection	payments	creditcard_number
+sqlinjection	payments	date
+sqlinjection	payments	order
+sqlinjection	permissions	id
+sqlinjection	permissions	level
+sqlinjection	permissions	name
+sqlinjection	permissions	description
+sqlinjection	products	id
+sqlinjection	products	name
+sqlinjection	products	description
+sqlinjection	products	price
+sqlinjection	products	qty_left
+sqlinjection	products	category
+sqlinjection	share4	id
+sqlinjection	share4	comment
+sqlinjection	share4	mime
+sqlinjection	share4	data
+
+information_schema	FILES	FILE_ID
+information_schema	PROCESSLIST	ID
+information_schema	PROCESSLIST	QUERY_ID
+information_schema	PROCESSLIST	TID
+
+information_schema	COLLATIONS	ID
+information_schema	INNODB_SYS_TABLESTATS	TABLE_ID
+information_schema	INNODB_SYS_INDEXES	INDEX_ID
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
