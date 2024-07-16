@@ -1,0 +1,37 @@
+
+
+
+
+
+
+
+main:
+  mov rax, 16    // moving into rax value of 16
+  push rax       // pushing value in rax (16) onto stack, RSP is pushed up by 8 bytes
+  jmp mem2       // jump to mem2 function
+
+mem1:
+  mov rax, 0     // moving into rax the value of 0
+  ret            // return
+
+mem2:
+  pop r8         // popping value (16) off of stack and storing in r8, RSP falls by 8 bytes
+  cmp rax, r8    // compare to rax value (16) the value of r8 (16)
+  je mem1        //previous comparison ends with zero flag set; jump to mem1
+
+
+
+  main:
+    mov rcx, 25       //moving into rcx the value of 25
+    mov rbx, 62       //moving into rbx the value of 62
+    jmp mem1          //jump to mem1
+
+  mem1:
+    sub rbx, 40       //subtract from the value of rcx (62) the value of 40. result is rbx=22
+    mov rsi, rbx      //moving into rsi the value of rbx(22)
+    cmp rcx, rsi      //compare to rcx(25) the value of rsi (22)
+    jmple mem2        //zero flag not set and RSI < RCX. jump to mem2
+ 
+ mem2:
+    mov rax, 0        //moving into rax the value of 0
+    ret               //return 
