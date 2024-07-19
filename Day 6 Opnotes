@@ -49,16 +49,16 @@ Action: Exploit a network service on the machine
   
 
   
-
-  stack for inventory.exe
+stack for inventory.exe
   0xf7de1000 - 0xffffe000
 
-  find /b 0xf7de1000, 0xffffe000, 0xff, 0xe4
+find /b 0xf7de1000, 0xffffe000, 0xff, 0xe4
 
 0xf7de3b59
 0xf7f588ab
 0xf7f645fb
 0xf7f6460f
+
 
 
 
