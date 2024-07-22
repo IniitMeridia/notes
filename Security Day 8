@@ -47,8 +47,13 @@ Data Exfiltration
 scp source destination
 all users can write to /tmp
 
+pers
+registry run keys
 
 
+crontab etc/cron  , var/spool/cron
+etc/init
+services
 
 
 
