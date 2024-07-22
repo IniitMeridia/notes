@@ -1,0 +1,85 @@
+  grabbing private keys
+
+chmod 600 /home/student/stolenkey
+ssh -i /home/student/stolenkey jane@1.2.3.4
+
+
+
+User Enumeration
+
+Windows
+net user
+
+Linux
+cat /etc/passwd
+
+
+Process Enumeration
+
+Windows
+tasklist /v
+
+Linux
+ps -elf
+
+
+Service Enumeration
+
+Windows
+tasklist /svc
+
+Linux
+chkconfig                   # SysV
+systemctl --type=service    # SystemD
+
+
+Network Connection Enumeration
+
+Windows
+ipconfig /all
+
+Linux
+ifconfig -a      # SysV (deprecated)
+ip a             # SystemD
+cat etc/hosts !!!!!!
+
+Data Exfiltration
+scp source destination
+all users can write to /tmp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
