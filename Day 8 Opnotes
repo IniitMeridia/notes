@@ -137,6 +137,17 @@ find / -iname *inventory* 2>/dev/null
 cat /usr/share/equip-inventory.txt
 decode from base64
 
+
+
+
+
+
+
+
+
+
+
+
 make new master socket for .100
 ssh -MS /tmp/T1 www-data@127.0.0.1 -p 11711
 
