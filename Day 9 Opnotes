@@ -1,0 +1,78 @@
+Scheme of Maneuver:
+>Jump Box
+->Pivot: 192.168.28.105
+-->T1: 192.168.28.5
+
+Target Section:
+
+Pivot
+Hostname: ftp.site.donovia
+IP: 192.168.28.105
+OS: Ubuntu 18.04
+Creds: comrade :: StudentReconPassword
+Last Known SSH Port: 2222
+Malware: none
+Action: Perform SSH masquerade and redirect to the next target. No survey required, cohabitation with known PSP approved.
+
+T1
+Hostname: donovian-windows-private
+IP: 192.168.28.5
+OS: Windows ver: Unknown
+Creds: comrade :: StudentPrivPassword
+Last Known Ports: 3389
+PSP: unknown
+Malware: unknown
+Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+---
+
+
+
+
+----
+ssh -S /tmp/jump dummy -O forward -L 11719:192.168.28.105:2222
+
+Nmap scan report for 192.168.28.105
+Host is up (0.00043s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE
+21/tcp   open  ftp
+23/tcp   open  telnet
+2222/tcp open  EtherNetIP-1
+
+make socket to .105
+ssh -S /tmp/jump dummy -O forward -L 11719:192.168.28.105:2222
+
+scan 192.168.28.5
+proxychains nmap 192.168.28.5 -T5
+
+Nmap scan report for 192.168.28.5
+Host is up (0.00083s latency).
+Not shown: 996 closed ports
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+3389/tcp open  ms-wbt-server
+
+make new master socket for pivot
+ssh -MS /tmp/T3 comrade@127.0.0.1 -p 11719
+StudentReconPassword
+
+make socket to .5 for rdp
+ssh -S /tmp/T3 dummy -O forward -L 11720:192.168.28.5:3389
+
+
+xfreerdp /u:comrade /v:127.0.0.1:11720 /dynamic-resolution /glyph-cache /clipboard
+StudentPrivPassword
+
+
+
+
+
+
+
+
+
+
+
