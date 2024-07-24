@@ -1,0 +1,17 @@
+    LINUX
+sudo vim <file>
+:!/bin/bash -> now root user
+    
+ip a
+ip n
+cat /etc/passwd
+cat /etc/shadow
+cat /etc/hosts
+cat /etc/crontab
+cat /var/spool/cron/crontab
+ls /etc/rsyslog.d  /  ls /usr/share/rsyslog.d
+
+sudo -l
+ss -ntlp
+ss -antp
+systemctl --type=service
