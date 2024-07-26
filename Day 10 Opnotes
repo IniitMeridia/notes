@@ -35,3 +35,91 @@ Last Known Ports: unknown
 PSP: unknown
 Malware: unknown
 Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+make jump master socket
+
+make socket to .105 ssh
+
+make T1 master socket
+
+move dynamic to T1
+
+scan targets
+proxychains nmap 192.168.28.12,27 -p 1-65535
+
+result
+Nmap scan report for 192.168.28.12
+Host is up (0.00055s latency).
+Not shown: 65534 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap scan report for 192.168.28.27
+Host is up (0.00054s latency).
+Not shown: 65534 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+
+make socket to .12 ssh
+ ssh -S /tmp/T1 dummy -O forward -L 11712:192.168.28.12:22
+
+ssh into the .12
+ssh comrade@127.0.0.1 -p 11712
+StudentPrivPassword
+
+check permisions
+sudo -l -> doesnt work
+
+find / -type f -perm /6000 -ls 2>/dev/null
+result:
+     4341     76 -rwsr-xr-x   1 root     root          75824 Mar 22  2019 /usr/bin/gpasswd
+     4337     72 -rwxr-sr-x   1 root     shadow        71816 Mar 22  2019 /usr/bin/chage
+     4342     60 -rwsr-xr-x   1 root     root          59640 Mar 22  2019 /usr/bin/passwd
+     4303     40 -rwxr-sr-x   1 root     crontab       39352 Nov 16  2017 /usr/bin/crontab
+     4340     24 -rwxr-sr-x   1 root     shadow        22808 Mar 22  2019 /usr/bin/expiry
+     4499     44 -rwxr-sr-x   1 root     mlocate       43088 Mar  1  2018 /usr/bin/mlocate
+     4507    356 -rwxr-sr-x   1 root     ssh          362640 Mar  4  2019 /usr/bin/ssh-agent
+     4648     40 -rwsr-xr-x   1 root     root          37136 Mar 22  2019 /usr/bin/newuidmap
+     4339     44 -rwsr-xr-x   1 root     root          44528 Mar 22  2019 /usr/bin/chsh
+     4140     40 -rwsr-xr-x   1 root     root          40344 Mar 22  2019 /usr/bin/newgrp
+     4338     76 -rwsr-xr-x   1 root     root          76496 Mar 22  2019 /usr/bin/chfn
+     4400     16 -rwxr-sr-x   1 root     tty           14328 Jan 17  2018 /usr/bin/bsd-write
+     4539     52 -rwsr-sr-x   1 daemon   daemon        51464 Feb 20  2018 /usr/bin/at
+     4659     24 -rwsr-xr-x   1 root     root          22520 Mar 27  2019 /usr/bin/pkexec
+     4058     32 -rwxr-sr-x   1 root     tty           30800 Jan  8  2020 /usr/bin/wall
+     4495     20 -rwsr-xr-x   1 root     root          18448 Jun 28  2019 /usr/bin/traceroute6.iputils
+     4647     40 -rwsr-xr-x   1 root     root          37136 Mar 22  2019 /usr/bin/newgidmap
+     4261    148 -rwsr-xr-x   1 root     root         149080 Jan 31  2020 /usr/bin/sudo
+     3823     36 -rwxr-sr-x   1 root     shadow        34816 Feb 27  2019 /sbin/unix_chkpwd
+     3819     36 -rwxr-sr-x   1 root     shadow        34816 Feb 27  2019 /sbin/pam_extrausers_chkpwd
+      139     32 -rwsr-xr-x   1 root     root          30800 Aug 11  2016 /bin/fusermount
+       56     44 -rwsr-xr-x   1 root     root          43088 Jan  8  2020 /bin/mount
+      109     64 -rwsr-xr-x   1 root     root          64424 Jun 28  2019 /bin/ping
+       55     44 -rwsr-xr-x   1 root     root          44664 Mar 22  2019 /bin/su
+       57     28 -rwsr-xr-x   1 root     root          26696 Jan  8  2020 /bin/umount
+
+found that unknown makes files and adds text to file as root syntax /var/tmp/testbed/unknown <file> <text>
+it also appends to files created, can it overwirte /etc files?
+it can write to root home directory
+try writing comrade into sudoers file
+
+
+
+make socket to .27 ssh
+ssh -S /tmp/T1 dummy -O forward -L 11713:192.168.28.27:22
+ssh into the .27
+ssh comrade@127.0.0.1 -p 11713
+
+need to enumerate one fo the users
+
+
+
+
+cat /home/billybob/f!@g1.txt > /tmp/billybob_flag;
+cat /home/billybob/10-million-password-list-top-10000.txt > /tmp/password_list;
+cat /home/billybob/logs > billybob_logs
+
+
+
+
