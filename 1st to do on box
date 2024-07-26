@@ -10,7 +10,7 @@ cat /etc/hosts
 cat /etc/crontab
 cat /var/spool/cron/crontab
 ls /etc/rsyslog.d  /  ls /usr/share/rsyslog.d
-
+crontab -l 
 sudo -l
 ss -ntlp
 ss -antp
